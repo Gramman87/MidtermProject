@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(255) NOT NULL,
   `password` VARCHAR(32) NOT NULL,
-  `create_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `create_date` DATETIME NULL,
   `first_name` VARCHAR(45) NULL,
   `last_name` VARCHAR(45) NULL,
   `address_id` INT NOT NULL,
@@ -111,10 +111,10 @@ CREATE TABLE IF NOT EXISTS `exchange_event` (
   `event_type_id` INT NOT NULL,
   `title` VARCHAR(200) NULL,
   `image_url` VARCHAR(3000) NULL,
-  `create_date` DATETIME NULL,
   `last_update` DATETIME NULL,
   `rsvp_by` DATE NULL,
   `event_time` TIME NULL,
+  `create_date` DATETIME NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_exchange_address1_idx` (`address_id` ASC),
   INDEX `fk_exchange_user1_idx` (`owner_id` ASC),
@@ -283,3 +283,93 @@ GRANT SELECT, INSERT, TRIGGER, UPDATE, DELETE ON TABLE * TO 'secretsantauser'@'l
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+-- -----------------------------------------------------
+-- Data for table `address`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `secretsantadb`;
+INSERT INTO `address` (`id`, `street1`, `street2`, `city`, `state`, `zipcode`) VALUES (1, '123 SomeWhere St.', NULL, 'Out There', 'CO', '12345');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `user`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `secretsantadb`;
+INSERT INTO `user` (`id`, `email`, `password`, `create_date`, `first_name`, `last_name`, `address_id`, `enabled`, `role`, `profile_image_url`) VALUES (1, 'admin@gmail.com', 'admin', '2021-10-10', 'Santa', 'Clause', 1, 1, 'Gifter', NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `wishlist_item`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `secretsantadb`;
+INSERT INTO `wishlist_item` (`id`, `name`, `cost`, `user_id`, `shopping_url`, `description`) VALUES (1, 'Tech', 70, 1, NULL, 'Techy tech');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `event_type`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `secretsantadb`;
+INSERT INTO `event_type` (`id`, `name`, `description`, `image_url`) VALUES (1, 'Secret Santa Test', 'Mic check 123', NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `exchange_event`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `secretsantadb`;
+INSERT INTO `exchange_event` (`id`, `custom_rules`, `address_id`, `event_date`, `price_min`, `price_max`, `owner_id`, `complete`, `event_type_id`, `title`, `image_url`, `last_update`, `rsvp_by`, `event_time`, `create_date`) VALUES (1, 'Take a drink everytime politics are mentioned', 1, '2021-12-12', 25.00, 75.00, 1, 0, 1, 'Secret Santa Test', NULL, NULL, NULL, NULL, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `user_exchange`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `secretsantadb`;
+INSERT INTO `user_exchange` (`exchange_id`, `user_id`, `giftee_id`, `attending`, `comment`, `date_invited`) VALUES (1, 1, NULL, 1, 'yo yo yo cant wait', '2021-12-11T01:01:01');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `exchange_item`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `secretsantadb`;
+INSERT INTO `exchange_item` (`id`, `exchange_id`, `user_id`, `title`, `description`, `item_url`, `is_visible`) VALUES (1, 1, 1, 'Best Gift', 'The bestest gift you could ask for', NULL, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `event_comment`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `secretsantadb`;
+INSERT INTO `event_comment` (`id`, `comment`, `comment_date`, `reply_to`, `user_exchange_exchange_id`, `user_exchange_user_id`) VALUES (1, 'This will be THE event of the year', '2021-12-11T01:01:01', NULL, 1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `item_comment`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `secretsantadb`;
+INSERT INTO `item_comment` (`id`, `comment`, `comment_date`, `exchange_item_id`, `user_id`, `image_url`) VALUES (1, 'Wow, this is the best gift for sure', '2021-12-11T01:01:01', 1, 1, NULL);
+
+COMMIT;
+
