@@ -16,65 +16,6 @@ CREATE SCHEMA IF NOT EXISTS `secretsantadb` DEFAULT CHARACTER SET utf8 ;
 USE `secretsantadb` ;
 
 -- -----------------------------------------------------
--- Table `user`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `user` ;
-
-CREATE TABLE IF NOT EXISTS `user` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `email` VARCHAR(255) NOT NULL,
-  `password` VARCHAR(32) NOT NULL,
-  `create_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-  `first_name` VARCHAR(45) NULL,
-  `last_name` VARCHAR(45) NULL,
-  `enabled` TINYINT NULL,
-  `role` VARCHAR(45) NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `email_UNIQUE` (`email` ASC))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `wishlist_category`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `wishlist_category` ;
-
-CREATE TABLE IF NOT EXISTS `wishlist_category` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `name_UNIQUE` (`name` ASC))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `wishlist_item`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `wishlist_item` ;
-
-CREATE TABLE IF NOT EXISTS `wishlist_item` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NULL,
-  `cost` DOUBLE NULL,
-  `user_id` INT NOT NULL,
-  `category_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_wishlist_item_user_idx` (`user_id` ASC),
-  INDEX `fk_wishlist_item_wishlist_category1_idx` (`category_id` ASC),
-  CONSTRAINT `fk_wishlist_item_user`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_wishlist_item_wishlist_category1`
-    FOREIGN KEY (`category_id`)
-    REFERENCES `wishlist_category` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `address`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `address` ;
@@ -91,23 +32,93 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `exchange`
+-- Table `user`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `exchange` ;
+DROP TABLE IF EXISTS `user` ;
 
-CREATE TABLE IF NOT EXISTS `exchange` (
+CREATE TABLE IF NOT EXISTS `user` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `type` ENUM('SECRET_SANTA', 'WHITE_ELEPHANT', 'POTLUCK', 'CUSTOM') NOT NULL,
-  `custom_rules` TEXT NULL,
+  `email` VARCHAR(255) NOT NULL,
+  `password` VARCHAR(32) NOT NULL,
+  `create_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `first_name` VARCHAR(45) NULL,
+  `last_name` VARCHAR(45) NULL,
   `address_id` INT NOT NULL,
-  `end_date` DATETIME NULL,
+  `enabled` TINYINT NULL,
+  `role` VARCHAR(45) NULL,
+  `profile_image_url` VARCHAR(3000) NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC),
+  INDEX `fk_user_address1_idx` (`address_id` ASC),
+  CONSTRAINT `fk_user_address1`
+    FOREIGN KEY (`address_id`)
+    REFERENCES `address` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `wishlist_item`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `wishlist_item` ;
+
+CREATE TABLE IF NOT EXISTS `wishlist_item` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NULL,
+  `cost` DOUBLE NULL,
+  `user_id` INT NOT NULL,
+  `shopping_url` VARCHAR(3000) NULL,
+  `description` VARCHAR(500) NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_wishlist_item_user_idx` (`user_id` ASC),
+  CONSTRAINT `fk_wishlist_item_user`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `event_type`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `event_type` ;
+
+CREATE TABLE IF NOT EXISTS `event_type` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(100) NULL,
+  `description` TEXT NULL,
+  `image_url` VARCHAR(3000) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `exchange_event`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `exchange_event` ;
+
+CREATE TABLE IF NOT EXISTS `exchange_event` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `custom_rules` TEXT NULL,
+  `address_id` INT NULL,
+  `event_date` DATE NULL,
   `price_min` DOUBLE NULL,
   `price_max` DOUBLE NULL,
   `owner_id` INT NOT NULL,
-  `status` ENUM('ACTIVE', 'PENDING', 'COMPLETE') NULL,
+  `complete` TINYINT NULL,
+  `event_type_id` INT NOT NULL,
+  `title` VARCHAR(200) NULL,
+  `image_url` VARCHAR(3000) NULL,
+  `create_date` DATETIME NULL,
+  `last_update` DATETIME NULL,
+  `rsvp_by` DATE NULL,
+  `event_time` TIME NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_exchange_address1_idx` (`address_id` ASC),
   INDEX `fk_exchange_user1_idx` (`owner_id` ASC),
+  INDEX `fk_exchange_event_event_type1_idx` (`event_type_id` ASC),
   CONSTRAINT `fk_exchange_address1`
     FOREIGN KEY (`address_id`)
     REFERENCES `address` (`id`)
@@ -116,6 +127,11 @@ CREATE TABLE IF NOT EXISTS `exchange` (
   CONSTRAINT `fk_exchange_user1`
     FOREIGN KEY (`owner_id`)
     REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_exchange_event_event_type1`
+    FOREIGN KEY (`event_type_id`)
+    REFERENCES `event_type` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -129,16 +145,26 @@ DROP TABLE IF EXISTS `user_exchange` ;
 CREATE TABLE IF NOT EXISTS `user_exchange` (
   `exchange_id` INT NOT NULL,
   `user_id` INT NOT NULL,
+  `giftee_id` INT NULL,
+  `attending` TINYINT NULL,
+  `comment` TEXT NULL,
+  `date_invited` DATETIME NULL,
   PRIMARY KEY (`exchange_id`, `user_id`),
   INDEX `fk_exchange_has_user_user1_idx` (`user_id` ASC),
   INDEX `fk_exchange_has_user_exchange1_idx` (`exchange_id` ASC),
+  INDEX `fk_user_exchange_user1_idx` (`giftee_id` ASC),
   CONSTRAINT `fk_exchange_has_user_exchange1`
     FOREIGN KEY (`exchange_id`)
-    REFERENCES `exchange` (`id`)
+    REFERENCES `exchange_event` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_exchange_has_user_user1`
     FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_user_exchange_user1`
+    FOREIGN KEY (`giftee_id`)
     REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -146,31 +172,103 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `secret_santa`
+-- Table `exchange_item`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `secret_santa` ;
+DROP TABLE IF EXISTS `exchange_item` ;
 
-CREATE TABLE IF NOT EXISTS `secret_santa` (
-  `santa_id` INT NOT NULL,
-  `giftee_id` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `exchange_item` (
+  `id` INT NOT NULL AUTO_INCREMENT,
   `exchange_id` INT NOT NULL,
-  PRIMARY KEY (`santa_id`, `giftee_id`, `exchange_id`),
-  INDEX `fk_user_has_user_user2_idx` (`giftee_id` ASC),
-  INDEX `fk_user_has_user_user1_idx` (`santa_id` ASC),
-  INDEX `fk_secret_santa_exchange1_idx` (`exchange_id` ASC),
+  `user_id` INT NOT NULL,
+  `title` VARCHAR(45) NOT NULL,
+  `description` TEXT NULL,
+  `item_url` VARCHAR(3000) NULL,
+  `is_visible` TINYINT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_exchange_item_user_exchange1_idx` (`exchange_id` ASC, `user_id` ASC),
+  CONSTRAINT `fk_exchange_item_user_exchange1`
+    FOREIGN KEY (`exchange_id` , `user_id`)
+    REFERENCES `user_exchange` (`exchange_id` , `user_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `user_friend`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `user_friend` ;
+
+CREATE TABLE IF NOT EXISTS `user_friend` (
+  `user_id` INT NOT NULL,
+  `friend_id` INT NOT NULL,
+  PRIMARY KEY (`user_id`, `friend_id`),
+  INDEX `fk_user_has_user_user2_idx` (`friend_id` ASC),
+  INDEX `fk_user_has_user_user1_idx` (`user_id` ASC),
   CONSTRAINT `fk_user_has_user_user1`
-    FOREIGN KEY (`santa_id`)
+    FOREIGN KEY (`user_id`)
     REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_user_has_user_user2`
-    FOREIGN KEY (`giftee_id`)
+    FOREIGN KEY (`friend_id`)
     REFERENCES `user` (`id`)
     ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `event_comment`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `event_comment` ;
+
+CREATE TABLE IF NOT EXISTS `event_comment` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `comment` TEXT NULL,
+  `comment_date` DATETIME NULL,
+  `reply_to` INT NULL,
+  `user_exchange_exchange_id` INT NOT NULL,
+  `user_exchange_user_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_event_comment_event_comment1_idx` (`reply_to` ASC),
+  INDEX `fk_event_comment_user_exchange1_idx` (`user_exchange_exchange_id` ASC, `user_exchange_user_id` ASC),
+  CONSTRAINT `fk_event_comment_event_comment1`
+    FOREIGN KEY (`reply_to`)
+    REFERENCES `event_comment` (`id`)
+    ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_secret_santa_exchange1`
-    FOREIGN KEY (`exchange_id`)
-    REFERENCES `exchange` (`id`)
+  CONSTRAINT `fk_event_comment_user_exchange1`
+    FOREIGN KEY (`user_exchange_exchange_id` , `user_exchange_user_id`)
+    REFERENCES `user_exchange` (`exchange_id` , `user_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `item_comment`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `item_comment` ;
+
+CREATE TABLE IF NOT EXISTS `item_comment` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `comment` TEXT NULL,
+  `comment_date` DATETIME NULL,
+  `exchange_item_id` INT NOT NULL,
+  `user_id` INT NOT NULL,
+  `image_url` VARCHAR(3000) NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_exchange_item_comment_exchange_item1_idx` (`exchange_item_id` ASC),
+  INDEX `fk_item_comment_user1_idx` (`user_id` ASC),
+  CONSTRAINT `fk_exchange_item_comment_exchange_item1`
+    FOREIGN KEY (`exchange_item_id`)
+    REFERENCES `exchange_item` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_item_comment_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -185,13 +283,3 @@ GRANT SELECT, INSERT, TRIGGER, UPDATE, DELETE ON TABLE * TO 'secretsantauser'@'l
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
-
--- -----------------------------------------------------
--- Data for table `user`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `secretsantadb`;
-INSERT INTO `user` (`id`, `email`, `password`, `create_time`, `first_name`, `last_name`, `enabled`, `role`) VALUES (1, 'admin@gmail.com', 'admin', NULL, NULL, NULL, 1, NULL);
-
-COMMIT;
-
