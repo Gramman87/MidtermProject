@@ -17,8 +17,13 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public User findByUsername(String username) {
-		// TODO Auto-generated method stub
-		return null;
+		String jpql = "SELECT u FROM User u WHERE u.email = :n";
+		try {
+			return em.createQuery(jpql, User.class).setParameter("n", username).getSingleResult();
+		} catch (Exception e) {
+			System.err.println("Invalid user name: " + username);
+			return null;
+		}
 	}
 
 }
