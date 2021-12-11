@@ -1,1 +1,3 @@
 rootProject.name = 'Ho-Ho-Homies'
+
+includeFlat 'Ho-Ho-HomiesJPA'
