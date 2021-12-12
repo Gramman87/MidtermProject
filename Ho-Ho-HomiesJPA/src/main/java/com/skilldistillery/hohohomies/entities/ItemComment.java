@@ -20,10 +20,10 @@ public class ItemComment {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "comment")
+	@Column(name = "text")
 	private String text;
 
-	@Column(name = "comment_date")
+	@Column(name = "when")
 	private LocalDateTime when;
 
 	@ManyToOne
@@ -36,7 +36,7 @@ public class ItemComment {
 	@Column(name = "image_url")
 	private String imageURL;
 
-	public int getId() {
+	public int getId() { 
 		return id;
 	}
 
