@@ -4,6 +4,8 @@ import com.skilldistillery.hohohomies.entities.User;
 
 public interface UserDAO {
 	
-	User findByUsername(String username);
+	public User findByUsername(String username);
+	
+	public User createUser(User user);
 
 }
