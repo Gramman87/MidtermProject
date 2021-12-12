@@ -65,6 +65,10 @@ class UserExchangeTest {
 
 	@Test
 	void test_giftee_mapping() throws Exception {
+		assertNotNull(ex);
+		assertNull(ex.getGiftee());
+
+		
 		throw new Exception("unimplemented");
 	}
 

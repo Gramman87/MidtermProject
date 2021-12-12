@@ -81,7 +81,11 @@ class UserTest {
 
 	@Test
 	void test_profile_img_url_mapping() throws Exception {
-		throw new Exception("unimplemented"); // TODO: provide actual data to test other than NULL
+		assertNotNull(user);
+		assertEquals("https://images-na.ssl-images-amazon.com/images/I/61meLNRcjnL.jpg", 
+				user.getImageURL());
+		
+//		throw new Exception("unimplemented"); // TODO: provide actual data to test other than NULL
 	}
 
 	@Test

@@ -71,6 +71,13 @@ class ItemCommentTest {
 
 	@Test
 	void test_image_url_mapping() throws Exception {
-		throw new Exception("unimplemented");
+		assertNotNull(com);
+		assertNotNull(com.getImageURL());
+		assertEquals("https://upload.wikimedia.org/wikipedia/commons/4/49/Jonathan_G_Meath_portrays_Santa_Claus.jpg",
+				com.getImageURL());
+
+
+		
+//		throw new Exception("unimplemented");
 	}
 }

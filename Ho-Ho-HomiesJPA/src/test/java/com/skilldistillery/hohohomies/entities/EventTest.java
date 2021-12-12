@@ -69,7 +69,7 @@ class EventTest {
 	}
 
 	@Test
-	void test_date_mapping() throws Exception {
+	void test_datetime_start_mapping() throws Exception {
 		assertNotNull(event);
 		assertNotNull(event.getDate());
 		assertEquals(2021, event.getDate().getYear());
@@ -112,27 +112,57 @@ class EventTest {
 
 	@Test
 	void test_image_url_mapping() throws Exception {
-		throw new Exception("unimplemented"); // TODO: provide actual data to test other than NULL
+		assertNotNull(event);
+		assertNotNull(event.getImageURL());
+		assertEquals("https://upload.wikimedia.org/wikipedia/commons/4/49/Jonathan_G_Meath_portrays_Santa_Claus.jpg", 
+				event.getImageURL());
+
+		
+//		throw new Exception("unimplemented"); // TODO: provide actual data to test other than NULL
 	}
 
 	@Test
 	void test_last_update_mapping() throws Exception {
-		throw new Exception("unimplemented"); // TODO: provide actual data to test other than NULL
+		assertNotNull(event);
+		assertNotNull(event.getLastUpdate());
+		assertEquals(2021, event.getLastUpdate().getYear());
+		assertEquals(12, event.getLastUpdate().getMonthValue());
+		assertEquals(11, event.getLastUpdate().getDayOfMonth());
+		
+//		throw new Exception("unimplemented"); // TODO: provide actual data to test other than NULL
 	}
 
 	@Test
 	void test_rsvp_by_mapping() throws Exception {
-		throw new Exception("unimplemented"); // TODO: provide actual data to test other than NULL
+		assertNotNull(event);
+		assertNotNull(event.getRsvpBy());
+		assertEquals(2021, event.getRsvpBy().getYear());
+		assertEquals(12, event.getRsvpBy().getMonthValue());
+		assertEquals(20, event.getRsvpBy().getDayOfMonth());
+		
+//		throw new Exception("unimplemented"); // TODO: provide actual data to test other than NULL
 	}
 
 	@Test
 	void test_time_mapping() throws Exception {
-		throw new Exception("unimplemented"); // TODO: provide actual data to test other than NULL
+		assertNotNull(event);
+		assertNotNull(event.getTime());
+		assertEquals(12, event.getTime().getHour());
+		assertEquals(0, event.getTime().getMinute());
+		assertEquals(0, event.getTime().getSecond());
+		
+//		throw new Exception("unimplemented"); // TODO: provide actual data to test other than NULL
 	}
 
 	@Test
 	void test_create_date_mapping() throws Exception {
-		throw new Exception("unimplemented"); // TODO: provide actual data to test other than NULL
+		assertNotNull(event);
+		assertNotNull(event.getCreateDate());
+		assertEquals(2021, event.getCreateDate().getYear());
+		assertEquals(12, event.getCreateDate().getMonthValue());
+		assertEquals(01, event.getCreateDate().getDayOfMonth());
+		
+//		throw new Exception("unimplemented"); // TODO: provide actual data to test other than NULL
 	}
 
 }

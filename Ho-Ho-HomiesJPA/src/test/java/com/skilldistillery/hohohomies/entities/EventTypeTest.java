@@ -55,7 +55,12 @@ class EventTypeTest {
 
 	@Test
 	void test_image_url_mapping() throws Exception {
-		throw new Exception("unimplemented"); // TODO: provide actual data to test other than NULL
+		assertNotNull(type);
+		assertEquals("https://upload.wikimedia.org/wikipedia/commons/4/49/Jonathan_G_Meath_portrays_Santa_Claus.jpg",
+				type.getImageURL());
+
+		
+//		throw new Exception("unimplemented"); // TODO: provide actual data to test other than NULL
 	}
 
 	@Test

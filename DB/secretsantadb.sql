@@ -103,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `exchange_event` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `custom_rules` TEXT NULL,
   `address_id` INT NULL,
-  `event_date` DATE NULL,
+  `begins_on` DATETIME NULL,
   `price_min` DOUBLE NULL,
   `price_max` DOUBLE NULL,
   `owner_id` INT NOT NULL,
@@ -113,7 +113,6 @@ CREATE TABLE IF NOT EXISTS `exchange_event` (
   `image_url` VARCHAR(3000) NULL,
   `last_update` DATETIME NULL,
   `rsvp_by` DATE NULL,
-  `event_time` TIME NULL,
   `create_date` DATETIME NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_exchange_address1_idx` (`address_id` ASC),
@@ -143,18 +142,18 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `user_exchange` ;
 
 CREATE TABLE IF NOT EXISTS `user_exchange` (
-  `exchange_id` INT NOT NULL,
+  `event_id` INT NOT NULL,
   `user_id` INT NOT NULL,
   `giftee_id` INT NULL,
   `attending` TINYINT NULL,
   `comment` TEXT NULL,
   `date_invited` DATETIME NULL,
-  PRIMARY KEY (`exchange_id`, `user_id`),
+  PRIMARY KEY (`event_id`, `user_id`),
   INDEX `fk_exchange_has_user_user1_idx` (`user_id` ASC),
-  INDEX `fk_exchange_has_user_exchange1_idx` (`exchange_id` ASC),
+  INDEX `fk_exchange_has_user_exchange1_idx` (`event_id` ASC),
   INDEX `fk_user_exchange_user1_idx` (`giftee_id` ASC),
   CONSTRAINT `fk_exchange_has_user_exchange1`
-    FOREIGN KEY (`exchange_id`)
+    FOREIGN KEY (`event_id`)
     REFERENCES `exchange_event` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
@@ -178,17 +177,17 @@ DROP TABLE IF EXISTS `exchange_item` ;
 
 CREATE TABLE IF NOT EXISTS `exchange_item` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `exchange_id` INT NOT NULL,
+  `event_id` INT NOT NULL,
   `user_id` INT NOT NULL,
   `title` VARCHAR(45) NOT NULL,
   `description` TEXT NULL,
-  `item_url` VARCHAR(3000) NULL,
+  `url` VARCHAR(3000) NULL,
   `is_visible` TINYINT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_exchange_item_user_exchange1_idx` (`exchange_id` ASC, `user_id` ASC),
+  INDEX `fk_exchange_item_user_exchange1_idx` (`event_id` ASC, `user_id` ASC),
   CONSTRAINT `fk_exchange_item_user_exchange1`
-    FOREIGN KEY (`exchange_id` , `user_id`)
-    REFERENCES `user_exchange` (`exchange_id` , `user_id`)
+    FOREIGN KEY (`event_id` , `user_id`)
+    REFERENCES `user_exchange` (`event_id` , `user_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -225,22 +224,22 @@ DROP TABLE IF EXISTS `event_comment` ;
 
 CREATE TABLE IF NOT EXISTS `event_comment` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `comment` TEXT NULL,
-  `comment_date` DATETIME NULL,
+  `text` TEXT NULL,
+  `when` DATETIME NULL,
   `reply_to` INT NULL,
-  `user_exchange_exchange_id` INT NOT NULL,
-  `user_exchange_user_id` INT NOT NULL,
+  `event_id` INT NOT NULL,
+  `user_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_event_comment_event_comment1_idx` (`reply_to` ASC),
-  INDEX `fk_event_comment_user_exchange1_idx` (`user_exchange_exchange_id` ASC, `user_exchange_user_id` ASC),
+  INDEX `fk_event_comment_user_exchange1_idx` (`event_id` ASC, `user_id` ASC),
   CONSTRAINT `fk_event_comment_event_comment1`
     FOREIGN KEY (`reply_to`)
     REFERENCES `event_comment` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_event_comment_user_exchange1`
-    FOREIGN KEY (`user_exchange_exchange_id` , `user_exchange_user_id`)
-    REFERENCES `user_exchange` (`exchange_id` , `user_id`)
+    FOREIGN KEY (`event_id` , `user_id`)
+    REFERENCES `user_exchange` (`event_id` , `user_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -253,8 +252,8 @@ DROP TABLE IF EXISTS `item_comment` ;
 
 CREATE TABLE IF NOT EXISTS `item_comment` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `comment` TEXT NULL,
-  `comment_date` DATETIME NULL,
+  `text` TEXT NULL,
+  `when` DATETIME NULL,
   `exchange_item_id` INT NOT NULL,
   `user_id` INT NOT NULL,
   `image_url` VARCHAR(3000) NULL,
@@ -289,7 +288,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `secretsantadb`;
-INSERT INTO `address` (`id`, `street1`, `street2`, `city`, `state`, `zipcode`) VALUES (1, '123 SomeWhere St.', NULL, 'Out There', 'CO', '12345');
+INSERT INTO `address` (`id`, `street1`, `street2`, `city`, `state`, `zipcode`) VALUES (1, '123 SomeWhere St.', 'Apt. 3', 'Out There', 'CO', '12345');
 
 COMMIT;
 
@@ -299,7 +298,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `secretsantadb`;
-INSERT INTO `user` (`id`, `email`, `password`, `create_date`, `first_name`, `last_name`, `address_id`, `enabled`, `role`, `profile_image_url`) VALUES (1, 'admin@gmail.com', 'admin', '2021-10-10', 'Santa', 'Clause', 1, 1, 'Gifter', NULL);
+INSERT INTO `user` (`id`, `email`, `password`, `create_date`, `first_name`, `last_name`, `address_id`, `enabled`, `role`, `profile_image_url`) VALUES (1, 'admin@gmail.com', 'admin', '2021-10-10', 'Santa', 'Clause', 1, 1, 'Gifter', 'https://images-na.ssl-images-amazon.com/images/I/61meLNRcjnL.jpg');
 
 COMMIT;
 
@@ -309,7 +308,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `secretsantadb`;
-INSERT INTO `wishlist_item` (`id`, `name`, `cost`, `user_id`, `shopping_url`, `description`) VALUES (1, 'Tech', 70, 1, NULL, 'Techy tech');
+INSERT INTO `wishlist_item` (`id`, `name`, `cost`, `user_id`, `shopping_url`, `description`) VALUES (1, 'Tech', 70, 1, 'https://m.media-amazon.com/images/I/61MPy3uLBNL._AC_UL1400_.jpg', 'Techy tech');
 
 COMMIT;
 
@@ -319,7 +318,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `secretsantadb`;
-INSERT INTO `event_type` (`id`, `name`, `description`, `image_url`) VALUES (1, 'Secret Santa Test', 'Mic check 123', NULL);
+INSERT INTO `event_type` (`id`, `name`, `description`, `image_url`) VALUES (1, 'Secret Santa Test', 'Mic check 123', 'https://upload.wikimedia.org/wikipedia/commons/4/49/Jonathan_G_Meath_portrays_Santa_Claus.jpg');
 
 COMMIT;
 
@@ -329,7 +328,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `secretsantadb`;
-INSERT INTO `exchange_event` (`id`, `custom_rules`, `address_id`, `event_date`, `price_min`, `price_max`, `owner_id`, `complete`, `event_type_id`, `title`, `image_url`, `last_update`, `rsvp_by`, `event_time`, `create_date`) VALUES (1, 'Take a drink everytime politics are mentioned', 1, '2021-12-12', 25.00, 75.00, 1, 0, 1, 'Secret Santa Test', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `exchange_event` (`id`, `custom_rules`, `address_id`, `begins_on`, `price_min`, `price_max`, `owner_id`, `complete`, `event_type_id`, `title`, `image_url`, `last_update`, `rsvp_by`, `create_date`) VALUES (1, 'Take a drink everytime politics are mentioned', 1, '2021-12-24T01:01:01', 25.00, 75.00, 1, 0, 1, 'Secret Santa Test', 'https://upload.wikimedia.org/wikipedia/commons/4/49/Jonathan_G_Meath_portrays_Santa_Claus.jpg', '2021-12-11T01:01:01', '2021-12-20T01:01:01', '2021-12-01T01:01:01');
 
 COMMIT;
 
@@ -339,7 +338,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `secretsantadb`;
-INSERT INTO `user_exchange` (`exchange_id`, `user_id`, `giftee_id`, `attending`, `comment`, `date_invited`) VALUES (1, 1, NULL, 1, 'yo yo yo cant wait', '2021-12-11T01:01:01');
+INSERT INTO `user_exchange` (`event_id`, `user_id`, `giftee_id`, `attending`, `comment`, `date_invited`) VALUES (1, 1, NULL, 1, 'yo yo yo cant wait', '2021-12-11T01:01:01');
 
 COMMIT;
 
@@ -349,7 +348,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `secretsantadb`;
-INSERT INTO `exchange_item` (`id`, `exchange_id`, `user_id`, `title`, `description`, `item_url`, `is_visible`) VALUES (1, 1, 1, 'Best Gift', 'The bestest gift you could ask for', NULL, 1);
+INSERT INTO `exchange_item` (`id`, `event_id`, `user_id`, `title`, `description`, `url`, `is_visible`) VALUES (1, 1, 1, 'Best Gift', 'The bestest gift you could ask for', 'https://memegenerator.net/img/instances/80456411.jpg', 1);
 
 COMMIT;
 
@@ -359,7 +358,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `secretsantadb`;
-INSERT INTO `event_comment` (`id`, `comment`, `comment_date`, `reply_to`, `user_exchange_exchange_id`, `user_exchange_user_id`) VALUES (1, 'This will be THE event of the year', '2021-12-11T01:01:01', NULL, 1, 1);
+INSERT INTO `event_comment` (`id`, `text`, `when`, `reply_to`, `event_id`, `user_id`) VALUES (1, 'This will be THE event of the year', '2021-12-11T01:01:01', 1, 1, 1);
 
 COMMIT;
 
@@ -369,7 +368,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `secretsantadb`;
-INSERT INTO `item_comment` (`id`, `comment`, `comment_date`, `exchange_item_id`, `user_id`, `image_url`) VALUES (1, 'Wow, this is the best gift for sure', '2021-12-11T01:01:01', 1, 1, NULL);
+INSERT INTO `item_comment` (`id`, `text`, `when`, `exchange_item_id`, `user_id`, `image_url`) VALUES (1, 'Wow, this is the best gift for sure', '2021-12-11T01:01:01', 1, 1, 'https://upload.wikimedia.org/wikipedia/commons/4/49/Jonathan_G_Meath_portrays_Santa_Claus.jpg');
 
 COMMIT;
 

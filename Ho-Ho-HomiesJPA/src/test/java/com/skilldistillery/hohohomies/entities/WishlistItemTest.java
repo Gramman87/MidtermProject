@@ -61,7 +61,7 @@ class WishlistItemTest {
 	@Test
 	void test_shopping_url_mapping() throws Exception {
 		assertNotNull(item);
-		assertEquals(null, item.getShoppingURL());
+		assertEquals("https://m.media-amazon.com/images/I/61MPy3uLBNL._AC_UL1400_.jpg", item.getShoppingURL());
 	}
 
 	@Test

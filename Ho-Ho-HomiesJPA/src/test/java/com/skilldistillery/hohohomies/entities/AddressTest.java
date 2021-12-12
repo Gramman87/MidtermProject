@@ -43,7 +43,7 @@ class AddressTest {
 	void test_street_mapping() throws Exception {
 		assertNotNull(address);
 		assertEquals("123 SomeWhere St.", address.getStreet1());
-		assertEquals(null, address.getStreet2()); // TODO: provide actual data to test other than NULL
+		assertEquals("Apt. 3", address.getStreet2()); // TODO: provide actual data to test other than NULL
 	}
 
 	@Test
