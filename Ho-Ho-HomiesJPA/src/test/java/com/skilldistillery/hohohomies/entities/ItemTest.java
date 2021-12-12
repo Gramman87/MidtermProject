@@ -72,8 +72,6 @@ class ItemTest {
 	void test_url_mapping() throws Exception {
 		assertNotNull(item);
 		assertEquals("https://memegenerator.net/img/instances/80456411.jpg", item.getUrl());
-		
-//		throw new Exception("unimplemented"); // TODO: add testing data
 	}
 
 	@Test

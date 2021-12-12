@@ -24,15 +24,15 @@ public class Item {
 	private int id;
 
 	@ManyToOne
-	@JoinColumns({ @JoinColumn(name = "event_id", referencedColumnName = "event_id"),
-			@JoinColumn(name = "user_id", referencedColumnName = "user_id") })
+	@JoinColumn(name = "event_id")
+	@JoinColumn(name = "user_id")
 	private UserExchange exchange;
 
 	private String title;
 
 	private String description;
 
-	@Column(name = "item_url")
+	@Column(name = "url")
 	private String url;
 
 	@Column(name = "is_visible")
