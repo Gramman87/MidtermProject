@@ -33,6 +33,7 @@ public class Event {
 
 	@Column(name = "price_min")
 	private double priceMin;
+
 	@Column(name = "price_max")
 	private double priceMax;
 
@@ -56,21 +57,14 @@ public class Event {
 	@Column(name = "rsvp_by")
 	private LocalDate rsvpBy;
 
-	@Column(name = "event_date")
-	private LocalDateTime date;
-
-	@Column(name = "event_time")
-	private LocalTime time;
+	@Column(name = "begins_on")
+	private LocalDateTime beginsOn;
 
 	@Column(name = "create_date")
 	private LocalDateTime createDate;
 
 	@OneToMany(mappedBy = "event")
 	private List<UserExchange> exchanges;
-
-//	@OneToMany
-//	@JoinColumn(name = "user_exchange_exchange_id")
-//	private List<EventComment> comments;
 
 	public int getId() {
 		return id;
@@ -168,20 +162,12 @@ public class Event {
 		this.rsvpBy = rsvpBy;
 	}
 
-	public LocalDateTime getDate() {
-		return date;
+	public LocalDateTime getBeginsOn() {
+		return beginsOn;
 	}
 
-	public void setDate(LocalDateTime date) {
-		this.date = date;
-	}
-
-	public LocalTime getTime() {
-		return time;
-	}
-
-	public void setTime(LocalTime time) {
-		this.time = time;
+	public void setBeginsOn(LocalDateTime beginsOn) {
+		this.beginsOn = beginsOn;
 	}
 
 	public LocalDateTime getCreateDate() {
@@ -219,29 +205,6 @@ public class Event {
 			exchange.setEvent(null);
 		}
 	}
-
-//	public List<EventComment> getComments() {
-//		return comments;
-//	}
-//
-//	public void setComments(List<EventComment> comments) {
-//		this.comments = comments;
-//	}
-//
-//	public void addComment(EventComment comment) {
-//		if (comments == null) {
-//			comments = new ArrayList<>();
-//		}
-//		if (!comments.contains(comment)) {
-//			comments.add(comment);
-//		}
-//	}
-//
-//	public void removeComment(EventComment comment) {
-//		if (comments != null && comments.contains(comment)) {
-//			comments.add(comment);
-//		}
-//	}
 
 	@Override
 	public int hashCode() {

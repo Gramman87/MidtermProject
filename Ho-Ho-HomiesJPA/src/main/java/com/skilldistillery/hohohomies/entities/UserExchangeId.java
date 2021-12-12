@@ -11,7 +11,7 @@ public class UserExchangeId implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Column(name = "exchange_id")
+	@Column(name = "event_id")
 	private int eventId;
 
 	@Column(name = "user_id")

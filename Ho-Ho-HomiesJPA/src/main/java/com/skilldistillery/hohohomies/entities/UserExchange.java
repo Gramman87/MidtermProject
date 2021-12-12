@@ -28,7 +28,7 @@ public class UserExchange {
 	private User user;
 
 	@ManyToOne
-	@JoinColumn(name = "exchange_id") // Column in DB
+	@JoinColumn(name = "event_id") // Column in DB
 	@MapsId(value = "eventId") // Field in Id class
 	private Event event;
 
@@ -44,11 +44,6 @@ public class UserExchange {
 
 	@OneToMany(mappedBy = "exchange")
 	private List<Item> items;
-
-//	@OneToMany
-//	@JoinColumns({ @JoinColumn(name = "exchange_id", referencedColumnName = "user_exchange_exchange_id"),
-//			@JoinColumn(name = "user_id", referencedColumnName = "user_exchange_user_id") })
-//	private List<EventComment> comments;
 
 	public UserExchangeId getId() {
 		return id;

@@ -59,10 +59,7 @@ class EventCommentTest {
 	void test_reply_to_mapping() throws Exception {
 		assertNotNull(com);
 		assertNotNull(com.getReplyTo());
-		assertEquals(1, com.getReplyTo()); //Added by Jack
-
-
-//		throw new Exception("unimplemented"); // TODO: test db needs more data
+		assertEquals(1, com.getReplyTo().getId()); //Added by Jack
 	}
 
 	@Test

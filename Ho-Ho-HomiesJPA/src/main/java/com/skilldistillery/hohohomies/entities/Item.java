@@ -24,7 +24,7 @@ public class Item {
 	private int id;
 
 	@ManyToOne
-	@JoinColumns({ @JoinColumn(name = "exchange_id", referencedColumnName = "exchange_id"),
+	@JoinColumns({ @JoinColumn(name = "event_id", referencedColumnName = "event_id"),
 			@JoinColumn(name = "user_id", referencedColumnName = "user_id") })
 	private UserExchange exchange;
 

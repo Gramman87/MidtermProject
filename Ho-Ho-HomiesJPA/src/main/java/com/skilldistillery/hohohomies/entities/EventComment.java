@@ -21,15 +21,14 @@ public class EventComment {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "comment")
 	private String text;
 
-	@Column(name = "comment_date")
-	private LocalDateTime when; // TODO: Rename to 'when'? maybe?
+
+	private LocalDateTime when;
 
 	@ManyToOne
-	@JoinColumns({ @JoinColumn(name = "user_exchange_exchange_id", referencedColumnName = "exchange_id"),
-			@JoinColumn(name = "user_exchange_user_id", referencedColumnName = "user_id") })
+	@JoinColumns({ @JoinColumn(name = "event_id", referencedColumnName = "event_id"),
+			@JoinColumn(name = "user_id", referencedColumnName = "user_id") })
 	private UserExchange exchange;
 
 	@ManyToOne

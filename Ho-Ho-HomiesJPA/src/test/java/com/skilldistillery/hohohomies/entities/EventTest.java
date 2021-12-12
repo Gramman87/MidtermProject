@@ -41,13 +41,6 @@ class EventTest {
 		em.close();
 	}
 
-//	@Test
-//	void test_comments_mapping() throws Exception {
-//		assertNotNull(event);
-//		assertNotNull(event.getComments());
-//		assertTrue(event.getComments().size() > 0);
-//	}
-
 	@Test
 	void test_exchange_mapping() throws Exception {
 		assertNotNull(event);
@@ -69,12 +62,14 @@ class EventTest {
 	}
 
 	@Test
-	void test_datetime_start_mapping() throws Exception {
+	void test_begins_on_mapping() throws Exception {
 		assertNotNull(event);
-		assertNotNull(event.getDate());
-		assertEquals(2021, event.getDate().getYear());
-		assertEquals(12, event.getDate().getMonthValue());
-		assertEquals(12, event.getDate().getDayOfMonth());
+		assertNotNull(event.getBeginsOn());
+		assertEquals(2021, event.getBeginsOn().getYear());
+		assertEquals(12, event.getBeginsOn().getMonthValue());
+		assertEquals(24, event.getBeginsOn().getDayOfMonth());
+		assertEquals(1, event.getBeginsOn().getMinute());
+		assertEquals(1, event.getBeginsOn().getSecond());
 	}
 
 	@Test
@@ -114,11 +109,8 @@ class EventTest {
 	void test_image_url_mapping() throws Exception {
 		assertNotNull(event);
 		assertNotNull(event.getImageURL());
-		assertEquals("https://upload.wikimedia.org/wikipedia/commons/4/49/Jonathan_G_Meath_portrays_Santa_Claus.jpg", 
+		assertEquals("https://upload.wikimedia.org/wikipedia/commons/4/49/Jonathan_G_Meath_portrays_Santa_Claus.jpg",
 				event.getImageURL());
-
-		
-//		throw new Exception("unimplemented"); // TODO: provide actual data to test other than NULL
 	}
 
 	@Test
@@ -128,8 +120,6 @@ class EventTest {
 		assertEquals(2021, event.getLastUpdate().getYear());
 		assertEquals(12, event.getLastUpdate().getMonthValue());
 		assertEquals(11, event.getLastUpdate().getDayOfMonth());
-		
-//		throw new Exception("unimplemented"); // TODO: provide actual data to test other than NULL
 	}
 
 	@Test
@@ -139,19 +129,6 @@ class EventTest {
 		assertEquals(2021, event.getRsvpBy().getYear());
 		assertEquals(12, event.getRsvpBy().getMonthValue());
 		assertEquals(20, event.getRsvpBy().getDayOfMonth());
-		
-//		throw new Exception("unimplemented"); // TODO: provide actual data to test other than NULL
-	}
-
-	@Test
-	void test_time_mapping() throws Exception {
-		assertNotNull(event);
-		assertNotNull(event.getTime());
-		assertEquals(12, event.getTime().getHour());
-		assertEquals(0, event.getTime().getMinute());
-		assertEquals(0, event.getTime().getSecond());
-		
-//		throw new Exception("unimplemented"); // TODO: provide actual data to test other than NULL
 	}
 
 	@Test
@@ -161,8 +138,6 @@ class EventTest {
 		assertEquals(2021, event.getCreateDate().getYear());
 		assertEquals(12, event.getCreateDate().getMonthValue());
 		assertEquals(01, event.getCreateDate().getDayOfMonth());
-		
-//		throw new Exception("unimplemented"); // TODO: provide actual data to test other than NULL
 	}
 
 }
