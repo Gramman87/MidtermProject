@@ -36,7 +36,7 @@ public class ItemComment {
 	@Column(name = "image_url")
 	private String imageURL;
 
-	public int getId() {
+	public int getId() { 
 		return id;
 	}
 
