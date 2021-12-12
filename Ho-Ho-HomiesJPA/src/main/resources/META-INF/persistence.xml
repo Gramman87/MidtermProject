@@ -8,11 +8,21 @@
     </provider>
 
 		<class>com.skilldistillery.hohohomies.entities.User</class>
+		<class>com.skilldistillery.hohohomies.entities.Address</class>
+		<class>com.skilldistillery.hohohomies.entities.WishlistItem</class>
+		<class>com.skilldistillery.hohohomies.entities.EventType</class>
+		<class>com.skilldistillery.hohohomies.entities.Event</class>
+		<class>com.skilldistillery.hohohomies.entities.UserExchangeId</class>
+		<class>com.skilldistillery.hohohomies.entities.UserExchange</class>
+		<class>com.skilldistillery.hohohomies.entities.EventComment</class>
+		<class>com.skilldistillery.hohohomies.entities.Item</class>
+		<class>com.skilldistillery.hohohomies.entities.ItemComment</class>
 
 		<properties>
 			<property name="javax.persistence.jdbc.url"
 				value="jdbc:mysql://localhost:3306/secretsantadb?useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=US/Mountain" />
-			<property name="javax.persistence.jdbc.user" value="secretsantauser" />
+			<property name="javax.persistence.jdbc.user"
+				value="secretsantauser" />
 			<property name="javax.persistence.jdbc.password"
 				value="secretsantauser" />
 			<property name="javax.persistence.jdbc.driver"
@@ -33,6 +43,6 @@
 			<property name="hibernate.c3p0.max_statements" value="0" />
 			<property name="hibernate.c3p0.timeout" value="60" />
 		</properties>
-		
+
 	</persistence-unit>
 </persistence>
