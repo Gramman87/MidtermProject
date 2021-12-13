@@ -1,5 +1,8 @@
 package com.skilldistillery.hohohomies.data;
 
+import java.time.LocalDateTime;
+import java.util.Calendar;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -24,13 +27,30 @@ public class EventDAOImpl implements EventDAO {
 
 	@Override
 	public Event findEventFromEventId(Integer eventId) {
-		String jpql = "SELECT e FROM event e WHERE e.id = :eId";
+		String jpql = "SELECT e FROM Event e WHERE e.id = :eId";
 		Event eventMatchingId = null;
 		
 		return eventMatchingId = em.createQuery(jpql, Event.class)
 			.setParameter("eId", eventId)
 			.getSingleResult();
 		
+	}
+	public Event updateEvent(Event event) {
+		Event managed = em.find(Event.class, event.getId());
+		
+		managed.setAddress(event.getAddress());
+		managed.setBeginsOn(event.getBeginsOn());
+		managed.setComplete(event.isComplete());
+		managed.setCustomRules(event.getCustomRules());
+		managed.setImageURL(event.getImageURL());
+//		managed.setLastUpdate(date);
+		managed.setPriceMax(event.getPriceMax());
+		managed.setPriceMin(event.getPriceMin());
+		managed.setRsvpBy(event.getRsvpBy());
+		managed.setTitle(event.getTitle());
+		managed.setType(event.getType());
+		
+		return managed;
 	}
 
 }
