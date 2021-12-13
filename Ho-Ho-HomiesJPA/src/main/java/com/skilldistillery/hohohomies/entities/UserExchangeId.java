@@ -17,6 +17,15 @@ public class UserExchangeId implements Serializable {
 	@Column(name = "user_id")
 	private int userId;
 
+	public UserExchangeId() {
+
+	}
+
+	public UserExchangeId(int eventId, int userId) {
+		this.eventId = eventId;
+		this.userId = userId;
+	}
+
 	public int getEventId() {
 		return eventId;
 	}
