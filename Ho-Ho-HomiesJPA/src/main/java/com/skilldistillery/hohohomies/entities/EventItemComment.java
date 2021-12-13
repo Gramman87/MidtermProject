@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "item_comment")
-public class ItemComment {
+public class EventItemComment {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,7 +30,7 @@ public class ItemComment {
 
 	@ManyToOne
 	@JoinColumn(name = "exchange_item_id")
-	private Item item;
+	private EventItem item;
 
 	@Column(name = "image_url")
 	private String imageURL;
@@ -67,11 +67,11 @@ public class ItemComment {
 		this.user = user;
 	}
 
-	public Item getItem() {
+	public EventItem getItem() {
 		return item;
 	}
 
-	public void setItem(Item item) {
+	public void setItem(EventItem item) {
 		this.item = item;
 	}
 
@@ -96,7 +96,7 @@ public class ItemComment {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ItemComment other = (ItemComment) obj;
+		EventItemComment other = (EventItemComment) obj;
 		return id == other.id;
 	}
 

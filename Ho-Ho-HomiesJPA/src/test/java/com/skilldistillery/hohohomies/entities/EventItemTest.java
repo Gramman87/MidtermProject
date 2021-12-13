@@ -14,10 +14,10 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class ItemTest {
+class EventItemTest {
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Item item;
+	private EventItem item;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,7 +32,7 @@ class ItemTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		item = em.find(Item.class, 1);
+		item = em.find(EventItem.class, 1);
 	}
 
 	@AfterEach
