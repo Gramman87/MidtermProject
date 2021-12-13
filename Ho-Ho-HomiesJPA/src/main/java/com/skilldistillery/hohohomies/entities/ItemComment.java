@@ -20,11 +20,10 @@ public class ItemComment {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "text")
-	private String text;
+	private String content;
 
-	@Column(name = "when")
-	private LocalDateTime when;
+	@Column(name = "posted_on")
+	private LocalDateTime postedOn;
 
 	@ManyToOne
 	private User user;
@@ -36,7 +35,7 @@ public class ItemComment {
 	@Column(name = "image_url")
 	private String imageURL;
 
-	public int getId() { 
+	public int getId() {
 		return id;
 	}
 
@@ -44,20 +43,20 @@ public class ItemComment {
 		this.id = id;
 	}
 
-	public String getText() {
-		return text;
+	public String getContent() {
+		return content;
 	}
 
-	public void setText(String text) {
-		this.text = text;
+	public void setContent(String text) {
+		this.content = text;
 	}
 
-	public LocalDateTime getWhen() {
-		return when;
+	public LocalDateTime getPostedOn() {
+		return postedOn;
 	}
 
-	public void setWhen(LocalDateTime when) {
-		this.when = when;
+	public void setPostedOn(LocalDateTime when) {
+		this.postedOn = when;
 	}
 
 	public User getUser() {
@@ -103,7 +102,7 @@ public class ItemComment {
 
 	@Override
 	public String toString() {
-		return "ExchangeItemComment [id=" + id + ", text=" + text + "]";
+		return "ExchangeItemComment [id=" + id + ", text=" + content + "]";
 	}
 
 }
