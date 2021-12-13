@@ -18,7 +18,7 @@ public class EventDAOImpl implements EventDAO {
 	private EntityManager em;
 
 	@Override
-	public Event createEvent(Event event) {
+	public Event storeEvent(Event event) {
 		
 		em.persist(event);
 		return event;
