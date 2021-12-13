@@ -224,8 +224,8 @@ DROP TABLE IF EXISTS `event_comment` ;
 
 CREATE TABLE IF NOT EXISTS `event_comment` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `text` TEXT NULL,
-  `when` DATETIME NULL,
+  `content` TEXT NULL,
+  `posted_on` DATETIME NULL,
   `reply_to` INT NULL,
   `event_id` INT NOT NULL,
   `user_id` INT NOT NULL,
@@ -252,8 +252,8 @@ DROP TABLE IF EXISTS `item_comment` ;
 
 CREATE TABLE IF NOT EXISTS `item_comment` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `text` TEXT NULL,
-  `when` DATETIME NULL,
+  `content` TEXT NULL,
+  `posted_on` DATETIME NULL,
   `exchange_item_id` INT NOT NULL,
   `user_id` INT NOT NULL,
   `image_url` VARCHAR(3000) NULL,
@@ -289,8 +289,6 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 START TRANSACTION;
 USE `secretsantadb`;
 INSERT INTO `address` (`id`, `street1`, `street2`, `city`, `state`, `zipcode`) VALUES (1, '123 SomeWhere St.', 'Apt. 3', 'Out There', 'CO', '12345');
-INSERT INTO `address` (`id`, `street1`, `street2`, `city`, `state`, `zipcode`) VALUES (2, 'Space', 'Deep Space', 'Station', 'Eros', '99999');
-INSERT INTO `address` (`id`, `street1`, `street2`, `city`, `state`, `zipcode`) VALUES (3, '456 Underground', 'Or a cave', 'Red Dust', 'Mars', '88888');
 
 COMMIT;
 
@@ -301,8 +299,6 @@ COMMIT;
 START TRANSACTION;
 USE `secretsantadb`;
 INSERT INTO `user` (`id`, `email`, `password`, `create_date`, `first_name`, `last_name`, `address_id`, `enabled`, `role`, `profile_image_url`) VALUES (1, 'admin@gmail.com', 'admin', '2021-10-10', 'Santa', 'Clause', 1, 1, 'Gifter', 'https://images-na.ssl-images-amazon.com/images/I/61meLNRcjnL.jpg');
-INSERT INTO `user` (`id`, `email`, `password`, `create_date`, `first_name`, `last_name`, `address_id`, `enabled`, `role`, `profile_image_url`) VALUES (2, 'JamesHolden@gmail.com', 'protomolecule ', '2003-07-15', 'James', 'Holden', 2, 1, 'Santa', NULL);
-INSERT INTO `user` (`id`, `email`, `password`, `create_date`, `first_name`, `last_name`, `address_id`, `enabled`, `role`, `profile_image_url`) VALUES (3, 'AmosBurton@gmail.com', 'thuglife', '2005-09-20', 'Amos', 'Burton', 3, 1, 'Gifter', NULL);
 
 COMMIT;
 
@@ -333,8 +329,6 @@ COMMIT;
 START TRANSACTION;
 USE `secretsantadb`;
 INSERT INTO `exchange_event` (`id`, `custom_rules`, `address_id`, `begins_on`, `price_min`, `price_max`, `owner_id`, `complete`, `event_type_id`, `title`, `image_url`, `last_update`, `rsvp_by`, `create_date`) VALUES (1, 'Take a drink everytime politics are mentioned', 1, '2021-12-24T01:01:01', 25.00, 75.00, 1, 0, 1, 'Secret Santa Test', 'https://upload.wikimedia.org/wikipedia/commons/4/49/Jonathan_G_Meath_portrays_Santa_Claus.jpg', '2021-12-11T01:01:01', '2021-12-20T01:01:01', '2021-12-01T01:01:01');
-INSERT INTO `exchange_event` (`id`, `custom_rules`, `address_id`, `begins_on`, `price_min`, `price_max`, `owner_id`, `complete`, `event_type_id`, `title`, `image_url`, `last_update`, `rsvp_by`, `create_date`) VALUES (2, 'White Elephant', 2, '2019-10-24T01:01:01', 10.00, 50.00, 2, 0, 1, 'James Holden Exchange', 'https://upload.wikimedia.org/wikipedia/commons/4/49/Jonathan_G_Meath_portrays_Santa_Claus.jpg', NULL, NULL, NULL);
-INSERT INTO `exchange_event` (`id`, `custom_rules`, `address_id`, `begins_on`, `price_min`, `price_max`, `owner_id`, `complete`, `event_type_id`, `title`, `image_url`, `last_update`, `rsvp_by`, `create_date`) VALUES (3, 'PotLuck', 3, '2018-09-24T01:01:01', 30.00, 60.00, 2, 0, 1, 'James Holdens Second Exchange', 'https://upload.wikimedia.org/wikipedia/commons/4/49/Jonathan_G_Meath_portrays_Santa_Claus.jpg', NULL, NULL, NULL);
 
 COMMIT;
 
@@ -344,9 +338,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `secretsantadb`;
-INSERT INTO `user_exchange` (`event_id`, `user_id`, `giftee_id`, `attending`, `comment`, `date_invited`) VALUES (1, 1, 2, 1, 'yo yo yo cant wait', '2021-12-11T01:01:01');
-INSERT INTO `user_exchange` (`event_id`, `user_id`, `giftee_id`, `attending`, `comment`, `date_invited`) VALUES (2, 2, 3, 1, 'Chirstmas in space, yo', '2021-11-11T01:01:01');
-INSERT INTO `user_exchange` (`event_id`, `user_id`, `giftee_id`, `attending`, `comment`, `date_invited`) VALUES (3, 3, 2, 1, 'Chritmas in space, AGAIN', '2021-01-11T01:01:01');
+INSERT INTO `user_exchange` (`event_id`, `user_id`, `giftee_id`, `attending`, `comment`, `date_invited`) VALUES (1, 1, NULL, 1, 'yo yo yo cant wait', '2021-12-11T01:01:01');
 
 COMMIT;
 
@@ -357,8 +349,6 @@ COMMIT;
 START TRANSACTION;
 USE `secretsantadb`;
 INSERT INTO `exchange_item` (`id`, `event_id`, `user_id`, `title`, `description`, `url`, `is_visible`) VALUES (1, 1, 1, 'Best Gift', 'The bestest gift you could ask for', 'https://memegenerator.net/img/instances/80456411.jpg', 1);
-INSERT INTO `exchange_item` (`id`, `event_id`, `user_id`, `title`, `description`, `url`, `is_visible`) VALUES (2, 2, 2, 'Rock', 'Just a plain old rock', 'https://memegenerator.net/img/instances/80456411.jpg', 1);
-INSERT INTO `exchange_item` (`id`, `event_id`, `user_id`, `title`, `description`, `url`, `is_visible`) VALUES (3, 3, 3, 'Angels with Even Filthier Souls', 'All time best gangster movie', 'https://memegenerator.net/img/instances/80456411.jpg', 0);
 
 COMMIT;
 
@@ -368,9 +358,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `secretsantadb`;
-INSERT INTO `event_comment` (`id`, `text`, `when`, `reply_to`, `event_id`, `user_id`) VALUES (1, 'This will be THE event of the year', '2021-12-11T01:01:01', 1, 1, 1);
-INSERT INTO `event_comment` (`id`, `text`, `when`, `reply_to`, `event_id`, `user_id`) VALUES (2, 'Rocinante = best space ship', '2019-11-11T01:01:01', 2, 2, 2);
-INSERT INTO `event_comment` (`id`, `text`, `when`, `reply_to`, `event_id`, `user_id`) VALUES (3, 'Running low on ideas', '2018-10-11T01:01:01', 3, 3, 3);
+INSERT INTO `event_comment` (`id`, `content`, `posted_on`, `reply_to`, `event_id`, `user_id`) VALUES (1, 'This will be THE event of the year', '2021-12-11T01:01:01', 1, 1, 1);
 
 COMMIT;
 
@@ -380,9 +368,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `secretsantadb`;
-INSERT INTO `item_comment` (`id`, `text`, `when`, `exchange_item_id`, `user_id`, `image_url`) VALUES (1, 'Wow, this is the best gift for sure', '2021-12-11T01:01:01', 1, 1, 'https://upload.wikimedia.org/wikipedia/commons/4/49/Jonathan_G_Meath_portrays_Santa_Claus.jpg');
-INSERT INTO `item_comment` (`id`, `text`, `when`, `exchange_item_id`, `user_id`, `image_url`) VALUES (2, 'I got a rock', '2005-01-11T01:01:01', 2, 2, 'https://upload.wikimedia.org/wikipedia/commons/4/49/Jonathan_G_Meath_portrays_Santa_Claus.jpg');
-INSERT INTO `item_comment` (`id`, `text`, `when`, `exchange_item_id`, `user_id`, `image_url`) VALUES (3, 'Keep the change, ya filthy animal', '2011-01-11T01:01:01', 3, 3, 'https://upload.wikimedia.org/wikipedia/commons/4/49/Jonathan_G_Meath_portrays_Santa_Claus.jpg');
+INSERT INTO `item_comment` (`id`, `content`, `posted_on`, `exchange_item_id`, `user_id`, `image_url`) VALUES (1, 'Wow, this is the best gift for sure', '2021-12-11T01:01:01', 1, 1, 'https://upload.wikimedia.org/wikipedia/commons/4/49/Jonathan_G_Meath_portrays_Santa_Claus.jpg');
 
 COMMIT;
 
