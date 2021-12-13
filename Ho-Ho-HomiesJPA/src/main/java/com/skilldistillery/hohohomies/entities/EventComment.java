@@ -21,10 +21,10 @@ public class EventComment {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	private String text;
+	private String content;
 
-
-	private LocalDateTime when;
+	@Column(name = "posted_on")
+	private LocalDateTime postedOn;
 
 	@ManyToOne
 	@JoinColumns({ @JoinColumn(name = "event_id", referencedColumnName = "event_id"),
@@ -43,20 +43,20 @@ public class EventComment {
 		this.id = id;
 	}
 
-	public String getText() {
-		return text;
+	public String getContent() {
+		return content;
 	}
 
-	public void setText(String text) {
-		this.text = text;
+	public void setContent(String text) {
+		this.content = text;
 	}
 
-	public LocalDateTime getWhen() {
-		return when;
+	public LocalDateTime getPostedOn() {
+		return postedOn;
 	}
 
-	public void setWhen(LocalDateTime datetime) {
-		this.when = datetime;
+	public void setPostedOn(LocalDateTime datetime) {
+		this.postedOn = datetime;
 	}
 
 	public UserExchange getExchange() {
@@ -94,7 +94,7 @@ public class EventComment {
 
 	@Override
 	public String toString() {
-		return "EventComment [id=" + id + ", text=" + text + ", datetime=" + when + "]";
+		return "EventComment [id=" + id + ", text=" + content + ", datetime=" + postedOn + "]";
 	}
 
 }
