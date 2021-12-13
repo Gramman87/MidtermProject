@@ -14,26 +14,26 @@ public class UserDAOImpl implements UserDAO {
 
 	@PersistenceContext
 	private EntityManager em;
-	
+
 	@Override
-	public User findByUsername(String username) throws RuntimeException {
+	public User findByEmail(String username) throws RuntimeException {
 
 		String jpql = "SELECT u FROM User u WHERE u.email = :n";
 
 		return em.createQuery(jpql, User.class).setParameter("n", username).getSingleResult();
 	}
-	
+
 	@Override
-	public User registerUser(User user) throws RuntimeException {
+	public User register(User user) throws RuntimeException {
 		em.persist(user);
-		
+
 		return user;
 	}
 
 	@Override
-	public User updateUser(User user) {
+	public User update(User user) {
 		User managed = em.find(User.class, user.getId());
-		
+
 		managed.setEmail(user.getEmail());
 		managed.setPassword(user.getPassword());
 		managed.setFirstName(user.getFirstName());
@@ -42,7 +42,7 @@ public class UserDAOImpl implements UserDAO {
 		managed.setEnabled(user.isEnabled());
 		managed.setRole(user.getRole());
 		managed.setImageURL(user.getImageURL());
-		
+
 		return managed;
 	}
 

@@ -20,7 +20,7 @@ class UserDAOImplTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
-		user = userDao.findByUsername("admin@gmail.com");
+		user = userDao.findByEmail("admin@gmail.com");
 	}
 
 	@AfterEach
@@ -35,9 +35,9 @@ class UserDAOImplTest {
 		user.setFirstName("Kris");
 		user.setLastName("Kringle");
 
-		userDao.updateUser(user);
+		userDao.update(user);
 
-		user = userDao.findByUsername("admin@gmail.com");
+		user = userDao.findByEmail("admin@gmail.com");
 
 		assertEquals("Kris", user.getFirstName());
 		assertEquals("Kringle", user.getLastName());
@@ -45,7 +45,7 @@ class UserDAOImplTest {
 		user.setFirstName("Santa");
 		user.setLastName("Clause");
 
-		userDao.updateUser(user);
+		userDao.update(user);
 
 	}
 
