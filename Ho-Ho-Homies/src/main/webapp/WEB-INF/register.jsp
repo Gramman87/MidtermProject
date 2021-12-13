@@ -10,7 +10,7 @@
 
 	<h2>Register your new account</h2>
 
-	<form action="register.do" method="GET">
+	<form action="registerNew.do" method="POST">
 
 		First Name:<input type="text" name="firstName" size="20" /> 
 		<br>

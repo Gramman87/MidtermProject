@@ -14,7 +14,7 @@ import com.skilldistillery.hohohomies.entities.User;
 public class HomeController {
 
 	@Autowired
-	private UserDAO userDao;
+	private UserDAO userDAO;
 	
 	@RequestMapping(path= {"/", "home.do"})
 	public String home(Model model) {
@@ -27,17 +27,6 @@ public class HomeController {
 		return "register";
 	}
 
-	@RequestMapping(path="register.do")
-	public ModelAndView registerAccount(@ModelAttribute("user") User user) {
-		ModelAndView mv = new ModelAndView();
-		User newUser = userDao.createUser(user);
-		if(newUser != null) {
-			mv.addObject("newUser", newUser);
-			mv.setViewName("userDashboard");
-		}
-		
-		
-		return mv;
-	}
+
 
 }

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.skilldistillery.hohohomies.data.UserDAO;
 
 @Controller
-public class userDashboard {
+public class UserDashboardController {
 	
 	@Autowired
 	private UserDAO userDao;
