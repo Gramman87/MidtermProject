@@ -42,17 +42,17 @@ class EventCommentTest {
 	@Test
 	void test_text_mapping() throws Exception {
 		assertNotNull(com);
-		assertEquals("This will be THE event of the year", com.getText());
+		assertEquals("This will be THE event of the year", com.getContent());
 	}
 
 	@Test
 	void test_when_mapping() throws Exception {
 		assertNotNull(com);
-		assertNotNull(com.getWhen());
-		assertEquals(2021, com.getWhen().getYear());
-		assertEquals(12, com.getWhen().getMonthValue());
-		assertEquals(1, com.getWhen().getMinute());
-		assertEquals(1, com.getWhen().getSecond());
+		assertNotNull(com.getPostedOn());
+		assertEquals(2021, com.getPostedOn().getYear());
+		assertEquals(12, com.getPostedOn().getMonthValue());
+		assertEquals(1, com.getPostedOn().getMinute());
+		assertEquals(1, com.getPostedOn().getSecond());
 	}
 
 	@Test

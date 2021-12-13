@@ -47,18 +47,18 @@ class ItemTest {
 		assertNotNull(item.getComments());
 		assertTrue(item.getComments().size() > 0);
 		
-		assertEquals("Wow, this is the best gift for sure", item.getComments().get(0).getText());
+		assertEquals("Wow, this is the best gift for sure", item.getComments().get(0).getContent());
 		
 	}
 	
 	@Test
 	void text_comment_temporal_mapping() throws Exception {
 		
-		assertEquals(2021, item.getComments().get(0).getWhen().getYear());
-		assertEquals(12, item.getComments().get(0).getWhen().getMonthValue());
-		assertEquals(1, item.getComments().get(0).getWhen().getHour());
-		assertEquals(1, item.getComments().get(0).getWhen().getMinute());
-		assertEquals(1, item.getComments().get(0).getWhen().getSecond());
+		assertEquals(2021, item.getComments().get(0).getPostedOn().getYear());
+		assertEquals(12, item.getComments().get(0).getPostedOn().getMonthValue());
+		assertEquals(1, item.getComments().get(0).getPostedOn().getHour());
+		assertEquals(1, item.getComments().get(0).getPostedOn().getMinute());
+		assertEquals(1, item.getComments().get(0).getPostedOn().getSecond());
 		
 	}
 
