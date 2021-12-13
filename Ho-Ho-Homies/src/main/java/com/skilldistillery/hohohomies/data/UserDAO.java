@@ -4,8 +4,10 @@ import com.skilldistillery.hohohomies.entities.User;
 
 public interface UserDAO {
 	
-	public User findByUsername(String username);
+	User findByUsername(String username) throws RuntimeException;
 	
-	public User createUser(User user);
-
+	User registerUser(User user) throws RuntimeException;
+	
+	User updateUser(User user);
+	
 }
