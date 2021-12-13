@@ -18,7 +18,9 @@ public class RegisterController {
 	@RequestMapping(path="registerNew.do")
 	public ModelAndView registerAccount(@ModelAttribute("user") User user) {
 		ModelAndView mv = new ModelAndView();
-		User newUser = userDAO.registerUser(user);
+		User newUser = userDAO.createUser(user);
+		
+
 		if(newUser != null) {
 			mv.addObject("newUser", newUser);
 			mv.setViewName("userDashboard");

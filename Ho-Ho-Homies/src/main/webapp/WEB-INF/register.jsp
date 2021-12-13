@@ -16,9 +16,9 @@
 		<br>
 		Last Name:<input type="text" name="lastName" size="20" /> 
 		<br>
-		Password:<input type="text" name="password" size="20" /> 
+		Password:<input type="password" name="password" size="20" /> 
 		<br>
-		Confirm Password:<input type="text" name="confirmPassword" size="20" />
+		Confirm Password:<input type="password" name="confirmPassword" size="20" />
 		<br> 
 		Email:<input type="text" name="email" size="20" /> 
 		<br>
