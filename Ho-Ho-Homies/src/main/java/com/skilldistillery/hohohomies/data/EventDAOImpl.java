@@ -24,10 +24,18 @@ public class EventDAOImpl implements EventDAO {
 
 	@Override
 	public Event findEventFromEventId(Integer eventId) {
-//		String jpql = "SELECT e "
+		String jpql = "SELECT e FROM event e WHERE e.id = :eId";
+		Event eventMatchingId = null;
+		try {
+			em.createQuery(jpql, Event.class)
+			.setParameter("eId", eventId)
+			.getSingleResult();
+		}catch(Exception e) {
+			System.err.println("Invalid Event ID: " + eventId);
+			return eventMatchingId;
+		}
 		
-		
-		return null;
+		return eventMatchingId;
 	}
 
 }
