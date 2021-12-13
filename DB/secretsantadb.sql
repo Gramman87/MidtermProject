@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `create_date` DATETIME NULL,
   `first_name` VARCHAR(45) NULL,
   `last_name` VARCHAR(45) NULL,
-  `address_id` INT NOT NULL,
+  `address_id` INT NULL,
   `enabled` TINYINT NULL,
   `role` VARCHAR(45) NULL,
   `profile_image_url` VARCHAR(3000) NULL,
@@ -300,9 +300,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `secretsantadb`;
-INSERT INTO `user` (`id`, `email`, `password`, `create_date`, `first_name`, `last_name`, `address_id`, `enabled`, `role`, `profile_image_url`) VALUES (1, 'admin@gmail.com', 'admin', '2021-10-10', 'Santa', 'Clause', 1, 1, 'Gifter', 'https://images-na.ssl-images-amazon.com/images/I/61meLNRcjnL.jpg');
-INSERT INTO `user` (`id`, `email`, `password`, `create_date`, `first_name`, `last_name`, `address_id`, `enabled`, `role`, `profile_image_url`) VALUES (2, 'JamesHolden@gmail.com', 'JamesHolden', '2018-11-01', 'James', 'Holden', 2, 1, 'Giftee', 'https://images-na.ssl-images-amazon.com/images/I/61meLNRcjnL.jpg');
-INSERT INTO `user` (`id`, `email`, `password`, `create_date`, `first_name`, `last_name`, `address_id`, `enabled`, `role`, `profile_image_url`) VALUES (3, 'AmosBurton@gmail.com', 'AmosBurton', '2018-12-01', 'Amos', 'Burton', 3, 1, 'Santa', 'https://images-na.ssl-images-amazon.com/images/I/61meLNRcjnL.jpg');
+INSERT INTO `user` (`id`, `email`, `password`, `create_date`, `first_name`, `last_name`, `address_id`, `enabled`, `role`, `profile_image_url`) VALUES (1, 'admin@gmail.com', 'admin', '2021-10-10', 'Santa', 'Clause', 1, 1, 'Admin', 'https://images-na.ssl-images-amazon.com/images/I/61meLNRcjnL.jpg');
+INSERT INTO `user` (`id`, `email`, `password`, `create_date`, `first_name`, `last_name`, `address_id`, `enabled`, `role`, `profile_image_url`) VALUES (2, 'JamesHolden@gmail.com', 'JamesHolden', '2018-11-01', 'James', 'Holden', 2, 1, 'User', 'https://images-na.ssl-images-amazon.com/images/I/61meLNRcjnL.jpg');
+INSERT INTO `user` (`id`, `email`, `password`, `create_date`, `first_name`, `last_name`, `address_id`, `enabled`, `role`, `profile_image_url`) VALUES (3, 'AmosBurton@gmail.com', 'AmosBurton', '2018-12-01', 'Amos', 'Burton', 3, 1, 'User', 'https://images-na.ssl-images-amazon.com/images/I/61meLNRcjnL.jpg');
 
 COMMIT;
 
