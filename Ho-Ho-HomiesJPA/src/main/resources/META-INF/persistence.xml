@@ -15,8 +15,8 @@
 		<class>com.skilldistillery.hohohomies.entities.UserExchangeId</class>
 		<class>com.skilldistillery.hohohomies.entities.UserExchange</class>
 		<class>com.skilldistillery.hohohomies.entities.EventComment</class>
-		<class>com.skilldistillery.hohohomies.entities.Item</class>
-		<class>com.skilldistillery.hohohomies.entities.ItemComment</class>
+		<class>com.skilldistillery.hohohomies.entities.EventItem</class>
+		<class>com.skilldistillery.hohohomies.entities.EventItemComment</class>
 
 		<properties>
 			<property name="javax.persistence.jdbc.url"
