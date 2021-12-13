@@ -30,13 +30,8 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public User createUser(User user) {
-		em.getTransaction();
 
 		em.persist(user);
-
-		em.flush();
-		em.getTransaction().commit();
-		em.close();
 
 		return user;
 	}
