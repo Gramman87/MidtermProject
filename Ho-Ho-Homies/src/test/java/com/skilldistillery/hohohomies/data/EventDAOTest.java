@@ -59,6 +59,7 @@ class EventDAOTest {
 		eventDao.updateEvent(event);
 		
 
+
 	}
 
 }
