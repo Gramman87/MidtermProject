@@ -23,12 +23,9 @@ public class AddressDAOImpl implements AddressDAO {
 	}
 
 	@Override
-	public Address findAddressByAddressId(Integer addressId) {
-		String jpql = "SELECT a FROM Address a WHERE a.id = :n";
-		Address addressMatchingId = em.createQuery(jpql, Address.class)
-				.setParameter("n", addressId)
-				.getSingleResult();
-		return addressMatchingId;
+	public Address findAddressByAddressId(int addressId) {
+		
+		return em.find(Address.class, addressId);
 	}
 
 	@Override

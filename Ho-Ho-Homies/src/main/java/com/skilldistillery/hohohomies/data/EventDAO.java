@@ -4,7 +4,7 @@ import com.skilldistillery.hohohomies.entities.Event;
 
 public interface EventDAO {
 	public Event storeEvent(Event event);
-	public Event findEventFromEventId(Integer eventId);
+	public Event findEventFromEventId(int eventId);
 	public Event updateEvent(Event event);
 
 }
