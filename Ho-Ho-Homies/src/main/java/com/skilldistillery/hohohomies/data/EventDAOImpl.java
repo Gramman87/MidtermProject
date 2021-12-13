@@ -1,7 +1,6 @@
 package com.skilldistillery.hohohomies.data;
 
 import java.time.LocalDateTime;
-import java.util.Calendar;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -43,7 +42,7 @@ public class EventDAOImpl implements EventDAO {
 		managed.setComplete(event.isComplete());
 		managed.setCustomRules(event.getCustomRules());
 		managed.setImageURL(event.getImageURL());
-//		managed.setLastUpdate(date);
+		managed.setLastUpdate(LocalDateTime.now()); 
 		managed.setPriceMax(event.getPriceMax());
 		managed.setPriceMin(event.getPriceMin());
 		managed.setRsvpBy(event.getRsvpBy());
