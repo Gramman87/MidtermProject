@@ -1,6 +1,8 @@
 package com.skilldistillery.hohohomies.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -11,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -34,6 +37,9 @@ public class EventComment {
 	@ManyToOne
 	@JoinColumn(name = "reply_to")
 	private EventComment replyTo;
+
+	@OneToMany(mappedBy = "replyTo")
+	private List<EventComment> replies;
 
 	public int getId() {
 		return id;
@@ -73,6 +79,34 @@ public class EventComment {
 
 	public void setReplyTo(EventComment replyTo) {
 		this.replyTo = replyTo;
+	}
+
+	public List<EventComment> getReplies() {
+		return replies;
+	}
+
+	public void setReplies(List<EventComment> replies) {
+		this.replies = replies;
+	}
+
+	public void addReply(EventComment comment) {
+		if (replies == null) {
+			replies = new ArrayList<>();
+		}
+		if (!replies.contains(comment)) {
+			if (comment.getReplyTo() != null) {
+				comment.getReplyTo().removeReply(comment);
+			}
+			replies.add(comment);
+			comment.setReplyTo(this);
+		}
+	}
+
+	public void removeReply(EventComment comment) {
+		if (replies != null && replies.contains(comment)) {
+			replies.remove(comment);
+			comment.setReplyTo(null);
+		}
 	}
 
 	@Override
