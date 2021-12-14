@@ -6,6 +6,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
+import com.skilldistillery.hohohomies.entities.Address;
 import com.skilldistillery.hohohomies.entities.User;
 
 @Repository
@@ -31,10 +32,29 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public User register(User user) throws RuntimeException {
+	public User findByPasswordAndEmailForLogin(String password, String username) throws RuntimeException {
+
+		String jpql = "SELECT u FROM User u WHERE u.password = :password AND u.email = :email";
+
+		return em.createQuery(jpql, User.class)
+				 .setParameter("password", password)
+				 .setParameter("email", username)
+				 .getSingleResult();
+	}
+	
+
+	@Override
+	public User registerUser(User user) throws RuntimeException {
 		em.persist(user);
 
 		return user;
+	}
+
+	@Override
+	public Address registerAddress(Address address) throws RuntimeException {
+		em.persist(address);
+		
+		return address;
 	}
 
 	@Override
