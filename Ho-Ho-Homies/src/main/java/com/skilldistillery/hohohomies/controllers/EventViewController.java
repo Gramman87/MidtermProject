@@ -28,8 +28,8 @@ public class EventViewController {
 		return "eventView";
 	}
 	@RequestMapping(path="getEventData.do", method=RequestMethod.GET)
-	private String getEventData(int id, Model model) {
-		Event event = eventDao.findEventFromEventId(id);
+	private String getEventData(int eId, Model model) {
+		Event event = eventDao.findEventFromEventId(eId);
 		if(event == null) {
 			//TODO redirect to userDashboard
 		}

@@ -64,10 +64,7 @@ tr:nth-child(even) {
 		<td>${e.event.type}</td>	
 		<td># of members</td>
 		<td>${e.event.beginsOn}</td>
-		<td><form action="getEventData.do?id=${e.event.id}" method="GET">
-			<input type="submit" name="userExchange" value="View"/>
-			</form>
-		<td>
+		<td><a href="getEventData.do?eId=${e.event.id}">View</a></td>
 	</tr>
 	</c:forEach>		
 <tr>
