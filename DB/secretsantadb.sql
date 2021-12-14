@@ -303,6 +303,7 @@ USE `secretsantadb`;
 INSERT INTO `user` (`id`, `email`, `password`, `create_date`, `first_name`, `last_name`, `address_id`, `enabled`, `role`, `profile_image_url`) VALUES (1, 'admin@gmail.com', 'admin', '2021-10-10', 'Santa', 'Clause', 1, 1, 'Admin', 'https://images-na.ssl-images-amazon.com/images/I/61meLNRcjnL.jpg');
 INSERT INTO `user` (`id`, `email`, `password`, `create_date`, `first_name`, `last_name`, `address_id`, `enabled`, `role`, `profile_image_url`) VALUES (2, 'JamesHolden@gmail.com', 'JamesHolden', '2018-11-01', 'James', 'Holden', 2, 1, 'User', 'https://images-na.ssl-images-amazon.com/images/I/61meLNRcjnL.jpg');
 INSERT INTO `user` (`id`, `email`, `password`, `create_date`, `first_name`, `last_name`, `address_id`, `enabled`, `role`, `profile_image_url`) VALUES (3, 'AmosBurton@gmail.com', 'AmosBurton', '2018-12-01', 'Amos', 'Burton', 3, 1, 'User', 'https://images-na.ssl-images-amazon.com/images/I/61meLNRcjnL.jpg');
+INSERT INTO `user` (`id`, `email`, `password`, `create_date`, `first_name`, `last_name`, `address_id`, `enabled`, `role`, `profile_image_url`) VALUES (4, 'NaomiNigata@gmail.com', 'NaomiNigata', '2018-12-04', 'Naomi', 'Nigata', 2, 1, 'User', 'https://images-na.ssl-images-amazon.com/images/I/61meLNRcjnL.jpg');
 
 COMMIT;
 
@@ -348,9 +349,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `secretsantadb`;
-INSERT INTO `user_exchange` (`event_id`, `user_id`, `giftee_id`, `attending`, `comment`, `date_invited`) VALUES (1, 1, NULL, 1, 'yo yo yo cant wait', '2021-12-11T01:01:01');
-INSERT INTO `user_exchange` (`event_id`, `user_id`, `giftee_id`, `attending`, `comment`, `date_invited`) VALUES (2, 2, NULL, 1, 'Meet yall on the Rocinante', '2020-09-11T01:01:01');
-INSERT INTO `user_exchange` (`event_id`, `user_id`, `giftee_id`, `attending`, `comment`, `date_invited`) VALUES (3, 3, NULL, 1, 'Yupppppp', '2020-09-10T01:01:01');
+INSERT INTO `user_exchange` (`event_id`, `user_id`, `giftee_id`, `attending`, `comment`, `date_invited`) VALUES (1, 1, 2, 1, 'yo yo yo cant wait', '2021-12-11T01:01:01');
+INSERT INTO `user_exchange` (`event_id`, `user_id`, `giftee_id`, `attending`, `comment`, `date_invited`) VALUES (2, 2, 3, 1, 'Meet yall on the Rocinante', '2020-09-11T01:01:01');
+INSERT INTO `user_exchange` (`event_id`, `user_id`, `giftee_id`, `attending`, `comment`, `date_invited`) VALUES (3, 3, 1, 1, 'Yupppppp', '2020-09-10T01:01:01');
 
 COMMIT;
 

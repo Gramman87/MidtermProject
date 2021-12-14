@@ -43,7 +43,7 @@ public class UserExchange {
 	private LocalDateTime dateInvited;
 
 	@OneToMany(mappedBy = "exchange")
-	private List<Item> items;
+	private List<EventItem> items;
 
 	public UserExchangeId getId() {
 		return id;
@@ -101,15 +101,15 @@ public class UserExchange {
 		this.dateInvited = dateInvited;
 	}
 
-	public List<Item> getItems() {
+	public List<EventItem> getItems() {
 		return items;
 	}
 
-	public void setItems(List<Item> items) {
+	public void setItems(List<EventItem> items) {
 		this.items = items;
 	}
 
-	public void addItem(Item item) {
+	public void addItem(EventItem item) {
 		if (items == null) {
 			items = new ArrayList<>();
 		}
@@ -122,7 +122,7 @@ public class UserExchange {
 		}
 	}
 
-	public void removeItem(Item item) {
+	public void removeItem(EventItem item) {
 		if (items != null && items.contains(item)) {
 			items.remove(item);
 			item.setExchange(null);

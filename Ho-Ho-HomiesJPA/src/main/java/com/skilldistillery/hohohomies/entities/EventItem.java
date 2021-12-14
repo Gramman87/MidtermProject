@@ -17,7 +17,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "exchange_item")
-public class Item {
+public class EventItem {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +25,7 @@ public class Item {
 
 	@ManyToOne
 	@JoinColumn(name = "event_id")
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_id") 
 	private UserExchange exchange;
 
 	private String title;
@@ -39,7 +39,7 @@ public class Item {
 	private boolean visible;
 
 	@OneToMany(mappedBy = "item")
-	private List<ItemComment> comments;
+	private List<EventItemComment> comments;
 
 	public int getId() {
 		return id;
@@ -89,15 +89,15 @@ public class Item {
 		this.visible = visible;
 	}
 
-	public List<ItemComment> getComments() {
+	public List<EventItemComment> getComments() {
 		return comments;
 	}
 
-	public void setComments(List<ItemComment> comments) {
+	public void setComments(List<EventItemComment> comments) {
 		this.comments = comments;
 	}
 
-	public void addComment(ItemComment comment) {
+	public void addComment(EventItemComment comment) {
 		if (comments == null) {
 			comments = new ArrayList<>();
 		}
@@ -110,7 +110,7 @@ public class Item {
 		}
 	}
 
-	public void removeComment(ItemComment comment) {
+	public void removeComment(EventItemComment comment) {
 		if (comments != null && comments.contains(comment)) {
 			comments.remove(comment);
 			comment.setItem(null);
@@ -130,7 +130,7 @@ public class Item {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Item other = (Item) obj;
+		EventItem other = (EventItem) obj;
 		return id == other.id;
 	}
 
