@@ -12,24 +12,23 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.skilldistillery.hohohomies.entities.User;
 
 @SpringBootTest
-class UserDAOImplTest {
+class UserDAOTest {
 
 	@Autowired
-	UserDAO userDao;
-	User user;
+	private UserDAO userDao;
+	private User user;
 
 	@BeforeEach
 	void setUp() throws Exception {
-		user = userDao.findByEmail("admin@gmail.com");
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
-		user = null;
 	}
 
 	@Test
 	void test_userDao() throws Exception {
+		user = userDao.findByEmail("admin@gmail.com");
 		assertNotNull(user);
 
 		user.setFirstName("Kris");
@@ -46,7 +45,22 @@ class UserDAOImplTest {
 		user.setLastName("Clause");
 
 		userDao.update(user);
+		user = null;
 
+	}
+	
+	@Test
+	void test_find_by_id() throws Exception {
+		user = userDao.findById(1);
+		
+		assertNotNull(user);
+		assertEquals("admin@gmail.com", user.getEmail());
+		assertEquals("Santa", user.getFirstName());
+		assertEquals("Clause", user.getLastName());
+		
+		
+		user = null;
+		
 	}
 
 }
