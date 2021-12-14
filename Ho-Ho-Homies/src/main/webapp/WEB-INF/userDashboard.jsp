@@ -10,13 +10,15 @@
 table {
   font-family: arial, sans-serif;
   border: 1px solid black;
-  width: 30px;
+  width: 80pxpx;
+
 }
 
 td, th {
   border: .5px solid black;
+  border-collapse: collapse;
   text-align: left;
-  padding: 8px;
+  padding: 5px;
 }
 
 tr:nth-child(even) {
@@ -25,13 +27,25 @@ tr:nth-child(even) {
 </style>
 </head>
 <body>
+	<div id="Repeat_Grid_1">
+		<div id="Group" class="">
+			<div id="Welcome_User">
+				<span>Welcome ${user.firstName}</span>
+			</div>
+		</div>
+		<div id="Group_p" class="">
+			<div id="Logout">
+				<span><a href="logout.do">Logout</a></span>
+			</div>
+		</div>
+	</div>
 
-<h1>Welcome ${user.firstName}</h1>
-<h2><a href="logout.do">Logout</a></h2>
+<%-- <h1>Welcome ${user.firstName}</h1>
+<h2></h2> --%>
 
 
 <h2>Your WishList</h2>
-  <iframe name="frame1" src="wishlist.do" height="50%" width="50%"></iframe>
+  <iframe name="frame1" src="wishlist.do" height="500px" width="500px"></iframe>
 
 <h2>Your Exchanges</h2>
 
@@ -47,32 +61,12 @@ tr:nth-child(even) {
 	<c:forEach var="e" items="${user.exchanges}">
 	<tr>
 		<td>${e.event.title}</td>
-		<td>${e.event.type}</td>	
+		<td>${e.event.type.name}</td>	
 		<td># of members</td>
 		<td>${e.event.beginsOn}</td>
 		<td><a href="getEventData.do?eId=${e.event.id}">View</a></td>
 	</tr>
 	</c:forEach>		
-	<tr>
-		<td>${e.event.title}</td>
-		<td>${e.event.type}</td>	
-		<td># of members</td>
-		<td>${e.event.beginsOn}</td>
-		<td><form action="eventView.do" method="GET">
-			<input type="submit" name="userExchange" value="View"/>
-			</form>
-		<td>
-	</tr>		
-	<tr>
-		<td>${e.event.title}</td>
-		<td>${e.event.type}</td>	
-		<td># of members</td>
-		<td>${e.event.beginsOn}</td>
-		<td><form action="eventView.do" method="GET">
-			<input type="submit" name="userExchange" value="View"/>
-			</form>
-		<td>
-	</tr>		
 </table>
 <!-- 	<form action="eventView.do" method="GET">
 		<input type="submit" name="userExchange" value="View"/>
@@ -80,3 +74,7 @@ tr:nth-child(even) {
 
 </body>
 </html>
+
+
+
+

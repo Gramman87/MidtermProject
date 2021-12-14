@@ -23,7 +23,7 @@
 			<tr>
 		</thead>
 		<tbody>
-			<c:forEach var="w" items="${items}">
+			<c:forEach var="w" items="${user.wishlist}">
 				<tr>
 					<td>${w.name}</td>
 					<td>${w.type}</td>
