@@ -18,7 +18,7 @@ public class WishlistController {
 	@RequestMapping(path = "wishlist.do", method = RequestMethod.POST)
 	public String wishlistDisplay(User user, Model model) {
 		
-		model.addAllAttributes(listDao.findWishlistByUser(user));
+		model.addAttribute("items", listDao.findWishlistByUser(user));
 		
 		return "wishlist";
 	}

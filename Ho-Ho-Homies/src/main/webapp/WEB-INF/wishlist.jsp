@@ -10,7 +10,7 @@
 <title>Wishlist</title>
 </head>
 <body>
-	<c:if action="wishlist.do" test="${not empty items}" />
+	<c:if test="${not empty items}" />
 	<table>
 		<thead>
 			<tr>
