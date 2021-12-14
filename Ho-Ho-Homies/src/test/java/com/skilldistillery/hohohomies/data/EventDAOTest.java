@@ -2,6 +2,9 @@ package com.skilldistillery.hohohomies.data;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.List;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.skilldistillery.hohohomies.entities.Event;
+import com.skilldistillery.hohohomies.entities.User;
 
 @SpringBootTest
 class EventDAOTest {
@@ -58,8 +62,7 @@ class EventDAOTest {
 		
 		eventDao.updateEvent(event);
 		
-
-
 	}
+	
 
 }
