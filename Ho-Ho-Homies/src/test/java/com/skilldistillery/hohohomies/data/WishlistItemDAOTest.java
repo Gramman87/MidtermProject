@@ -6,9 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,43 +21,38 @@ class WishlistItemDAOTest {
 	@Autowired
 	private WishlistItemDAO itemDao;
 	private WishlistItem item;
+	
+	@Autowired
 	private UserDAO userDao;
-	private User user;
-
-	@BeforeAll
-	static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterAll
-	static void tearDownAfterClass() throws Exception {
-	}
 
 	@BeforeEach
 	void setUp() throws Exception {
-		item = itemDao.findItemById(1);
-		user = userDao.findById(1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
-		user = null;
+		
 	}
 	
 	@Test
 	void test_find_by_id() {
+		item = itemDao.findItemById(1);
+
 		assertNotNull(item);
 		
 		assertEquals(70, item.getCost());
 		assertEquals("Tech", item.getName());
+		
+		item = null;
 	}
 
 	@Test
-	void test_find_all_by_user() {
-		List<WishlistItem> items = itemDao.findWishlistByUser(user);
+	void test_find_all_by_user_id() {
+		List<WishlistItem> items = itemDao.findWishlistByUser(userDao.findById(1));
 		
 		assertNotNull(items);
+		assertTrue(items.size() > 0);
 		
-		assertTrue(user.getWishlist().size() > 0);
 	}
 
 }
