@@ -31,7 +31,7 @@ tr:nth-child(even) {
 
 
 <h2>Your WishList</h2>
-  <iframe name="frame1" src="wishlist.jsp" height="50%" width="50%"></iframe>
+  <iframe name="frame1" src="wishlist.do" height="50%" width="50%"></iframe>
 
 <h2>Your Exchanges</h2>
 
