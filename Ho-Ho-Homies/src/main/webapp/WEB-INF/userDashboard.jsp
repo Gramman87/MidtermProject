@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+      <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,7 +31,10 @@ tr:nth-child(even) {
 
 
 <h2>Your WishList</h2>
+  <iframe name="frame1" src="wishlist.do" height="50%" width="50%"></iframe>
+
 <h2>Your Exchanges</h2>
+
 
 <table>
 	<tr>
@@ -40,31 +44,33 @@ tr:nth-child(even) {
 		<th>Date</th>
 		<th>Actions</th>
 	</tr>
+	<c:forEach var="e" items="${user.exchanges}">
 	<tr>
-		<td>${userExchange.event.title}</td>
-		<td>${event.type}</td>	
+		<td>${e.event.title}</td>
+		<td>${e.event.type}</td>	
 		<td># of members</td>
-		<td>${event.beginsOn}</td>
+		<td>${e.event.beginsOn}</td>
+		<td><form action="getEventData.do?id=${e.event.id}" method="GET">
+			<input type="submit" name="userExchange" value="View"/>
+			</form>
+		<td>
+	</tr>
+	</c:forEach>		
+	<tr>
+		<td>${e.event.title}</td>
+		<td>${e.event.type}</td>	
+		<td># of members</td>
+		<td>${e.event.beginsOn}</td>
 		<td><form action="eventView.do" method="GET">
 			<input type="submit" name="userExchange" value="View"/>
 			</form>
 		<td>
 	</tr>		
 	<tr>
-		<td>${event.title}</td>
-		<td>${event.type}</td>	
+		<td>${e.event.title}</td>
+		<td>${e.event.type}</td>	
 		<td># of members</td>
-		<td>${event.beginsOn}</td>
-		<td><form action="eventView.do" method="GET">
-			<input type="submit" name="userExchange" value="View"/>
-			</form>
-		<td>
-	</tr>		
-	<tr>
-		<td>${event.title}</td>
-		<td>${event.type}</td>	
-		<td># of members</td>
-		<td>${event.beginsOn}</td>
+		<td>${e.event.beginsOn}</td>
 		<td><form action="eventView.do" method="GET">
 			<input type="submit" name="userExchange" value="View"/>
 			</form>
