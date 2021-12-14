@@ -76,47 +76,43 @@
 	</form>
 
 	<div id="invites-preview">
+		<p>Invites</p>
 		<div>
 			<input id="invite-input" type="text" />
 			<button onclick="addInvitee()">Add</button>
 		</div>
 
 		<script>
+			// enter/return key behavior on invite input
+			$("#invite-input").on("keydown", function(e) {
+				if (e.keyCode === 13) {
+					e.preventDefault();
+					addInvitee();
+				}
+			});
+
 			function addInvitee() {
 				var value = $("#invite-input").val();
-				$("#invite-input").val("");
 
-				if (!value || value.length === 0) {
+				if (value.length === 0) {
 					return;
 				}
+				var formValue = $(document.createElement("input"));
+				formValue.attr("type", "hidden");
+				formValue.attr("name", "invites[]");
+				formValue.attr("value", value);
+				$("#invites-form").append(formValue);
 
-				$("#invites-form").append(
-				$(document.createElement("input"))
-				.attr("type", "hidden")
-				.attr("name", "invites[]")
-				.attr("value", value)
-				);
-
-				var e = $(document.createElement("div"));
-				e.addClass("invitee");
-				e.text(value);
-
-				e.on("click", function() {
-					// remove value from form
-					for (var child of $("#invites-form").children().toArray()) {
-						child = $(child);
-						
-						if (child.attr("value") === value) {
-							child.remove();
-							break;
-						}
-					}
-
-					// remove preview value
+				var previewValue = $(document.createElement("div"));
+				previewValue.addClass("invitee");
+				previewValue.text(value);
+				previewValue.data("formValue", formValue);
+				previewValue.on("click", function() {
+					$(this).data("formValue").remove();
 					$(this).remove();
 				});
-
-				$("#invites-preview").append(e);
+				$("#invites-preview").append(previewValue);
+				$("#invite-input").val("");
 			}
 		</script>
 	</div>
