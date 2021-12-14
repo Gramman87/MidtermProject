@@ -66,10 +66,7 @@ class UserExchangeTest {
 	@Test
 	void test_giftee_mapping() throws Exception {
 		assertNotNull(ex);
-		assertEquals("James", ex.getGiftee().getFirstName());
-		assertEquals("Holden", ex.getGiftee().getLastName());
-		
-		assertEquals("JamesHolden@gmail.com", ex.getGiftee().getEmail());
+		assertEquals(2, ex.getGiftee().getId());
 		
 	}
 
