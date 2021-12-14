@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.skilldistillery.hohohomies.data.EventDAO;
 import com.skilldistillery.hohohomies.data.UserDAO;
 import com.skilldistillery.hohohomies.entities.Event;
 
@@ -14,6 +15,8 @@ public class EventViewController {
 	
 	@Autowired 
 	UserDAO userDao;
+	@Autowired
+	EventDAO eventDao;
 	
 	@RequestMapping(path="logout.do")
 	private String logout() {
@@ -25,8 +28,13 @@ public class EventViewController {
 		return "eventView";
 	}
 	@RequestMapping(path="getEventData.do", method=RequestMethod.GET)
-	private String getEventData(Event event, Model model) {
+	private String getEventData(int id, Model model) {
+		Event event = eventDao.findEventFromEventId(id);
+		if(event == null) {
+			//TODO redirect to userDashboard
+		}
 		model.addAttribute("event", event);
+		
 		
 		return "eventView";
 	}
