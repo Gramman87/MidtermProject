@@ -26,6 +26,7 @@ tr:nth-child(even) {
 <body>
 
 <h1>Welcome ${user.firstName}</h1>
+<h2><a href="logout.do">Logout</a></h2>
 
 
 <h2>Your WishList</h2>
@@ -40,13 +41,39 @@ tr:nth-child(even) {
 		<th>Actions</th>
 	</tr>
 	<tr>
+		<td>${userExchange.event.title}</td>
+		<td>${event.type}</td>	
+		<td># of members</td>
+		<td>${event.beginsOn}</td>
+		<td><form action="eventView.do" method="GET">
+			<input type="submit" name="userExchange" value="View"/>
+			</form>
+		<td>
+	</tr>		
+	<tr>
 		<td>${event.title}</td>
 		<td>${event.type}</td>	
 		<td># of members</td>
 		<td>${event.beginsOn}</td>
-		<td>View<td>
+		<td><form action="eventView.do" method="GET">
+			<input type="submit" name="userExchange" value="View"/>
+			</form>
+		<td>
+	</tr>		
+	<tr>
+		<td>${event.title}</td>
+		<td>${event.type}</td>	
+		<td># of members</td>
+		<td>${event.beginsOn}</td>
+		<td><form action="eventView.do" method="GET">
+			<input type="submit" name="userExchange" value="View"/>
+			</form>
+		<td>
 	</tr>		
 </table>
+<!-- 	<form action="eventView.do" method="GET">
+		<input type="submit" name="userExchange" value="View"/>
+	</form> -->
 
 </body>
 </html>
