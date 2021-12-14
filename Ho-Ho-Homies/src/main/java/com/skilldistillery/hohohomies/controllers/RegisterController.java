@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.skilldistillery.hohohomies.data.AddressDAO;
 import com.skilldistillery.hohohomies.data.UserDAO;
-import com.skilldistillery.hohohomies.entities.Address;
 import com.skilldistillery.hohohomies.entities.User;
 
 @Controller
@@ -16,19 +16,20 @@ public class RegisterController {
 	@Autowired
 	private UserDAO userDAO;
 	
+	@Autowired
+	private AddressDAO addressDAO;
+	
 	@RequestMapping(path="registerNew.do")
-	public ModelAndView registerAccount(@ModelAttribute("user") User user, Address address) {
+	public ModelAndView registerAccount(@ModelAttribute("user") User user) {
 		ModelAndView mv = new ModelAndView();
-		User newUser = userDAO.registerUser(user);
-		Address newAddress = userDAO.registerAddress(address);
+		addressDAO.storeAddress(user.getAddress());
+		userDAO.registerUser(user);
 		
-		if(newUser != null) {
-			mv.addObject("newUser", newUser);
+		if(user != null) {
+			mv.addObject("newUser", user);
 			mv.setViewName("userDashboard");
 		}
-		if(newAddress != null)	{
-			mv.addObject("address", address);
-		}
+
 		
 		return mv;
 	}

@@ -5,6 +5,23 @@
 <head>
 <meta charset="UTF-8">
 <title>User Dashboard</title>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border: 1px solid black;
+  width: 30px;
+}
+
+td, th {
+  border: .5px solid black;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #eb726a;
+}
+</style>
 </head>
 <body>
 
@@ -25,9 +42,9 @@
 	<tr>
 		<td>${event.title}</td>
 		<td>${event.type}</td>	
-		<td><!-- count of users --></td>
+		<td># of members</td>
 		<td>${event.beginsOn}</td>
-		<td><!-- add link to event exchange page --><td>
+		<td>View<td>
 	</tr>		
 </table>
 
