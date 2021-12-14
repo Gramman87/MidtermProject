@@ -15,7 +15,7 @@ public class WishlistController {
 	@Autowired
 	private WishlistItemDAO listDao;
 	
-	@RequestMapping(path = "wishlist.do", method = RequestMethod.POST)
+	@RequestMapping(path = "wishlist.do", method = RequestMethod.GET)
 	public String wishlistDisplay(User user, Model model) {
 		
 		model.addAttribute("user", user);
