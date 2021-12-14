@@ -1,9 +1,14 @@
 package com.skilldistillery.hohohomies.data;
 
+import java.util.List;
+
+import com.skilldistillery.hohohomies.entities.User;
 import com.skilldistillery.hohohomies.entities.WishlistItem;
 
 public interface WIshlistItemDAO {
 	WishlistItem findItemById(int id);
+	
+	List<WishlistItem> findWishlistByUserId(User user);
 	
 	void store(WishlistItem item);
 
