@@ -15,7 +15,7 @@
 	<form action="login.do" method="GET">
 		User Name: <input type="text" name="email" size="20"/> 
 		<br>
-		Password: <input type="text" name="password" size="20"/>
+		Password: <input type="password" name="password" size="20"/>
 		<br>
 		<input type="submit" value="Log In" />
 	</form>
