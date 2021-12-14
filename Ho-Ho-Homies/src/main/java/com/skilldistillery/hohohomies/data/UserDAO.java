@@ -9,8 +9,6 @@ public interface UserDAO {
 
 	User registerUser(User user) throws RuntimeException;
 
-	Address registerAddress(Address address) throws RuntimeException;
-
 	User update(User user);
 	
 	User findByPasswordAndEmailForLogin(String password, String username);
