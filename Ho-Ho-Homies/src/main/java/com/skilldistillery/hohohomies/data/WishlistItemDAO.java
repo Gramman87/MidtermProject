@@ -5,10 +5,10 @@ import java.util.List;
 import com.skilldistillery.hohohomies.entities.User;
 import com.skilldistillery.hohohomies.entities.WishlistItem;
 
-public interface WIshlistItemDAO {
+public interface WishlistItemDAO {
 	WishlistItem findItemById(int id);
 	
-	List<WishlistItem> findWishlistByUserId(User user);
+	List<WishlistItem> findWishlistByUser(User user);
 	
 	void store(WishlistItem item);
 

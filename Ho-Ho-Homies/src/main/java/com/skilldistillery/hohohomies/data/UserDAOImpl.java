@@ -16,6 +16,13 @@ public class UserDAOImpl implements UserDAO {
 	private EntityManager em;
 
 	@Override
+	public User findById(int id) {
+		String jpql = "SELECT u FROM User u WHERE u.id = :id";
+
+		return em.createQuery(jpql, User.class).setParameter("id", id).getSingleResult();
+	}
+
+	@Override
 	public User findByEmail(String username) throws RuntimeException {
 
 		String jpql = "SELECT u FROM User u WHERE u.email = :n";

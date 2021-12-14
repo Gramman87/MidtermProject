@@ -12,11 +12,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.skilldistillery.hohohomies.entities.User;
 
 @SpringBootTest
-class UserDAOImplTest {
+class UserDAOTest {
 
 	@Autowired
-	UserDAO userDao;
-	User user;
+	private UserDAO userDao;
+	private User user;
 
 	@BeforeEach
 	void setUp() throws Exception {

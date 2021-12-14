@@ -13,19 +13,23 @@ import com.skilldistillery.hohohomies.entities.WishlistItem;
 
 @Transactional
 @Repository
-public class WishlistItemDaoImpl implements WIshlistItemDAO {
+public class WishlistItemDaoImpl implements WishlistItemDAO {
 	
 	@PersistenceContext
 	private EntityManager em;
 	
 	@Override
 	public WishlistItem findItemById(int id) {
-		return em.createQuery("SELECT wi FROM wishlist_item wi WHERE wi.id = :id", WishlistItem.class).setParameter("id", id).getSingleResult();
+		String jpql = "SELECT wi FROM wishlist_item wi WHERE wi.id = :id"; 
+		
+		return em.createQuery(jpql, WishlistItem.class).setParameter("id", id).getSingleResult();
 	}
 	
 	@Override
-	public List<WishlistItem> findWishlistByUserId(User user) {
-		return em.createQuery("SELECT wi FROM WishlistItem wi WHERE wi.user.id = :id", WishlistItem.class).setParameter("id", user.getId()).getResultList();
+	public List<WishlistItem> findWishlistByUser(User user) {
+		String jpql = "SELECT wi FROM WishlistItem wi WHERE wi.user.id = :id"; 
+		
+		return em.createQuery(jpql, WishlistItem.class).setParameter("id", user.getId()).getResultList();
 	}
 
 	@Override
