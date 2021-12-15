@@ -23,41 +23,35 @@ public class WishlistController {
 	private UserDAO userDAO;
 
 	@GetMapping(path = "wishlist.do")
-	public String wishlistDisplay(HttpSession session, Model model) {
-		Object o = session.getAttribute("user_id");
-
-		if (o != null) {
-			model.addAttribute("items", wishlistDAO.findWishlistByUserId((int) o));
-		}
-
+	public String wishlistDisplay(HttpSession session, Model model, @SessionAttribute(name = "user_id") int userId) {
+		// pass wishlist to view
+		model.addAttribute("items", wishlistDAO.findAllById(userId));
 		return "wishlist";
 	}
 
 	@PostMapping(path = "wishlist.do")
-	public String wishlistNew(HttpSession session, WishlistItem item, Model model) {
-		Object o = session.getAttribute("user_id");
+	public String wishlistNew(HttpSession session, WishlistItem item, Model model,
+			@SessionAttribute(name = "user_id") int userId) {
+		// link item to session user
+		item.setUser(userDAO.findById(userId));
 
-		if (o != null) {
-			int userId = (int) o;
+		// create new wishlist item
+		wishlistDAO.store(item);
 
-			item.setUser(userDAO.findById(userId));
-			wishlistDAO.store(item);
-
-			model.addAttribute("items", wishlistDAO.findWishlistByUserId(userId));
-		}
+		// pass wishlist to view
+		model.addAttribute("items", wishlistDAO.findAllById(userId));
 
 		return "wishlist";
 	}
 
 	@GetMapping(path = "wishlistRemove.do")
 	public String wishlistRemove(HttpSession session, @SessionAttribute(name = "user_id") int userId, int id) {
-		WishlistItem item = wishlistDAO.findItemById(id);
-
+		WishlistItem item = wishlistDAO.findById(id);
 		// Make sure the session user actually owns this wishlist item
-		if (item.getUser().getId() == userId) {
+		if (item.getUser()
+				.getId() == userId) {
 			wishlistDAO.delete(item);
 		}
-
 		return "redirect:wishlist.do";
 	}
 

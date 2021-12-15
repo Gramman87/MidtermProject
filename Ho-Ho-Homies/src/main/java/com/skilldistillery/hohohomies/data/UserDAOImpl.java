@@ -1,12 +1,12 @@
 package com.skilldistillery.hohohomies.data;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
-import com.skilldistillery.hohohomies.entities.Address;
 import com.skilldistillery.hohohomies.entities.User;
 
 @Repository
@@ -19,37 +19,37 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public User findById(int id) {
 		String jpql = "SELECT u FROM User u WHERE u.id = :id";
-
-		return em.createQuery(jpql, User.class).setParameter("id", id).getSingleResult();
+		return em	.createQuery(jpql, User.class)
+					.setParameter("id", id)
+					.getSingleResult();
 	}
 
 	@Override
-	public User findByEmail(String username) throws RuntimeException {
-
+	public User findByEmail(String email) throws RuntimeException {
 		String jpql = "SELECT u FROM User u WHERE u.email = :n";
-
-		return em.createQuery(jpql, User.class).setParameter("n", username).getSingleResult();
+		try {
+			return em	.createQuery(jpql, User.class)
+						.setParameter("n", email)
+						.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@Override
-	public User findByPasswordAndEmailForLogin(String password, String username) throws RuntimeException {
-
+	public User findByEmailAndPassword(String email, String password) throws RuntimeException {
 		String jpql = "SELECT u FROM User u WHERE u.password = :password AND u.email = :email";
-
-		return em.createQuery(jpql, User.class)
-				 .setParameter("password", password)
-				 .setParameter("email", username)
-				 .getSingleResult();
+		return em	.createQuery(jpql, User.class)
+					.setParameter("password", password)
+					.setParameter("email", email)
+					.getSingleResult();
 	}
-	
 
 	@Override
-	public User registerUser(User user) throws RuntimeException {
+	public User register(User user) throws RuntimeException {
 		em.persist(user);
-
 		return user;
 	}
-
 
 	@Override
 	public User update(User user) {

@@ -21,42 +21,32 @@ public class RegisterController {
 	@Autowired
 	private AddressDAO addressDAO;
 
+	@GetMapping(path = "register.do")
+	public String register() {
+		return "register";
+	}
+
 	@PostMapping(path = "register.do")
-	public String registerAccount(User user, HttpSession session, RedirectAttributes redir) {
+	public String register(User user, HttpSession session, RedirectAttributes redir) {
 		boolean success = false;
 		String message = "Unspecified Error";
-		
+
 		if (userDAO.findByEmail(user.getEmail()) == null) {
-			userDAO.registerUser(user);
+			addressDAO.store(user.getAddress());
+			userDAO.register(user);
 			success = true;
 		} else {
 			message = "Username already exists.";
 		}
-		
+
 		if (success) {
 			session.setAttribute("user_id", user.getId());
 			return "redirect:dashboard.do";
 		}
-		
+
 		redir.addFlashAttribute("message", message);
 
 		return "redirect:register.do";
 	}
-	
-	@GetMapping(path = "register.do")
-	public String registerAccount() {
-		return "register";
-	}
 
-	// reference about checking emails
-//	public static boolean isValidEmailAddress(String email) {
-//		   boolean result = true;
-//		   try {
-//		      InternetAddress emailAddr = new InternetAddress(email);
-//		      emailAddr.validate();
-//		   } catch (AddressException ex) {
-//		      result = false;
-//		   }
-//		   return result;
-//		}
 }

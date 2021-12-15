@@ -13,14 +13,14 @@ import com.skilldistillery.hohohomies.entities.Address;
 
 @SpringBootTest
 class AddressDAOTest {
-	
+
 	@Autowired
 	AddressDAO addressDao;
 	Address add;
 
 	@BeforeEach
 	void setUp() throws Exception {
-		add = addressDao.findAddressByAddressId(1);
+		add = addressDao.findById(1);
 	}
 
 	@AfterEach
@@ -34,28 +34,29 @@ class AddressDAOTest {
 		assertEquals("123 SomeWhere St.", add.getStreet1());
 		assertEquals("12345", add.getZipcode());
 	}
+
 	@Test
 	void test_update_Address() {
 		assertNotNull(add);
-		
+
 		add.setCity("North Pole");
 		add.setState("North");
 		add.setZipcode("00000");
-		
-		addressDao.updateAddress(add);
-		
-		add = addressDao.findAddressByAddressId(1);
-		
+
+		addressDao.update(add);
+
+		add = addressDao.findById(1);
+
 		assertEquals("North Pole", add.getCity());
 		assertEquals("North", add.getState());
 		assertEquals("00000", add.getZipcode());
-		
+
 		add.setCity("Out There");
 		add.setState("CO");
 		add.setZipcode("12345");
-		
-		addressDao.updateAddress(add);
-		
+
+		addressDao.update(add);
+
 	}
 
 }

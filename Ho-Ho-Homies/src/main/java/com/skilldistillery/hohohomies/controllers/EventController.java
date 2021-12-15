@@ -54,7 +54,7 @@ public class EventController {
 	@RequestMapping(path = "getEventData.do", method = RequestMethod.GET)
 	private String getEventData(HttpSession session, int eId, Model model,
 			@SessionAttribute(name = "user_id") int userId) {
-		Event event = eventDao.findEventFromEventId(eId);
+		Event event = eventDao.findById(eId);
 
 		if (event == null) {
 			return "redirect:dashboard.do";
