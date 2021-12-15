@@ -12,9 +12,29 @@ import com.skilldistillery.hohohomies.data.AddressDAO;
 import com.skilldistillery.hohohomies.data.UserDAO;
 import com.skilldistillery.hohohomies.entities.User;
 
+final class RegisterData {
+	private String confirmPassword;
+	private String confirmEmail;
+
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
+	}
+
+	public String getConfirmEmail() {
+		return confirmEmail;
+	}
+
+	public void setConfirmEmail(String confirmEmail) {
+		this.confirmEmail = confirmEmail;
+	}
+}
+
 @Controller
 public class RegisterController {
-
 	@Autowired
 	private UserDAO userDAO;
 
@@ -27,26 +47,26 @@ public class RegisterController {
 	}
 
 	@PostMapping(path = "register.do")
-	public String register(User user, HttpSession session, RedirectAttributes redir) {
-		boolean success = false;
-		String message = "Unspecified Error";
-
-		if (userDAO.findByEmail(user.getEmail()) == null) {
-			addressDAO.store(user.getAddress());
-			userDAO.register(user);
-			success = true;
-		} else {
-			message = "Username already exists.";
+	public String register(User user, RegisterData data, HttpSession session, RedirectAttributes redir) {
+		if (!data	.getConfirmEmail()
+					.equals(user.getEmail())) {
+			redir.addFlashAttribute("message", "Your emails did not match.");
+			return "redirect:register.do";
+		}
+		if (!data	.getConfirmPassword()
+					.equals(user.getPassword())) {
+			redir.addFlashAttribute("message", "Your passwords did not match.");
+			return "redirect:register.do";
+		}
+		if (userDAO.findByEmail(user.getEmail()) != null) {
+			redir.addFlashAttribute("message", "Username already exists.");
+			return "redirect:register.do";
 		}
 
-		if (success) {
-			session.setAttribute("user_id", user.getId());
-			return "redirect:dashboard.do";
-		}
+		addressDAO.store(user.getAddress());
+		userDAO.register(user);
 
-		redir.addFlashAttribute("message", message);
-
-		return "redirect:register.do";
+		session.setAttribute("user_id", user.getId());
+		return "redirect:dashboard.do";
 	}
-
 }
