@@ -1,10 +1,11 @@
 package com.skilldistillery.hohohomies.controllers;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.hohohomies.data.AddressDAO;
 import com.skilldistillery.hohohomies.data.UserDAO;
@@ -20,20 +21,17 @@ public class RegisterController {
 	private AddressDAO addressDAO;
 	
 	@RequestMapping(path="registerNew.do")
-	public ModelAndView registerAccount(@ModelAttribute("user") User user) {
-		ModelAndView mv = new ModelAndView();
-		addressDAO.storeAddress(user.getAddress());
+	public String registerAccount(User user, HttpSession session, Model model) {
 		userDAO.registerUser(user);
 		
 		if(user != null) {
-			mv.addObject("newUser", user);
-			mv.setViewName("userDashboard");
+			session.setAttribute("user_id", user.getId());
+			return "userDashboard";
 		}
 
 		
-		return mv;
+		return "registerNew.do";
 	}
-
 	
 	//reference about checking emails
 //	public static boolean isValidEmailAddress(String email) {
