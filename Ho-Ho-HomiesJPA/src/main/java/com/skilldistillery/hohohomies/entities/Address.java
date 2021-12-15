@@ -91,8 +91,8 @@ public class Address {
 
 	@Override
 	public String toString() {
-		return "Address [id=" + id + ", street1=" + street1 + ", street2=" + street2 + ", city=" + city + ", state="
-				+ state + ", zipcode=" + zipcode + "]";
+		return street1 + ", " + street2 + ", " + city + ", " + state + " "
+				+ zipcode;
 	}
 
 }
