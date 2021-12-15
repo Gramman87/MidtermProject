@@ -8,9 +8,10 @@
 <title>User Dashboard</title>
 <style>
 table {
-	font-family: arial, sans-serif;
-	border: 1px solid black;
-	width: 80px;
+  font-family: arial, sans-serif;
+  border: 1px solid black;
+  width: 80px;
+
 }
 
 td, th {
@@ -18,6 +19,7 @@ td, th {
 	border-collapse: collapse;
 	text-align: left;
 	padding: 5px;
+
 }
 
 tr:nth-child(even) {
@@ -39,11 +41,6 @@ tr:nth-child(even) {
 		</div>
 	</div>
 
-	<h1>Welcome ${user.firstName}</h1>
-	<h2>
-		<a href="logout.do">Logout</a>
-	</h2>
-
 
 	<h2>Your WishList</h2>
 
@@ -51,6 +48,7 @@ tr:nth-child(even) {
 	<iframe src="wishlist.do" title="Wishlist" width="300" height="512"></iframe>
 
 	<h2>Your Exchanges</h2>
+
 
 	<table>
 		<tr>
@@ -70,6 +68,7 @@ tr:nth-child(even) {
 			</tr>
 		</c:forEach>
 	</table>
+
 
 </body>
 </html>

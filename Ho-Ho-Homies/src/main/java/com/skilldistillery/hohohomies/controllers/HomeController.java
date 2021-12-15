@@ -17,39 +17,46 @@ public class HomeController {
 	private UserDAO userDAO;
 
 	@RequestMapping(path = { "/", "home.do" })
-	public String home(Model model) {
-		// model.addAttribute("DEBUG", userDao.findByUsername("admin@gmail.com"));
+	public String home(HttpSession session, Model model) {
+		Object userId = session.getAttribute("user_id");
+		if(userId != null) {
+			return "redirect:dashboard.do";
+		}
 		return "home";
 	}
 
 	@RequestMapping(path = "login.do")
-	public String logIn(HttpSession session, String password, String email, Model model) {
+	public String logIn(HttpSession session, String password, String email) {
 		User user = userDAO.findByPasswordAndEmailForLogin(password, email);
-
 		if (user == null) {
 			return "emailNotFound";
 		}
 
 		// store our user in the session
-		session.setAttribute("user", user);
-
-		model.addAttribute("user", user);
-		
-		return "userDashboard";
+		session.setAttribute("user_id", user.getId());
+		return "redirect:dashboard.do";
 	}
 
-//	@RequestMapping(path="logout.do")
-//	protected void logOut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		
-//		HttpSession session = request.getSession(false);
-//		
-//		if(session != null) {
-//			session.removeAttribute("user");
-//		}
-//		
-//		RequestDispatcher dispatcher = request.getRequestDispatcher("home.do");
-//		dispatcher.forward(request, response);
-//	}
+
+	@RequestMapping(path= "logout.do")
+	public String logout(HttpSession session) {
+		session.removeAttribute("user_id");
+		
+		return "redirect:home.do";
+		
+		
+	}
+	
+	
+	@RequestMapping(path = "dashboard.do")
+	public String dashboard(HttpSession session, Model model) {
+
+		
+		User user = userDAO.findById((int)session.getAttribute("user_id"));
+		model.addAttribute("user", user);
+
+		return "userDashboard";
+	}
 
 	@RequestMapping(path = "register.do")
 	public String registerAccount() {

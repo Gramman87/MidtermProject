@@ -18,11 +18,7 @@ public class EventViewController {
 	@Autowired
 	EventDAO eventDao;
 	
-	@RequestMapping(path="logout.do")
-	private String logout() {
-		return "home";
-	}
-	
+		
 	@RequestMapping(path="eventView.do")
 	private String eventView() {
 		return "eventView";
