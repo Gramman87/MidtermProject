@@ -1,11 +1,5 @@
 package com.skilldistillery.hohohomies.controllers;
 
-import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,25 +15,28 @@ public class HomeController {
 
 	@Autowired
 	private UserDAO userDAO;
-	
-	@RequestMapping(path= {"/", "home.do"})
+
+	@RequestMapping(path = { "/", "home.do" })
 	public String home(Model model) {
-		//model.addAttribute("DEBUG", userDao.findByUsername("admin@gmail.com"));
+		// model.addAttribute("DEBUG", userDao.findByUsername("admin@gmail.com"));
 		return "home";
 	}
-	
-	@RequestMapping(path="login.do")
-	public String logIn(String password, String email, Model model) {
+
+	@RequestMapping(path = "login.do")
+	public String logIn(HttpSession session, String password, String email, Model model) {
 		User user = userDAO.findByPasswordAndEmailForLogin(password, email);
-		
-		if(user == null) {
+
+		if (user == null) {
 			return "emailNotFound";
 		}
-			
+
+		// store our user in the session
+		session.setAttribute("user", user);
+
 		model.addAttribute("user", user);
+		
 		return "userDashboard";
 	}
-	
 
 //	@RequestMapping(path="logout.do")
 //	protected void logOut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -53,14 +50,10 @@ public class HomeController {
 //		RequestDispatcher dispatcher = request.getRequestDispatcher("home.do");
 //		dispatcher.forward(request, response);
 //	}
-	
-	@RequestMapping(path="register.do")
+
+	@RequestMapping(path = "register.do")
 	public String registerAccount() {
 		return "register";
 	}
-	
-	
-
-
 
 }
