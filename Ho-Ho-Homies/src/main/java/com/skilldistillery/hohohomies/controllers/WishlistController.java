@@ -3,8 +3,8 @@ package com.skilldistillery.hohohomies.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.skilldistillery.hohohomies.data.WishlistItemDAO;
 import com.skilldistillery.hohohomies.entities.User;
@@ -15,11 +15,10 @@ public class WishlistController {
 	@Autowired
 	private WishlistItemDAO listDao;
 	
-	@RequestMapping(path = "wishlist.do", method = RequestMethod.GET)
-	public String wishlistDisplay(User user, Model model) {
+	@RequestMapping(path = "wishlist.do")
+	public String wishlistDisplay(@ModelAttribute("user") User user, Model model) {
 		
-		model.addAttribute("user", user);
-		model.addAttribute("items", listDao.findWishlistByUser(user));
+		model.addAttribute("items", listDao.findWishlistByUserId(user.getId()));
 		
 		return "wishlist";
 	}

@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.skilldistillery.hohohomies.entities.User;
 import com.skilldistillery.hohohomies.entities.WishlistItem;
 
 @SpringBootTest
@@ -22,9 +21,6 @@ class WishlistItemDAOTest {
 	private WishlistItemDAO itemDao;
 	private WishlistItem item;
 	
-	@Autowired
-	private UserDAO userDao;
-
 	@BeforeEach
 	void setUp() throws Exception {
 	}
@@ -48,7 +44,7 @@ class WishlistItemDAOTest {
 
 	@Test
 	void test_find_all_by_user_id() {
-		List<WishlistItem> items = itemDao.findWishlistByUser(userDao.findById(1));
+		List<WishlistItem> items = itemDao.findWishlistByUserId(1);
 		
 		assertNotNull(items);
 		assertTrue(items.size() > 0);
