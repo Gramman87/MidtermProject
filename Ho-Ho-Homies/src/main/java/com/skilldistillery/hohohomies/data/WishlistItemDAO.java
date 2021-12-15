@@ -8,7 +8,7 @@ import com.skilldistillery.hohohomies.entities.WishlistItem;
 public interface WishlistItemDAO {
 	WishlistItem findItemById(int id);
 	
-	List<WishlistItem> findWishlistByUser(User user);
+	List<WishlistItem> findWishlistByUserId(int id);
 	
 	void store(WishlistItem item);
 
