@@ -50,12 +50,6 @@ public class UserDAOImpl implements UserDAO {
 		return user;
 	}
 
-	@Override
-	public Address registerAddress(Address address) throws RuntimeException {
-		em.persist(address);
-		
-		return address;
-	}
 
 	@Override
 	public User update(User user) {

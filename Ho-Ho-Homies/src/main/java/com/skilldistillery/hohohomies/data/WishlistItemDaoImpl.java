@@ -26,10 +26,10 @@ public class WishlistItemDaoImpl implements WishlistItemDAO {
 	}
 	
 	@Override
-	public List<WishlistItem> findWishlistByUser(User user) {
-		String jpql = "SELECT wi FROM WishlistItem wi WHERE wi.user.id = :id"; 
+	public List<WishlistItem> findWishlistByUserId(int id) {
+		String jpql = "SELECT i FROM WishlistItem i WHERE i.user.id = :id"; 
 		
-		return em.createQuery(jpql, WishlistItem.class).setParameter("id", user.getId()).getResultList();
+		return em.createQuery(jpql, WishlistItem.class).setParameter("id", id).getResultList();
 	}
 
 	@Override

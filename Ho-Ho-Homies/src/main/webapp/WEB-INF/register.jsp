@@ -24,15 +24,15 @@
 		<br>
 		*Confirm Email:<input type="text" name="confirmEmail" size="20" />
 		<br>
-		Street:<input type="text" name="street1" size="20" /> 
+		Street:<input type="text" name="address.street1" size="20" /> 
 		<br>
-		Street 2:<input type="text" name="street2" size="20" /> 
+		Street 2:<input type="text" name="address.street2" size="20" /> 
 		<br>
-		City:<input type="text" name="city" size="20" /> 
+		City:<input type="text" name="address.city" size="20" /> 
 		<br>
-		State:<input type="text" name="state" size="20" />
+		State:<input type="text" name="address.state" size="20" />
 		<br> 
-		Zip Code:<input type="text" name="zipcode" size="20" /> 
+		Zip Code:<input type="text" name="address.zipcode" size="20" /> 
 		<br>
 		<input type="submit" name="registerAccount" value="Submit" />
 		<br>
