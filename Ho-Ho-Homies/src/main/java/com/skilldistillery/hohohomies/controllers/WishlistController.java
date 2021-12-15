@@ -8,8 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.skilldistillery.hohohomies.data.UserDAO;
 import com.skilldistillery.hohohomies.data.WishlistItemDAO;
-import com.skilldistillery.hohohomies.entities.User;
 import com.skilldistillery.hohohomies.entities.WishlistItem;
 
 @Controller
@@ -18,33 +18,32 @@ public class WishlistController {
 	@Autowired
 	private WishlistItemDAO wishlistDAO;
 
+	@Autowired
+	private UserDAO userDAO;
+
 	@GetMapping(path = "wishlist.do")
 	public String wishlistDisplay(HttpSession session, Model model) {
-		Object user = session.getAttribute("user");
+		Object o = session.getAttribute("user_id");
 
-		if (user == null) {
-			// TODO: show error page
-			return "wishlist";
+		if (o != null) {
+			model.addAttribute("items", wishlistDAO.findWishlistByUserId((int) o));
 		}
-
-		model.addAttribute("items", wishlistDAO.findWishlistByUserId(((User) user).getId()));
 
 		return "wishlist";
 	}
 
 	@PostMapping(path = "wishlist.do")
 	public String wishlistNew(HttpSession session, WishlistItem item, Model model) {
-		Object user = session.getAttribute("user");
+		Object o = session.getAttribute("user_id");
 
-		if (user == null) {
-			// TODO: show error page
-			return "wishlist";
+		if (o != null) {
+			int userId = (int) o;
+
+			item.setUser(userDAO.findById(userId));
+			wishlistDAO.store(item);
+
+			model.addAttribute("items", wishlistDAO.findWishlistByUserId(userId));
 		}
-
-		item.setUser((User) user);
-		wishlistDAO.store(item);
-
-		model.addAttribute("items", wishlistDAO.findWishlistByUserId(((User) user).getId()));
 
 		return "wishlist";
 	}
