@@ -8,7 +8,7 @@
 <jsp:include page="header.jsp"></jsp:include>
 <body>
 
-<c:if test="${message != null}">
+<c:if test="${not empty message}">
 <div class="alert alert-danger" role="alert">
   ${message}
 </div>
