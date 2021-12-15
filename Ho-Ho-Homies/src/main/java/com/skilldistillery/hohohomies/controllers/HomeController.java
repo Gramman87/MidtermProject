@@ -43,19 +43,6 @@ public class HomeController {
 		session.removeAttribute("user_id");
 		
 		return "redirect:home.do";
-		
-		
-	}
-	
-	
-	@RequestMapping(path = "dashboard.do")
-	public String dashboard(HttpSession session, Model model) {
-
-		
-		User user = userDAO.findById((int)session.getAttribute("user_id"));
-		model.addAttribute("user", user);
-
-		return "userDashboard";
 	}
 
 }

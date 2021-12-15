@@ -14,6 +14,7 @@
 		<div id="Group_p" class="">
 			<div id="Logout">
 				<span><a href="logout.do">Logout</a></span>
+				<span><a href="editProfile.do?uId=${user.id}">Profile</a></span>
 			</div>
 		</div>
 	</div>
