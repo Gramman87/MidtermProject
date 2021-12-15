@@ -8,46 +8,76 @@
 <head>
 <meta charset="UTF-8">
 <title>Wishlist</title>
-<style>
-table {
-	font-family: arial, sans-serif;
-	border: 1px solid black;
-	width: 100%;
-	height: 100%;
-}
-
-td, th {
-	border: .5px solid black;
-	text-align: left;
-	padding: 8px;
-}
-
-tr:nth-child(even) {
-	background-color: #eb726a;
-}
-</style>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+	crossorigin="anonymous"></script>
 </head>
 <body>
-	<c:choose>
-		<c:when test="${not empty items}">
-			<table>
-				<tr>
-					<th>Name</th>
-					<th>Description</th>
-					<th>Cost</th>
-					<th>Link</th>
-				</tr>
-				<c:forEach var="w" items="${user.wishlist}">
+	<!-- https://getbootstrap.com/docs/5.1/content/tables/ -->
+	<table class="table table-striped table-hover">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Description</th>
+				<th>Cost</th>
+				<th>Link</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:choose>
+				<c:when test="${not empty items}">
+					<c:forEach var="w" items="${items}">
+						<tr>
+							<td>${w.name}</td>
+							<td>${w.description}</td>
+							<td>${w.cost}</td>
+							<td><a href="${w.shoppingURL}">Shop now</a></td>
+						</tr>
+					</c:forEach>
+				</c:when>
+				<c:otherwise>
 					<tr>
-						<td>${w.name}</td>
-						<td>${w.description}</td>
-						<td>${w.cost}</td>
-						<td>${w.shoppingURL}</td>
+						<td colspan="4">No items in wishlist!</td>
 					</tr>
-				</c:forEach>
-			</table>
-		</c:when>
-		<c:otherwise>No items in wishlist!</c:otherwise>
-	</c:choose>
+				</c:otherwise>
+			</c:choose>
+		</tbody>
+	</table>
+
+	<!-- https://getbootstrap.com/docs/5.1/components/collapse/ -->
+	<p>
+		<button class="btn btn-secondary btn-sm" type="button"
+			data-bs-toggle="collapse" data-bs-target="#wishlistAdd"
+			aria-expanded="false" aria-controls="wishlistAdd">Add</button>
+	</p>
+	<div class="collapse" id="wishlistAdd">
+		<div class="card card-body">
+			<form method="POST">
+				<div>
+					<label>Name:</label><input name="name"
+						class="form-control form-control-sm" maxlength="80" />
+				</div>
+				<div>
+					<label>Description:</label><input name="description"
+						class="form-control form-control-sm" maxlength="80" />
+				</div>
+				<div>
+					<label>Cost:</label><input name="cost"
+						class="form-control form-control-sm" type="number" min="0" />
+				</div>
+				<div>
+					<label>Shopping URL:</label><input name="shoppingURL"
+						class="form-control form-control-sm" maxlength="200" />
+				</div>
+				<input class="btn btn-primary btn-sm" type="submit" value="Submit">
+			</form>
+		</div>
+	</div>
 </body>
 </html>
