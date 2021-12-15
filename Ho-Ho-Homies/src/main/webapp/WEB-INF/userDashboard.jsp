@@ -8,9 +8,10 @@
 <title>User Dashboard</title>
 <style>
 table {
-	font-family: arial, sans-serif;
-	border: 1px solid black;
-	width: 80px;
+  font-family: arial, sans-serif;
+  border: 1px solid black;
+  width: 80px;
+
 }
 
 td, th {
@@ -18,6 +19,7 @@ td, th {
 	border-collapse: collapse;
 	text-align: left;
 	padding: 5px;
+
 }
 
 tr:nth-child(even) {
@@ -39,37 +41,14 @@ tr:nth-child(even) {
 		</div>
 	</div>
 
-	<h1>Welcome ${user.firstName}</h1>
-	<h2>
-		<a href="logout.do">Logout</a>
-	</h2>
-
 
 	<h2>Your WishList</h2>
 
-	<c:choose>
-		<c:when test="${not empty user.wishlist}">
-			<table>
-				<tr>
-					<th>Name</th>
-					<th>Description</th>
-					<th>Cost</th>
-					<th>Link</th>
-				</tr>
-				<c:forEach var="w" items="${user.wishlist}">
-					<tr>
-						<td>${w.name}</td>
-						<td>${w.description}</td>
-						<td>${w.cost}</td>
-						<td><a href="${w.shoppingURL}">Shop now</a></td>
-					</tr>
-				</c:forEach>
-			</table>
-		</c:when>
-		<c:otherwise>No items in wishlist!</c:otherwise>
-	</c:choose>
+	<!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe -->
+	<iframe src="wishlist.do" title="Wishlist" width="300" height="512"></iframe>
 
 	<h2>Your Exchanges</h2>
+
 
 	<table>
 		<tr>
@@ -89,6 +68,7 @@ tr:nth-child(even) {
 			</tr>
 		</c:forEach>
 	</table>
+
 
 </body>
 </html>
