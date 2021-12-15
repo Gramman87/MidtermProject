@@ -47,27 +47,8 @@ tr:nth-child(even) {
 
 	<h2>Your WishList</h2>
 
-	<c:choose>
-		<c:when test="${not empty user.wishlist}">
-			<table>
-				<tr>
-					<th>Name</th>
-					<th>Description</th>
-					<th>Cost</th>
-					<th>Link</th>
-				</tr>
-				<c:forEach var="w" items="${user.wishlist}">
-					<tr>
-						<td>${w.name}</td>
-						<td>${w.description}</td>
-						<td>${w.cost}</td>
-						<td><a href="${w.shoppingURL}">Shop now</a></td>
-					</tr>
-				</c:forEach>
-			</table>
-		</c:when>
-		<c:otherwise>No items in wishlist!</c:otherwise>
-	</c:choose>
+	<!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe -->
+	<iframe src="wishlist.do" title="Wishlist" width="300" height="512"></iframe>
 
 	<h2>Your Exchanges</h2>
 
