@@ -23,7 +23,19 @@
 							<td>${w.name}</td>
 							<td>${w.description}</td>
 							<td>${w.cost}</td>
-							<td><a href="${w.shoppingURL}">Shop now</a></td>
+							<td>
+								<div class="dropdown">
+									<button class="btn btn-secondary btn-sm dropdown-toggle"
+										type="button" id="dropdownMenuButton1"
+										data-bs-toggle="dropdown" aria-expanded="false">Action</button>
+									<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+										<li><a class="dropdown-item" href="${w.shoppingURL}"
+											target="_blank">Open</a></li>
+										<li><a class="dropdown-item"
+											href="wishlistRemove.do?id=${w.id}">Remove</a></li>
+									</ul>
+								</div>
+							</td>
 						</tr>
 					</c:forEach>
 				</c:when>

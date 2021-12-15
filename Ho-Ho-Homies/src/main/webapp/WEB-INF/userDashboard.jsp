@@ -22,7 +22,7 @@
 	<h2>Your WishList</h2>
 
 	<!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe -->
-	<iframe src="wishlist.do" title="Wishlist" width="300" height="512"></iframe>
+	<iframe src="wishlist.do" title="Wishlist" width="512" height="512"></iframe>
 
 	<h2>Your Exchanges</h2>
 
