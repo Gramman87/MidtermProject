@@ -10,13 +10,13 @@
 table {
   font-family: arial, sans-serif;
   border: 1px solid black;
-  width: 80pxpx;
+  width: 80px;
 
 }
 
 td, th {
   border: .5px solid black;
-  border-collapse: collapse;
+  border-collapse:                                      ollapse;
   text-align: left;
   padding: 5px;
 }
@@ -67,10 +67,7 @@ tr:nth-child(even) {
 		<td><a href="getEventData.do?eId=${e.event.id}">View</a></td>
 	</tr>
 	</c:forEach>		
-</table>
-<!-- 	<form action="eventView.do" method="GET">
-		<input type="submit" name="userExchange" value="View"/>
-	</form> -->
+
 
 </body>
 </html>

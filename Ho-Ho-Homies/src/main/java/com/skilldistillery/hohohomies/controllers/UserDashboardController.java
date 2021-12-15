@@ -15,13 +15,11 @@ public class UserDashboardController {
 	private UserDAO userDao;
 	
 	@RequestMapping(path="userDashboard.do")
-	public String userDashboard(User user, Model model) {
-		
-		model.addAttribute(user);
+	public String userDashboard() {
 		
 		return "wishlist";
 	}
 	
 
-
+                                                  
 }
