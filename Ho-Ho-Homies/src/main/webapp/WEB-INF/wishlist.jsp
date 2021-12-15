@@ -37,7 +37,7 @@ tr:nth-child(even) {
 					<th>Cost</th>
 					<th>Link</th>
 				</tr>
-				<c:forEach var="w" items="${items}">
+				<c:forEach var="w" items="${user.wishlist}">
 					<tr>
 						<td>${w.name}</td>
 						<td>${w.description}</td>

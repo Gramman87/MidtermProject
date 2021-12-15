@@ -10,13 +10,14 @@
 table {
 	font-family: arial, sans-serif;
 	border: 1px solid black;
-	width: 30px;
+	width: 80px;
 }
 
 td, th {
 	border: .5px solid black;
+	border-collapse: collapse;
 	text-align: left;
-	padding: 8px;
+	padding: 5px;
 }
 
 tr:nth-child(even) {
@@ -25,6 +26,18 @@ tr:nth-child(even) {
 </style>
 </head>
 <body>
+	<div id="Repeat_Grid_1">
+		<div id="Group" class="">
+			<div id="Welcome_User">
+				<span>Welcome ${user.firstName}</span>
+			</div>
+		</div>
+		<div id="Group_p" class="">
+			<div id="Logout">
+				<span><a href="logout.do">Logout</a></span>
+			</div>
+		</div>
+	</div>
 
 	<h1>Welcome ${user.firstName}</h1>
 	<h2>
@@ -33,6 +46,7 @@ tr:nth-child(even) {
 
 
 	<h2>Your WishList</h2>
+
 	<c:choose>
 		<c:when test="${not empty user.wishlist}">
 			<table>
@@ -57,7 +71,6 @@ tr:nth-child(even) {
 
 	<h2>Your Exchanges</h2>
 
-
 	<table>
 		<tr>
 			<th>Name</th>
@@ -72,17 +85,14 @@ tr:nth-child(even) {
 				<td>${e.event.type.name}</td>
 				<td># of members</td>
 				<td>${e.event.beginsOn}</td>
-				<td><form action="getEventData.do?id=${e.event.id}"
-						method="GET">
-						<input type="submit" name="userExchange" value="View" />
-					</form>
-				<td>
+				<td><a href="getEventData.do?eId=${e.event.id}">View</a></td>
 			</tr>
 		</c:forEach>
 	</table>
-	<!-- 	<form action="eventView.do" method="GET">
-		<input type="submit" name="userExchange" value="View"/>
-	</form> -->
 
 </body>
 </html>
+
+
+
+
