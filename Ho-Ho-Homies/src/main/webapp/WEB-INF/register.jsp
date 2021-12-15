@@ -2,10 +2,7 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Register New Account</title>
-</head>
+<jsp:include page="header.jsp"></jsp:include>
 <body>
 
 	<h2>Register your new account</h2>
@@ -47,4 +44,5 @@
 
 
 </body>
+<jsp:include page="footer.jsp"></jsp:include>
 </html>

@@ -1,0 +1,21 @@
+.invitee:hover {
+	text-decoration: line-through;
+	cursor: pointer;
+}
+
+#exchange-table {
+	font-family: arial, sans-serif;
+	border: 1px solid black;
+	width: 80px;
+}
+
+#exchange-table td, #exchange-table th {
+	border: .5px solid black;
+	border-collapse: collapse;
+	text-align: left;
+	padding: 5px;
+}
+
+#exchange-table tr:nth-child(even) {
+	background-color: #eb726a;
+}
