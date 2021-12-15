@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.skilldistillery.hohohomies.data.AddressDAO;
 import com.skilldistillery.hohohomies.data.UserDAO;
+import com.skilldistillery.hohohomies.entities.Address;
 import com.skilldistillery.hohohomies.entities.User;
 
 class ProfileEditData extends User {
@@ -40,6 +42,9 @@ public class UserDashboardController {
 
 	@Autowired
 	private UserDAO userDao;
+	
+	@Autowired
+	private AddressDAO addDao;
 
 	@RequestMapping(path = "userDashboard.do")
 	public String userDashboard() {
@@ -69,7 +74,7 @@ public class UserDashboardController {
 		
 		if(!user.getPassword().equals(data.getPassword())) {
 			model.addAttribute("message", "Incorrect Password");
-			return "editprofile.do";
+			return "editProfile";
 		}
 		
 		if(data.getNewPassword().equals(data.getConfirmNewPassword())) {
@@ -78,9 +83,19 @@ public class UserDashboardController {
 			}
 		}
 		
+		Address address = user.getAddress();
+		
 		user.setFirstName(data.getFirstName());
 		user.setLastName(data.getLastName());
-		user.setAddress(data.getAddress());
+		
+		address.setCity(data.getAddress().getCity());
+		address.setState(data.getAddress().getState());
+		address.setStreet1(data.getAddress().getStreet1());
+		address.setStreet2(data.getAddress().getStreet2());
+		address.setZipcode(data.getAddress().getZipcode());
+		
+		addDao.updateAddress(address);
+		userDao.update(user);
 				
 		return "redirect:dashboard.do";
 	}

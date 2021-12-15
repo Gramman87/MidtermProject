@@ -21,22 +21,22 @@
 		<br>
 		Last Name:<input type="text" name="lastName" size="20" value="${user.lastName}" /> 
 		<br>
-		Current Password:<input type="password" name="password" size="20" /> 
+		*Current Password:<input type="password" name="password" size="20" required/> 
 		<br>
 		<br>
 		New Password:<input type="password" name="newPassword" size="20" /> 
 		<br>
 		Confirm New Password:<input type="password" name="confirmNewPassword" size="20" />
 		<br> 
-		Street:<input type="text" name="address.street1" size="20" value="${user.street1}" /> 
+		Street:<input type="text" name="address.street1" size="20" value="${user.address.street1}" /> 
 		<br>
-		Street 2:<input type="text" name="address.street2" size="20" value="${user.street2}" /> 
+		Street 2:<input type="text" name="address.street2" size="20" value="${user.address.street2}" /> 
 		<br>
-		City:<input type="text" name="address.city" size="20" value="${user.city}" /> 
+		City:<input type="text" name="address.city" size="20" value="${user.address.city}" /> 
 		<br>
-		State:<input type="text" name="address.state" size="20" value="${user.state}" />
+		State:<input type="text" name="address.state" size="20" value="${user.address.state}" />
 		<br> 
-		Zip Code:<input type="text" name="address.zipcode" size="20" value="${user.zipcode}" /> 
+		Zip Code:<input type="text" name="address.zipcode" size="20" value="${user.address.zipcode}" /> 
 		<br>
 		<input type="submit" value="Submit" />
 		<br>
