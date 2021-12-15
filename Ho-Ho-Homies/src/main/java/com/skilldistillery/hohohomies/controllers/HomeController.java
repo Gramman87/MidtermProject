@@ -19,7 +19,7 @@ public class HomeController {
 	@RequestMapping(path = { "/", "home.do" })
 	public String home(HttpSession session, Model model) {
 		Object userId = session.getAttribute("user_id");
-		if(userId != null) {
+		if (userId != null) {
 			return "redirect:dashboard.do";
 		}
 		return "home";
@@ -37,11 +37,9 @@ public class HomeController {
 		return "redirect:dashboard.do";
 	}
 
-
-	@RequestMapping(path= "logout.do")
+	@RequestMapping(path = "logout.do")
 	public String logout(HttpSession session) {
 		session.removeAttribute("user_id");
-		
 		return "redirect:home.do";
 	}
 
