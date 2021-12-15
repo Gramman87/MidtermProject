@@ -50,7 +50,7 @@
 				type="datetime-local" /></label>
 		</div>
 		<div>
-			<label>RSVP by: <input name="beginsOn" type="datetime-local" /></label>
+			<label>RSVP by: <input name="rsvpBy" type="date" /></label>
 		</div>
 
 		<div>
