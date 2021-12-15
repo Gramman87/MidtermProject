@@ -1,22 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Register New Account</title>
-</head>
+<jsp:include page="header.jsp"></jsp:include>
 <body>
 
+<c:if test="${not empty message}">
+<div class="alert alert-danger" role="alert">
+  ${message}
+</div>
+</c:if>
+
 	<h2>Register your new account</h2>
+	<form action="register.do" method="POST">
 
-	<form action="registerNew.do" method="POST">
-
-		*First Name:<input type="text" name="firstName" size="20" /> 
+		*First Name:<input type="text" name="firstName" size="20" required/> 
 		<br>
-		*Last Name:<input type="text" name="lastName" size="20" /> 
+		*Last Name:<input type="text" name="lastName" size="20" required/> 
 		<br>
-		*Password:<input type="password" name="password" size="20" /> 
+		*Password:<input type="password" name="password" size="20" required/> 
 		<br>
 		*Confirm Password:<input type="password" name="confirmPassword" size="20" />
 		<br> 
@@ -37,7 +42,6 @@
 		<input type="submit" name="registerAccount" value="Submit" />
 		<br>
 		*required
-		
 
 	</form>
 	<br>
@@ -45,6 +49,6 @@
 	<input type="submit" name="home" value="Return Home"/>
 	</form>
 
-
 </body>
+<jsp:include page="footer.jsp"></jsp:include>
 </html>

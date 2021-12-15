@@ -58,9 +58,4 @@ public class HomeController {
 		return "userDashboard";
 	}
 
-	@RequestMapping(path = "register.do")
-	public String registerAccount() {
-		return "register";
-	}
-
 }
