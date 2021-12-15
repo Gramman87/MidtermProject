@@ -5,10 +5,7 @@
 	
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Register New Account</title>
-</head>
+<jsp:include page="header.jsp"></jsp:include>
 <body>
 
 <c:if test="${message != null}">
@@ -53,4 +50,5 @@
 	</form>
 
 </body>
+<jsp:include page="footer.jsp"></jsp:include>
 </html>

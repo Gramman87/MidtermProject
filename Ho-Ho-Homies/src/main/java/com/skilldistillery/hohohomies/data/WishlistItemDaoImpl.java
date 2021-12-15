@@ -47,6 +47,11 @@ public class WishlistItemDaoImpl implements WishlistItemDAO {
 		managed.setShoppingURL(item.getShoppingURL());
 		managed.setDescription(item.getDescription());
 	}
+
+	@Override
+	public void delete(WishlistItem item) {
+		em.remove(item);
+	}
 	
 	
 
