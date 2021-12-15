@@ -35,12 +35,9 @@ class EventDAOTest {
 	@Test
 	void test_find_Event_By_EventId() {
 		assertNotNull(event);
-		assertEquals(2021, event.getBeginsOn()
-								.getYear());
-		assertEquals(12, event	.getBeginsOn()
-								.getMonthValue());
-		assertEquals(24, event	.getBeginsOn()
-								.getDayOfMonth());
+		assertEquals(2021, event.getBeginsOn().getYear());
+		assertEquals(12, event.getBeginsOn().getMonthValue());
+		assertEquals(24, event.getBeginsOn().getDayOfMonth());
 	}
 
 	@Test

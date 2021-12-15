@@ -23,15 +23,16 @@ public class WishlistController {
 	private UserDAO userDAO;
 
 	@GetMapping(path = "wishlist.do")
-	public String wishlistDisplay(HttpSession session, Model model, @SessionAttribute(name = "user_id") int userId) {
+	public String wishlistDisplay(HttpSession session, Model model,
+			@SessionAttribute(name = "user_id") int userId) {
 		// pass wishlist to view
 		model.addAttribute("items", wishlistDAO.findAllById(userId));
 		return "wishlist";
 	}
 
 	@PostMapping(path = "wishlist.do")
-	public String wishlistNew(HttpSession session, WishlistItem item, Model model,
-			@SessionAttribute(name = "user_id") int userId) {
+	public String wishlistNew(HttpSession session, WishlistItem item,
+			Model model, @SessionAttribute(name = "user_id") int userId) {
 		// link item to session user
 		item.setUser(userDAO.findById(userId));
 
@@ -45,11 +46,11 @@ public class WishlistController {
 	}
 
 	@GetMapping(path = "wishlistRemove.do")
-	public String wishlistRemove(HttpSession session, @SessionAttribute(name = "user_id") int userId, int id) {
+	public String wishlistRemove(HttpSession session,
+			@SessionAttribute(name = "user_id") int userId, int id) {
 		WishlistItem item = wishlistDAO.findById(id);
 		// Make sure the session user actually owns this wishlist item
-		if (item.getUser()
-				.getId() == userId) {
+		if (item.getUser().getId() == userId) {
 			wishlistDAO.delete(item);
 		}
 		return "redirect:wishlist.do";

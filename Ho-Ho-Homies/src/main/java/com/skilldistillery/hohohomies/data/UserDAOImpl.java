@@ -37,7 +37,8 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public User findByEmailAndPassword(String email, String password) throws RuntimeException {
+	public User findByEmailAndPassword(String email, String password)
+			throws RuntimeException {
 		String jpql = "SELECT u FROM User u WHERE u.password = :password AND u.email = :email";
 		return em	.createQuery(jpql, User.class)
 					.setParameter("password", password)

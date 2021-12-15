@@ -47,14 +47,13 @@ public class RegisterController {
 	}
 
 	@PostMapping(path = "register.do")
-	public String register(User user, RegisterData data, HttpSession session, RedirectAttributes redir) {
-		if (!data	.getConfirmEmail()
-					.equals(user.getEmail())) {
+	public String register(User user, RegisterData data, HttpSession session,
+			RedirectAttributes redir) {
+		if (!data.getConfirmEmail().equals(user.getEmail())) {
 			redir.addFlashAttribute("message", "Your emails did not match.");
 			return "redirect:register.do";
 		}
-		if (!data	.getConfirmPassword()
-					.equals(user.getPassword())) {
+		if (!data.getConfirmPassword().equals(user.getPassword())) {
 			redir.addFlashAttribute("message", "Your passwords did not match.");
 			return "redirect:register.do";
 		}

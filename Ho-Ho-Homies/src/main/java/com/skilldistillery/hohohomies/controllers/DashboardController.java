@@ -46,7 +46,8 @@ public class DashboardController {
 	private AddressDAO addDao;
 
 	@RequestMapping(path = "dashboard.do")
-	public String dashboard(HttpSession session, Model model, @SessionAttribute(name = "user_id") int userId) {
+	public String dashboard(HttpSession session, Model model,
+			@SessionAttribute(name = "user_id") int userId) {
 		model.addAttribute("user", userDao.findById(userId));
 		return "userDashboard";
 	}
@@ -58,20 +59,18 @@ public class DashboardController {
 	}
 
 	@PostMapping(path = "editProfile.do")
-	public String editProfile(ProfileEditData data, @SessionAttribute(name = "user_id") int userId, HttpSession session,
+	public String editProfile(ProfileEditData data,
+			@SessionAttribute(name = "user_id") int userId, HttpSession session,
 			Model model) {
 		User user = userDao.findById(userId);
 
-		if (!user	.getPassword()
-					.equals(data.getPassword())) {
+		if (!user.getPassword().equals(data.getPassword())) {
 			model.addAttribute("message", "Incorrect Password");
 			return "editProfile";
 		}
 
-		if (data.getNewPassword()
-				.equals(data.getConfirmNewPassword())) {
-			if (data.getNewPassword()
-					.length() > 0) {
+		if (data.getNewPassword().equals(data.getConfirmNewPassword())) {
+			if (data.getNewPassword().length() > 0) {
 				user.setPassword(data.getConfirmNewPassword());
 			}
 		}
@@ -81,16 +80,11 @@ public class DashboardController {
 		user.setFirstName(data.getFirstName());
 		user.setLastName(data.getLastName());
 
-		address.setCity(data.getAddress()
-							.getCity());
-		address.setState(data	.getAddress()
-								.getState());
-		address.setStreet1(data	.getAddress()
-								.getStreet1());
-		address.setStreet2(data	.getAddress()
-								.getStreet2());
-		address.setZipcode(data	.getAddress()
-								.getZipcode());
+		address.setCity(data.getAddress().getCity());
+		address.setState(data.getAddress().getState());
+		address.setStreet1(data.getAddress().getStreet1());
+		address.setStreet2(data.getAddress().getStreet2());
+		address.setZipcode(data.getAddress().getZipcode());
 
 		addDao.update(address);
 		userDao.update(user);
