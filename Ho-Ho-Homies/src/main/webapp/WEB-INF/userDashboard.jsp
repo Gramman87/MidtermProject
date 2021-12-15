@@ -3,28 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>User Dashboard</title>
-<style>
-table {
-	font-family: arial, sans-serif;
-	border: 1px solid black;
-	width: 80px;
-}
-
-td, th {
-	border: .5px solid black;
-	border-collapse: collapse;
-	text-align: left;
-	padding: 5px;
-}
-
-tr:nth-child(even) {
-	background-color: #eb726a;
-}
-</style>
-</head>
+<jsp:include page="header.jsp"></jsp:include>
 <body>
 	<div id="Repeat_Grid_1">
 		<div id="Group" class="">
@@ -39,11 +18,6 @@ tr:nth-child(even) {
 		</div>
 	</div>
 
-	<h1>Welcome ${user.firstName}</h1>
-	<h2>
-		<a href="logout.do">Logout</a>
-	</h2>
-
 
 	<h2>Your WishList</h2>
 
@@ -52,7 +26,8 @@ tr:nth-child(even) {
 
 	<h2>Your Exchanges</h2>
 
-	<table>
+
+	<table id="exchange-table">
 		<tr>
 			<th>Name</th>
 			<th>Type</th>
@@ -71,7 +46,9 @@ tr:nth-child(even) {
 		</c:forEach>
 	</table>
 
+
 </body>
+<jsp:include page="footer.jsp"></jsp:include>
 </html>
 
 
