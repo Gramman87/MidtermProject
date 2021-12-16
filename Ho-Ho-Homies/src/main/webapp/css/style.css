@@ -3,10 +3,24 @@
 	cursor: pointer;
 }
 
+.Welcome_User {
+	justify-content: flex-end;
+}
+.logout-edit {
+	justify-content: flex-end;
+}
+
+.exchange-table-with-header {
+	
+	justify-content: right;
+	
+}
+
 #exchange-table {
 	font-family: arial, sans-serif;
 	border: 1px solid black;
 	width: 80px;
+	
 }
 
 #exchange-table td, #exchange-table th {
@@ -19,3 +33,4 @@
 #exchange-table tr:nth-child(even) {
 	background-color: #eb726a;
 }
+
