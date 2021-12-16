@@ -1,8 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
-<jsp:include page="header.jsp"></jsp:include>
+<c:set var="title" value="Create Event" scope="application" />
+<c:set var="style" value="event/create.css" scope="application" />
+<c:set var="script" value="event/create.js" scope="application" />
+<c:import url="header.jsp" />
 <body>
 
 	<form id="create" method="POST">
@@ -20,7 +24,8 @@
 		</div>
 
 		<div>
-			<label>Custom Rules: <input name="type.description" size="4" /></label>
+			<label>Custom Rules: <textarea name="type.description"
+					rows="4" cols="120"></textarea></label>
 		</div>
 
 		<div>
@@ -63,40 +68,6 @@
 			<input id="invite-input" type="text" />
 			<button onclick="addInvitee()">Add</button>
 		</div>
-
-		<script>
-			// enter/return key behavior on invite input
-			$("#invite-input").on("keydown", function(e) {
-				if (e.keyCode === 13) {
-					e.preventDefault();
-					addInvitee();
-				}
-			});
-
-			function addInvitee() {
-				var value = $("#invite-input").val();
-
-				if (value.length === 0) {
-					return;
-				}
-				var formValue = $(document.createElement("input"));
-				formValue.attr("type", "hidden");
-				formValue.attr("name", "invites[]");
-				formValue.attr("value", value);
-				$("#invites-form").append(formValue);
-
-				var previewValue = $(document.createElement("div"));
-				previewValue.addClass("invitee");
-				previewValue.text(value);
-				previewValue.data("formValue", formValue);
-				previewValue.on("click", function() {
-					$(this).data("formValue").remove();
-					$(this).remove();
-				});
-				$("#invites-preview").append(previewValue);
-				$("#invite-input").val("");
-			}
-		</script>
 	</div>
 
 	<div>
