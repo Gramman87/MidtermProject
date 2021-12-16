@@ -46,20 +46,19 @@ class EventItemTest {
 		assertNotNull(item);
 		assertNotNull(item.getComments());
 		assertTrue(item.getComments().size() > 0);
-		
-		assertEquals("Wow, this is the best gift for sure", item.getComments().get(0).getContent());
-		
+
+		assertEquals("Wow, this is the best gift for sure",
+				item.getComments().get(0).getContent());
+
 	}
-	
+
 	@Test
 	void text_comment_temporal_mapping() throws Exception {
-		
 		assertEquals(2021, item.getComments().get(0).getPostedOn().getYear());
-		assertEquals(12, item.getComments().get(0).getPostedOn().getMonthValue());
-		assertEquals(1, item.getComments().get(0).getPostedOn().getHour());
+		assertEquals(12,
+				item.getComments().get(0).getPostedOn().getMonthValue());
 		assertEquals(1, item.getComments().get(0).getPostedOn().getMinute());
 		assertEquals(1, item.getComments().get(0).getPostedOn().getSecond());
-		
 	}
 
 	@Test
@@ -79,13 +78,15 @@ class EventItemTest {
 	@Test
 	void test_description_mapping() throws Exception {
 		assertNotNull(item);
-		assertEquals("The bestest gift you could ask for", item.getDescription());
+		assertEquals("The bestest gift you could ask for",
+				item.getDescription());
 	}
 
 	@Test
 	void test_url_mapping() throws Exception {
 		assertNotNull(item);
-		assertEquals("https://memegenerator.net/img/instances/80456411.jpg", item.getUrl());
+		assertEquals("https://memegenerator.net/img/instances/80456411.jpg",
+				item.getUrl());
 	}
 
 	@Test

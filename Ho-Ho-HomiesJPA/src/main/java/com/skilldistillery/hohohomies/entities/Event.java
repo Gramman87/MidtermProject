@@ -65,6 +65,9 @@ public class Event {
 	@OneToMany(mappedBy = "event")
 	private List<UserExchange> exchanges;
 
+	@OneToMany(mappedBy = "event")
+	private List<EventInvite> pendingInvites;
+
 	public int getId() {
 		return id;
 	}
@@ -205,6 +208,34 @@ public class Event {
 		}
 	}
 
+	public List<EventInvite> getPendingInvites() {
+		return pendingInvites;
+	}
+
+	public void setPendingInvites(List<EventInvite> invites) {
+		this.pendingInvites = invites;
+	}
+
+	public void addInvite(EventInvite invite) {
+		if (pendingInvites == null) {
+			pendingInvites = new ArrayList<>();
+		}
+		if (!pendingInvites.contains(invite)) {
+			if (invite.getEvent() != null) {
+				invite.getEvent().removeInvite(invite);
+			}
+			pendingInvites.add(invite);
+			invite.setEvent(this);
+		}
+	}
+
+	public void removeInvite(EventInvite invite) {
+		if (pendingInvites != null && pendingInvites.contains(invite)) {
+			pendingInvites.remove(invite);
+			invite.setEvent(null);
+		}
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -224,7 +255,8 @@ public class Event {
 
 	@Override
 	public String toString() {
-		return "ExchangeEvent [id=" + id + ", complete=" + complete + ", type=" + type + ", title=" + title + "]";
+		return "ExchangeEvent [id=" + id + ", complete=" + complete + ", type="
+				+ type + ", title=" + title + "]";
 	}
 
 }

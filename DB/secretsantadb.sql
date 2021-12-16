@@ -272,6 +272,25 @@ CREATE TABLE IF NOT EXISTS `item_comment` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `invite`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `invite` ;
+
+CREATE TABLE IF NOT EXISTS `invite` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `email` VARCHAR(100) NULL,
+  `event_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_invite_exchange_event1_idx` (`event_id` ASC),
+  CONSTRAINT `fk_invite_exchange_event1`
+    FOREIGN KEY (`event_id`)
+    REFERENCES `exchange_event` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 SET SQL_MODE = '';
 DROP USER IF EXISTS secretsantauser@localhost;
 SET SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
@@ -427,6 +446,18 @@ USE `secretsantadb`;
 INSERT INTO `item_comment` (`id`, `content`, `posted_on`, `exchange_item_id`, `user_id`, `image_url`) VALUES (1, 'Wow, this is the best gift for sure', '2021-12-11T01:01:01', 1, 1, 'https://upload.wikimedia.org/wikipedia/commons/4/49/Jonathan_G_Meath_portrays_Santa_Claus.jpg');
 INSERT INTO `item_comment` (`id`, `content`, `posted_on`, `exchange_item_id`, `user_id`, `image_url`) VALUES (2, 'Bomb food', '2021-12-10T01:01:01', 2, 2, 'https://upload.wikimedia.org/wikipedia/commons/4/49/Jonathan_G_Meath_portrays_Santa_Claus.jpg');
 INSERT INTO `item_comment` (`id`, `content`, `posted_on`, `exchange_item_id`, `user_id`, `image_url`) VALUES (3, 'Nice boots', '2021-12-09T01:01:01', 3, 3, 'https://upload.wikimedia.org/wikipedia/commons/4/49/Jonathan_G_Meath_portrays_Santa_Claus.jpg');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `invite`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `secretsantadb`;
+INSERT INTO `invite` (`id`, `email`, `event_id`) VALUES (1, 'jk@gmail.com', 1);
+INSERT INTO `invite` (`id`, `email`, `event_id`) VALUES (2, 'jimbo@gmail.com', 1);
+INSERT INTO `invite` (`id`, `email`, `event_id`) VALUES (3, 'lo@gmail.com', 1);
 
 COMMIT;
 

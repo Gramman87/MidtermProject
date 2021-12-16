@@ -63,7 +63,7 @@ class UserTest {
 	@Test
 	void test_role_mapping() throws Exception {
 		assertNotNull(user);
-		assertEquals("Gifter", user.getRole());
+		assertEquals("Admin", user.getRole());
 	}
 
 	@Test
