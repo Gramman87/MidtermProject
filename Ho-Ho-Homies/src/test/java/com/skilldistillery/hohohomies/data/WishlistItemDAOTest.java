@@ -16,39 +16,39 @@ import com.skilldistillery.hohohomies.entities.WishlistItem;
 
 @SpringBootTest
 class WishlistItemDAOTest {
-	
+
 	@Autowired
 	private WishlistItemDAO itemDao;
 	private WishlistItem item;
-	
+
 	@BeforeEach
 	void setUp() throws Exception {
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
-		
+
 	}
-	
+
 	@Test
 	void test_find_by_id() {
-		item = itemDao.findItemById(1);
+		item = itemDao.findById(1);
 
 		assertNotNull(item);
-		
+
 		assertEquals(70, item.getCost());
 		assertEquals("Tech", item.getName());
-		
+
 		item = null;
 	}
 
 	@Test
 	void test_find_all_by_user_id() {
-		List<WishlistItem> items = itemDao.findWishlistByUserId(1);
-		
+		List<WishlistItem> items = itemDao.findAllById(1);
+
 		assertNotNull(items);
 		assertTrue(items.size() > 0);
-		
+
 	}
 
 }

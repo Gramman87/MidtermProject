@@ -22,20 +22,20 @@ public class EventCommentDAOImpl implements EventCommentDAO {
 
 	@Override
 	public List<EventComment> findAllByExchange(UserExchange exchange) {
-		return em.createQuery(QUERY_PREFIX + "c.exchange=:e", EventComment.class).setParameter("e", exchange)
-				.getResultList();
+		return em.createQuery(QUERY_PREFIX + "c.exchange=:e",
+				EventComment.class).setParameter("e", exchange).getResultList();
 	}
 
 	@Override
 	public List<EventComment> findAllByEventId(int id) {
-		return em.createQuery(QUERY_PREFIX + "c.exchange.event.id=:id", EventComment.class).setParameter("id", id)
-				.getResultList();
+		return em.createQuery(QUERY_PREFIX + "c.exchange.event.id=:id",
+				EventComment.class).setParameter("id", id).getResultList();
 	}
 
 	@Override
 	public List<EventComment> findAllByUserId(int id) {
-		return em.createQuery(QUERY_PREFIX + "c.exchange.user.id=:id", EventComment.class).setParameter("id", id)
-				.getResultList();
+		return em.createQuery(QUERY_PREFIX + "c.exchange.user.id=:id",
+				EventComment.class).setParameter("id", id).getResultList();
 	}
 
 	@Override
@@ -45,8 +45,9 @@ public class EventCommentDAOImpl implements EventCommentDAO {
 
 	@Override
 	public List<EventComment> findAllRepliesToId(int id) {
-		return em.createQuery(QUERY_PREFIX + "c.replyTo.id=:id ORDER BY c.postedOn ASC", EventComment.class)
-				.setParameter("id", id).getResultList();
+		return em.createQuery(
+				QUERY_PREFIX + "c.replyTo.id=:id ORDER BY c.postedOn ASC",
+				EventComment.class).setParameter("id", id).getResultList();
 	}
 
 	@Override

@@ -5,9 +5,9 @@ import java.util.List;
 import com.skilldistillery.hohohomies.entities.WishlistItem;
 
 public interface WishlistItemDAO {
-	WishlistItem findItemById(int id);
+	WishlistItem findById(int id);
 
-	List<WishlistItem> findWishlistByUserId(int id);
+	List<WishlistItem> findAllById(int id);
 
 	void store(WishlistItem item);
 

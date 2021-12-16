@@ -22,43 +22,38 @@ public class WishlistController {
 	@Autowired
 	private UserDAO userDAO;
 
-	@GetMapping(path = "wishlist.do")
-	public String wishlistDisplay(HttpSession session, Model model) {
-		Object o = session.getAttribute("user_id");
+	@GetMapping(path = "/wishlist")
+	public String wishlistDisplay(HttpSession session, Model model,
+			@SessionAttribute(name = "user_id") int userId) {
+		// pass wishlist to view
+		model.addAttribute("items", wishlistDAO.findAllById(userId));
+		return "wishlist";
+	}
 
-		if (o != null) {
-			model.addAttribute("items", wishlistDAO.findWishlistByUserId((int) o));
-		}
+	@PostMapping(path = "/wishlist")
+	public String wishlistNew(HttpSession session, WishlistItem item,
+			Model model, @SessionAttribute(name = "user_id") int userId) {
+		// link item to session user
+		item.setUser(userDAO.findById(userId));
+
+		// create new wishlist item
+		wishlistDAO.store(item);
+
+		// pass wishlist to view
+		model.addAttribute("items", wishlistDAO.findAllById(userId));
 
 		return "wishlist";
 	}
 
-	@PostMapping(path = "wishlist.do")
-	public String wishlistNew(HttpSession session, WishlistItem item, Model model) {
-		Object o = session.getAttribute("user_id");
-
-		if (o != null) {
-			int userId = (int) o;
-
-			item.setUser(userDAO.findById(userId));
-			wishlistDAO.store(item);
-
-			model.addAttribute("items", wishlistDAO.findWishlistByUserId(userId));
-		}
-
-		return "wishlist";
-	}
-
-	@GetMapping(path = "wishlistRemove.do")
-	public String wishlistRemove(HttpSession session, @SessionAttribute(name = "user_id") int userId, int id) {
-		WishlistItem item = wishlistDAO.findItemById(id);
-
+	@GetMapping(path = "/wishlist/remove")
+	public String wishlistRemove(HttpSession session,
+			@SessionAttribute(name = "user_id") int userId, int id) {
+		WishlistItem item = wishlistDAO.findById(id);
 		// Make sure the session user actually owns this wishlist item
 		if (item.getUser().getId() == userId) {
 			wishlistDAO.delete(item);
 		}
-
-		return "redirect:wishlist.do";
+		return "redirect:/wishlist";
 	}
 
 }

@@ -20,20 +20,22 @@ public class UserExchangeDAOImpl implements UserExchangeDAO {
 
 	@Override
 	public List<UserExchange> findAllByEventId(int id) {
-		return em.createQuery("SELECT e FROM UserExchange e WHERE e.event.id=:id", UserExchange.class)
-				.setParameter("id", id).getResultList();
+		return em.createQuery(
+				"SELECT e FROM UserExchange e WHERE e.event.id=:id",
+				UserExchange.class).setParameter("id", id).getResultList();
 	}
 
 	@Override
 	public List<UserExchange> findAllByUserId(int id) {
-		return em.createQuery("SELECT e FROM UserExchange e WHERE e.user.id=:id", UserExchange.class)
-				.setParameter("id", id).getResultList();
+		return em.createQuery(
+				"SELECT e FROM UserExchange e WHERE e.user.id=:id",
+				UserExchange.class).setParameter("id", id).getResultList();
 	}
 
 	@Override
 	public UserExchange findById(UserExchangeId id) {
-		return em.createQuery("SELECT e FROM UserExchange e WHERE e.id=:id", UserExchange.class).setParameter("id", id)
-				.getSingleResult();
+		return em.createQuery("SELECT e FROM UserExchange e WHERE e.id=:id",
+				UserExchange.class).setParameter("id", id).getSingleResult();
 	}
 
 	@Override

@@ -9,12 +9,12 @@
 	<table>
 		<thead>
 			<tr>
-				<th>Hello, ${user.firstName}</th>
+				<th>Hello, ${exchange.user.firstName}</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
-				<td><a href="logout.do">Logout</a></td>
+				<td><a href="/logout">Logout</a></td>
 			</tr>
 		</tbody>
 	</table>
@@ -39,7 +39,7 @@
 				<td>Minimum Item Cost: ${event.priceMin }</td>
 			</tr>
 			<tr>
-				<td>Your Recipient:</td>
+				<td>Your Recipient: ${exchange.giftee.firstName} ${exchange.giftee.lastName}</td>
 			</tr>
 
 		</tbody>
@@ -59,8 +59,8 @@
 
 							<c:when test="${exchange.giftee == e.user }">
 								<a data-bs-toggle="collapse" href="#collapseExample"
-									aria-expanded="false" aria-controls="collapseExample">(Giftee)
-									${e.user.firstName}</a>
+									aria-expanded="false" aria-controls="collapseExample">
+									${e.user.firstName} ${e.user.lastName} (Recipient)</a>
 
 								<div class="collapse" id="collapseExample">
 									<div class="card card-body">
@@ -91,7 +91,7 @@
 							</c:when>
 
 							<c:otherwise>
-								${e.user.firstName}
+								${e.user.firstName} ${e.user.lastName}
 							</c:otherwise>
 						</c:choose></td>
 				</tr>

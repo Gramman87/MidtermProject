@@ -32,7 +32,7 @@
 										<li><a class="dropdown-item" href="${w.shoppingURL}"
 											target="_blank">Open</a></li>
 										<li><a class="dropdown-item"
-											href="wishlistRemove.do?id=${w.id}">Remove</a></li>
+											href="/wishlist/remove?id=${w.id}">Remove</a></li>
 									</ul>
 								</div>
 							</td>

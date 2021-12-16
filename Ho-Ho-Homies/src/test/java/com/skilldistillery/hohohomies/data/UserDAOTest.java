@@ -48,19 +48,18 @@ class UserDAOTest {
 		user = null;
 
 	}
-	
+
 	@Test
 	void test_find_by_id() throws Exception {
 		user = userDao.findById(1);
-		
+
 		assertNotNull(user);
 		assertEquals("admin@gmail.com", user.getEmail());
 		assertEquals("Santa", user.getFirstName());
 		assertEquals("Clause", user.getLastName());
-		
-		
+
 		user = null;
-		
+
 	}
 
 }
