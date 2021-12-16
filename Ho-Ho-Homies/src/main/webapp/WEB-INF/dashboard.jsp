@@ -4,7 +4,8 @@
 <!DOCTYPE html>
 <html>
 <c:set var="title" value="Create Event" scope="application" />
-<c:set var="style" value="stringLightBanner/stringLight.css" scope="application" />
+<c:set var="style" value="stringLightBanner/stringLight.css"
+	scope="application" />
 <c:set var="script" value="event/create.js" scope="application" />
 <c:import url="header.jsp" />
 <body>
@@ -12,9 +13,11 @@
 		<div class="row">
 			<div class="col-3">
 				<a href="https://ibb.co/hmNGWXg"><img
-					src="https://i.ibb.co/P6y2hTr/hohohomies.png" alt="hohohomies" style="max-height:100%; max-width:100%;"/></a>
+					src="https://i.ibb.co/P6y2hTr/hohohomies.png" alt="hohohomies"
+					style="max-height: 100%; max-width: 100%;" /></a>
 			</div>
 			<div class="col">
+
 				<!-- String Light Testing -->
 				<section class="light-bulbs">
 					<div class="light-bulb theme-color-one"></div>
@@ -23,10 +26,8 @@
 					<div class="light-bulb theme-color-four"></div>
 					<div class="light-bulb theme-color-one"></div>
 					<div class="light-bulb theme-color-two"></div>
-
 				</section>
 				<!-- String Light Testing -->
-
 
 			</div>
 			<div class="col">

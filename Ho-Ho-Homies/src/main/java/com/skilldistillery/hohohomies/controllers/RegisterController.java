@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skilldistillery.hohohomies.data.AddressDAO;
+import com.skilldistillery.hohohomies.data.EventInviteDAO;
 import com.skilldistillery.hohohomies.data.UserDAO;
 import com.skilldistillery.hohohomies.entities.User;
 
@@ -41,6 +42,9 @@ public class RegisterController {
 	@Autowired
 	private AddressDAO addressDAO;
 
+	@Autowired
+	private EventInviteDAO inviteDAO;
+
 	@GetMapping(path = "/register")
 	public String register() {
 		return "register";
@@ -64,6 +68,9 @@ public class RegisterController {
 
 		addressDAO.store(user.getAddress());
 		userDAO.register(user);
+
+		// TODO: Check invites for this users email and notify them to join the
+		// exchanges
 
 		session.setAttribute("user_id", user.getId());
 		return "redirect:/dashboard";

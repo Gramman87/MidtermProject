@@ -42,6 +42,13 @@ class EventTest {
 	}
 
 	@Test
+	void test_invite_mapping() throws Exception {
+		assertNotNull(event);
+		assertNotNull(event.getPendingInvites());
+		assertTrue(event.getPendingInvites().size() > 0);
+	}
+
+	@Test
 	void test_exchange_mapping() throws Exception {
 		assertNotNull(event);
 		assertNotNull(event.getExchanges());
@@ -51,7 +58,8 @@ class EventTest {
 	@Test
 	void test_custom_rules_mapping() throws Exception {
 		assertNotNull(event);
-		assertEquals("Take a drink everytime politics are mentioned", event.getCustomRules());
+		assertEquals("Take a drink everytime politics are mentioned",
+				event.getCustomRules());
 	}
 
 	@Test
@@ -109,7 +117,8 @@ class EventTest {
 	void test_image_url_mapping() throws Exception {
 		assertNotNull(event);
 		assertNotNull(event.getImageURL());
-		assertEquals("https://upload.wikimedia.org/wikipedia/commons/4/49/Jonathan_G_Meath_portrays_Santa_Claus.jpg",
+		assertEquals(
+				"https://upload.wikimedia.org/wikipedia/commons/4/49/Jonathan_G_Meath_portrays_Santa_Claus.jpg",
 				event.getImageURL());
 	}
 
