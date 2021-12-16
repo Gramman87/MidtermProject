@@ -1,5 +1,7 @@
 package com.skilldistillery.hohohomies.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,11 +14,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.skilldistillery.hohohomies.data.EventCommentDAO;
 import com.skilldistillery.hohohomies.data.EventDAO;
 import com.skilldistillery.hohohomies.data.EventTypeDAO;
 import com.skilldistillery.hohohomies.data.UserDAO;
 import com.skilldistillery.hohohomies.data.UserExchangeDAO;
 import com.skilldistillery.hohohomies.entities.Event;
+import com.skilldistillery.hohohomies.entities.EventComment;
+import com.skilldistillery.hohohomies.entities.User;
 import com.skilldistillery.hohohomies.entities.UserExchange;
 import com.skilldistillery.hohohomies.entities.UserExchangeId;
 
@@ -36,13 +41,16 @@ final class EventData extends Event {
 public class EventController {
 
 	@Autowired
-	UserDAO userDao;
+	private UserDAO userDao;
 
 	@Autowired
-	EventDAO eventDao;
+	private EventDAO eventDao;
 
 	@Autowired
-	UserExchangeDAO ueDao;
+	private UserExchangeDAO ueDao;
+	
+	@Autowired
+	private EventCommentDAO commDao;
 
 	@Autowired
 	private EventTypeDAO eventTypeDAO;
@@ -73,6 +81,15 @@ public class EventController {
 	@PostMapping(path = "/event/create")
 	public String postEventcreate(EventData data) {
 		return "event_create";
+	}
+	
+	@RequestMapping(path = "/event/comments")
+	public String eventComments(int id, Model model) {
+		List<EventComment> comments = commDao.findAllByEventId(id);
+		
+		model.addAttribute("comments", comments);
+		
+		return "event_comments";
 	}
 
 }

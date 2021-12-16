@@ -22,7 +22,6 @@
 
 	<h2>Your WishList</h2>
 
-
 	<!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe -->
 	<iframe src="/wishlist" title="Wishlist" width="512" height="512"></iframe>
 
@@ -47,7 +46,6 @@
 			</tr>
 		</c:forEach>
 	</table>
-
 
 </body>
 <jsp:include page="footer.jsp"></jsp:include>

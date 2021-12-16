@@ -14,7 +14,7 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td><a href="/logout">Logout</a></td>
+				<td><a href="/dashboard">Go Back</a></td>
 			</tr>
 		</tbody>
 	</table>
@@ -39,7 +39,8 @@
 				<td>Minimum Item Cost: ${event.priceMin }</td>
 			</tr>
 			<tr>
-				<td>Your Recipient: ${exchange.giftee.firstName} ${exchange.giftee.lastName}</td>
+				<td>Your Recipient: ${exchange.giftee.firstName}
+					${exchange.giftee.lastName}</td>
 			</tr>
 
 		</tbody>
@@ -83,8 +84,8 @@
 													</tr>
 												</c:forEach>
 											</tbody>
-											
-									
+
+
 										</table>
 									</div>
 								</div>
@@ -99,6 +100,7 @@
 		</tbody>
 	</table>
 	<br>
+
 	<table>
 		<thead>
 			<tr>
@@ -111,6 +113,14 @@
 			</tr>
 		</tbody>
 	</table>
+	
+	<br>
+	<div>
+		<h1>Holliday Cheers</h1>
+
+		<iframe src="/event/comments?id=${event.id}" title="comments" width="512" height="512"></iframe>
+	</div>
+	
 </body>
 <jsp:include page="footer.jsp"></jsp:include>
 </html>
