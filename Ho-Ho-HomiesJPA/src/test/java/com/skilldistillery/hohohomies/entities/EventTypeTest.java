@@ -44,13 +44,13 @@ class EventTypeTest {
 	@Test
 	void test_name_mapping() throws Exception {
 		assertNotNull(type);
-		assertEquals("Secret Santa Test", type.getName());
+		assertEquals("Secret Santa", type.getName());
 	}
 
 	@Test
 	void test_description_mapping() throws Exception {
 		assertNotNull(type);
-		assertEquals("Mic check 123", type.getDescription());
+		assertEquals("Anonymously give a gift to a randomly assigned member from your group. Be sure to checkout that persons wishlist and see what items they want. When its time for the event, everyone puts their wrapped gifts at a designated spot and opens their gift. After opening their gift, try to guess who your secret Santa was! If conducted virtually, your recipients address can be found here on the website. ", type.getDescription());
 	}
 
 	@Test

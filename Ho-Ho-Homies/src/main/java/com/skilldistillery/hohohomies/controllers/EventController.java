@@ -18,11 +18,16 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import com.skilldistillery.hohohomies.data.AddressDAO;
 import com.skilldistillery.hohohomies.data.EventCommentDAO;
 import com.skilldistillery.hohohomies.data.EventDAO;
+import com.skilldistillery.hohohomies.data.EventInviteDAO;
 import com.skilldistillery.hohohomies.data.EventTypeDAO;
 import com.skilldistillery.hohohomies.data.UserDAO;
 import com.skilldistillery.hohohomies.data.UserExchangeDAO;
 import com.skilldistillery.hohohomies.entities.Event;
+<<<<<<< HEAD
+import com.skilldistillery.hohohomies.entities.EventInvite;
+=======
 import com.skilldistillery.hohohomies.entities.EventComment;
+>>>>>>> d4c5915bf6ebb1fb0799ce70fdc3c8b737553ce3
 import com.skilldistillery.hohohomies.entities.User;
 import com.skilldistillery.hohohomies.entities.UserExchange;
 import com.skilldistillery.hohohomies.entities.UserExchangeId;
@@ -49,8 +54,8 @@ public class EventController {
 	private EventDAO eventDao;
 
 	@Autowired
-	private UserExchangeDAO ueDao;
-	
+	UserExchangeDAO exchangeDao;
+
 	@Autowired
 	private EventCommentDAO commDao;
 
@@ -59,6 +64,9 @@ public class EventController {
 
 	@Autowired
 	AddressDAO addressDao;
+
+	@Autowired
+	EventInviteDAO inviteDao;
 
 	@RequestMapping(path = "/event/view", method = RequestMethod.GET)
 	private String getEventData(HttpSession session,
@@ -70,7 +78,8 @@ public class EventController {
 			return "redirect:/dashboard";
 		}
 
-		UserExchange ue = ueDao.findById(new UserExchangeId(eventId, userId));
+		UserExchange ue = exchangeDao.findById(
+				new UserExchangeId(eventId, userId));
 
 		model.addAttribute("event", event);
 		model.addAttribute("exchange", ue);
@@ -99,8 +108,13 @@ public class EventController {
 		for (String email : data.getInvites()) {
 			User user = userDao.findByEmail(email);
 
+			// Non-existent users get added to the table of invites, and no
+			// UserExchange is made for them until they register.
 			if (user == null) {
-				// TODO: pending invites with no users....
+				EventInvite invite = new EventInvite();
+				invite.setEvent(event);
+				invite.setEmail(email);
+				inviteDao.store(invite);
 				continue;
 			}
 
@@ -110,7 +124,7 @@ public class EventController {
 			exchange.setUser(user);
 			exchange.setEvent(event);
 			exchange.setDateInvited(LocalDateTime.now());
-			ueDao.store(exchange);
+			exchangeDao.store(exchange);
 		}
 
 		return "redirect:/event/view?id=" + event.getId();
