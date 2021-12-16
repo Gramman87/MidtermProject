@@ -17,6 +17,7 @@
 		<class>com.skilldistillery.hohohomies.entities.EventComment</class>
 		<class>com.skilldistillery.hohohomies.entities.EventItem</class>
 		<class>com.skilldistillery.hohohomies.entities.EventItemComment</class>
+		<class>com.skilldistillery.hohohomies.entities.EventInvite</class>
 
 		<properties>
 			<property name="javax.persistence.jdbc.url"

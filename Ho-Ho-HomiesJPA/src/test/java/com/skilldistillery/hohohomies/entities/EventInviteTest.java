@@ -1,6 +1,7 @@
 package com.skilldistillery.hohohomies.entities;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -12,10 +13,10 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class AddressTest {
+class EventInviteTest {
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Address address;
+	private EventInvite invite;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -30,37 +31,25 @@ class AddressTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		address = em.find(Address.class, 1);
+		invite = em.find(EventInvite.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
-		address = null;
+		invite = null;
 		em.close();
 	}
 
 	@Test
-	void test_street_mapping() throws Exception {
-		assertNotNull(address);
-		assertEquals("123 SomeWhere St.", address.getStreet1());
-		assertEquals("Apt. 3", address.getStreet2()); // TODO: provide actual data to test other than NULL
+	void test_email_mapping() throws Exception {
+		assertNotNull(invite);
+		assertEquals("jk@gmail.com", invite.getEmail());
 	}
 
 	@Test
-	void test_city_mapping() throws Exception {
-		assertNotNull(address);
-		assertEquals("Out There", address.getCity());
-	}
-
-	@Test
-	void test_state_mapping() throws Exception {
-		assertNotNull(address);
-		assertEquals("Colorado", address.getState());
-	}
-
-	@Test
-	void test_zipcode_mapping() throws Exception {
-		assertNotNull(address);
-		assertEquals("12345", address.getZipcode());
+	void test_event_mapping() throws Exception {
+		assertNotNull(invite);
+		assertNotNull(invite.getEvent());
+		assertEquals(1, invite.getEvent().getId());
 	}
 }
