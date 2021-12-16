@@ -8,6 +8,17 @@
 <c:set var="script" value="event/create.js" scope="application" />
 <c:import url="header.jsp" />
 <body>
+<!-- String Light Testing -->
+	  <section class="light-bulbs">
+      	<div class="light-bulb theme-color-one"></div>
+	      <div class="light-bulb theme-color-two"></div>
+	      <div class="light-bulb theme-color-three"></div>
+	      <div class="light-bulb theme-color-four"></div>
+	      <div class="light-bulb theme-color-one"></div>
+	      <div class="light-bulb theme-color-two"></div>
+	      
+   	 </section>
+	<!-- String Light Testing -->
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-6">
@@ -35,16 +46,7 @@
 		</div>
 	</div>
 	
-	<!-- String Light Testing -->
-	  <section class="light-bulbs">
-      	<div class="light-bulb theme-color-one"></div>
-	      <div class="light-bulb theme-color-two"></div>
-	      <div class="light-bulb theme-color-three"></div>
-	      <div class="light-bulb theme-color-four"></div>
-	      <div class="light-bulb theme-color-one"></div>
-	      <div class="light-bulb theme-color-two"></div>
-   	 </section>
-	<!-- String Light Testing -->
+	
 	
 </body>
 <jsp:include page="footer.jsp"></jsp:include>
