@@ -1,6 +1,7 @@
 package com.skilldistillery.hohohomies.controllers;
 
 import java.util.List;
+import java.time.LocalDateTime;
 
 import javax.servlet.http.HttpSession;
 
@@ -25,7 +26,7 @@ import com.skilldistillery.hohohomies.entities.User;
 import com.skilldistillery.hohohomies.entities.UserExchange;
 import com.skilldistillery.hohohomies.entities.UserExchangeId;
 
-final class EventData extends Event {
+final class CreateEventData {
 	private String[] invites;
 
 	public String[] getInvites() {
@@ -79,7 +80,25 @@ public class EventController {
 	}
 
 	@PostMapping(path = "/event/create")
-	public String postEventcreate(EventData data) {
+	public String postEventcreate(Event event, CreateEventData data) {
+		eventDao.store(event);
+
+		for (String email : data.getInvites()) {
+			User user = userDao.findByEmail(email);
+
+			if (user == null) {
+				// TODO: pending invites with no users....
+				continue;
+			}
+
+			// create a user exchange for this event
+			UserExchange exchange = new UserExchange();
+			exchange.setUser(user);
+			exchange.setEvent(event);
+			exchange.setDateInvited(LocalDateTime.now());
+			ueDao.store(exchange);
+		}
+
 		return "event_create";
 	}
 	
