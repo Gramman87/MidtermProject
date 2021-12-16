@@ -7,7 +7,7 @@
 <c:set var="style" value="stringLightBanner/stringLight.css" scope="application" />
 <c:set var="script" value="event/create.js" scope="application" />
 <c:import url="header.jsp" />
-<body style="background-color: black;">
+<body>
 	<div class="container">
 		<div class="row">
 			<div class="col-3">

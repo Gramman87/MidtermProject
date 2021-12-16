@@ -2,7 +2,7 @@
 	
 	color:#45bf65; 
 	text-align: right; 
-	font-size: 30px
+	font-size: 20px
 }
 
 .wishlist-header {
@@ -19,4 +19,8 @@
 #create-exchange{
 	
 	float: right;
+}
+
+body{
+background-color: black;
 }
