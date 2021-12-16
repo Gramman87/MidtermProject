@@ -1,21 +1,22 @@
-.invitee:hover {
-	text-decoration: line-through;
-	cursor: pointer;
+#Welcome_User {
+	
+	color:#45bf65; 
+	text-align: right; 
+	font-size: 30px
 }
 
-#exchange-table {
-	font-family: arial, sans-serif;
-	border: 1px solid black;
-	width: 80px;
+.wishlist-header {
+	
+	text-align: center;
+	color:#45bf65; 
+}
+.exchanges-header {
+	
+	text-align: center;
+	color:#45bf65; 
 }
 
-#exchange-table td, #exchange-table th {
-	border: .5px solid black;
-	border-collapse: collapse;
-	text-align: left;
-	padding: 5px;
-}
-
-#exchange-table tr:nth-child(even) {
-	background-color: #eb726a;
+#create-exchange{
+	
+	float: right;
 }
