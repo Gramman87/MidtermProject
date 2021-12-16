@@ -16,7 +16,7 @@
 				</c:if>
 
 				<h2>Register your new account</h2>
-				<form action="register.do" method="POST">
+				<form action="/register" method="POST">
 
 
 					<div class="col-md-6">
@@ -133,7 +133,7 @@
 
 				</form>
 				<br>
-				<form action="home.do" method="GET">
+				<form action="/" method="GET">
 					<input type="submit" name="home" value="Return Home" />
 				</form>
 			</div>

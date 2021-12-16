@@ -40,10 +40,14 @@ public class UserDAOImpl implements UserDAO {
 	public User findByEmailAndPassword(String email, String password)
 			throws RuntimeException {
 		String jpql = "SELECT u FROM User u WHERE u.password = :password AND u.email = :email";
-		return em	.createQuery(jpql, User.class)
-					.setParameter("password", password)
-					.setParameter("email", email)
-					.getSingleResult();
+		try {
+			return em	.createQuery(jpql, User.class)
+						.setParameter("password", password)
+						.setParameter("email", email)
+						.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@Override

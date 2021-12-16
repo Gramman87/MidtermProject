@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HomeController {
 
-	@RequestMapping(path = { "/", "home.do" })
+	@RequestMapping(path = { "/" })
 	public String home(HttpSession session, Model model) {
 		// If the session is logged in, redirect to dashboard.
 		if (session.getAttribute("user_id") != null) {
-			return "redirect:dashboard.do";
+			return "redirect:/dashboard";
 		}
 		return "home";
 	}

@@ -41,31 +41,31 @@ public class RegisterController {
 	@Autowired
 	private AddressDAO addressDAO;
 
-	@GetMapping(path = "register.do")
+	@GetMapping(path = "/register")
 	public String register() {
 		return "register";
 	}
 
-	@PostMapping(path = "register.do")
+	@PostMapping(path = "/register")
 	public String register(User user, RegisterData data, HttpSession session,
 			RedirectAttributes redir) {
 		if (!data.getConfirmEmail().equals(user.getEmail())) {
 			redir.addFlashAttribute("message", "Your emails did not match.");
-			return "redirect:register.do";
+			return "redirect:/register";
 		}
 		if (!data.getConfirmPassword().equals(user.getPassword())) {
 			redir.addFlashAttribute("message", "Your passwords did not match.");
-			return "redirect:register.do";
+			return "redirect:/register";
 		}
 		if (userDAO.findByEmail(user.getEmail()) != null) {
 			redir.addFlashAttribute("message", "Username already exists.");
-			return "redirect:register.do";
+			return "redirect:/register";
 		}
 
 		addressDAO.store(user.getAddress());
 		userDAO.register(user);
 
 		session.setAttribute("user_id", user.getId());
-		return "redirect:dashboard.do";
+		return "redirect:/dashboard";
 	}
 }

@@ -22,7 +22,7 @@ public class WishlistController {
 	@Autowired
 	private UserDAO userDAO;
 
-	@GetMapping(path = "wishlist.do")
+	@GetMapping(path = "/wishlist")
 	public String wishlistDisplay(HttpSession session, Model model,
 			@SessionAttribute(name = "user_id") int userId) {
 		// pass wishlist to view
@@ -30,7 +30,7 @@ public class WishlistController {
 		return "wishlist";
 	}
 
-	@PostMapping(path = "wishlist.do")
+	@PostMapping(path = "/wishlist")
 	public String wishlistNew(HttpSession session, WishlistItem item,
 			Model model, @SessionAttribute(name = "user_id") int userId) {
 		// link item to session user
@@ -45,7 +45,7 @@ public class WishlistController {
 		return "wishlist";
 	}
 
-	@GetMapping(path = "wishlistRemove.do")
+	@GetMapping(path = "/wishlist/remove")
 	public String wishlistRemove(HttpSession session,
 			@SessionAttribute(name = "user_id") int userId, int id) {
 		WishlistItem item = wishlistDAO.findById(id);
@@ -53,7 +53,7 @@ public class WishlistController {
 		if (item.getUser().getId() == userId) {
 			wishlistDAO.delete(item);
 		}
-		return "redirect:wishlist.do";
+		return "redirect:/wishlist";
 	}
 
 }

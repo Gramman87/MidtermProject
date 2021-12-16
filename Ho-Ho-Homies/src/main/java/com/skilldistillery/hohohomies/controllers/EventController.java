@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.skilldistillery.hohohomies.data.EventDAO;
@@ -46,36 +47,32 @@ public class EventController {
 	@Autowired
 	private EventTypeDAO eventTypeDAO;
 
-	@RequestMapping(path = "eventView.do")
-	private String eventView() {
-		return "eventView";
-	}
-
-	@RequestMapping(path = "getEventData.do", method = RequestMethod.GET)
-	private String getEventData(HttpSession session, int eId, Model model,
+	@RequestMapping(path = "/event/view", method = RequestMethod.GET)
+	private String getEventData(HttpSession session,
+			@RequestParam(name = "id") int eventId, Model model,
 			@SessionAttribute(name = "user_id") int userId) {
-		Event event = eventDao.findById(eId);
+		Event event = eventDao.findById(eventId);
 
 		if (event == null) {
-			return "redirect:dashboard.do";
+			return "redirect:/dashboard";
 		}
 
-		UserExchange ue = ueDao.findById(new UserExchangeId(eId, userId));
+		UserExchange ue = ueDao.findById(new UserExchangeId(eventId, userId));
 
 		model.addAttribute("event", event);
 		model.addAttribute("exchange", ue);
 
-		return "eventView";
+		return "event_view";
 	}
 
-	@GetMapping(path = "createEvent.do")
-	public String createGet() {
-		return "createEvent";
+	@GetMapping(path = "/event/create")
+	public String viewEventCreate() {
+		return "event_create";
 	}
 
-	@PostMapping(path = "createEvent.do")
-	public String createPost(EventData data) {
-		return "createEvent";
+	@PostMapping(path = "/event/create")
+	public String postEventcreate(EventData data) {
+		return "event_create";
 	}
 
 }
