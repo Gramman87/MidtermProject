@@ -1,0 +1,22 @@
+#Welcome_User {
+	
+	color:#45bf65; 
+	text-align: right; 
+	font-size: 30px
+}
+
+.wishlist-header {
+	
+	text-align: center;
+	color:#45bf65; 
+}
+.exchanges-header {
+	
+	text-align: center;
+	color:#45bf65; 
+}
+
+#create-exchange{
+	
+	float: right;
+}

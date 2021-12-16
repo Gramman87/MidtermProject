@@ -3,8 +3,22 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
-<jsp:include page="header.jsp"></jsp:include>
+<c:set var="title" value="Create Event" scope="application" />
+<c:set var="style" value="stringLightBanner/stringLight.css" scope="application" />
+<c:set var="script" value="event/create.js" scope="application" />
+<c:import url="header.jsp" />
 <body>
+<!-- String Light Testing -->
+	  <section class="light-bulbs">
+      	<div class="light-bulb theme-color-one"></div>
+	      <div class="light-bulb theme-color-two"></div>
+	      <div class="light-bulb theme-color-three"></div>
+	      <div class="light-bulb theme-color-four"></div>
+	      <div class="light-bulb theme-color-one"></div>
+	      <div class="light-bulb theme-color-two"></div>
+	      
+   	 </section>
+	<!-- String Light Testing -->
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-6">
@@ -31,6 +45,9 @@
 			</div>
 		</div>
 	</div>
+	
+	
+	
 </body>
 <jsp:include page="footer.jsp"></jsp:include>
 </html>

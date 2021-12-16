@@ -1,6 +1,7 @@
 package com.skilldistillery.hohohomies.controllers;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,13 +16,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.skilldistillery.hohohomies.data.AddressDAO;
+import com.skilldistillery.hohohomies.data.EventCommentDAO;
 import com.skilldistillery.hohohomies.data.EventDAO;
 import com.skilldistillery.hohohomies.data.EventInviteDAO;
 import com.skilldistillery.hohohomies.data.EventTypeDAO;
 import com.skilldistillery.hohohomies.data.UserDAO;
 import com.skilldistillery.hohohomies.data.UserExchangeDAO;
 import com.skilldistillery.hohohomies.entities.Event;
+<<<<<<< HEAD
 import com.skilldistillery.hohohomies.entities.EventInvite;
+=======
+import com.skilldistillery.hohohomies.entities.EventComment;
+>>>>>>> d4c5915bf6ebb1fb0799ce70fdc3c8b737553ce3
 import com.skilldistillery.hohohomies.entities.User;
 import com.skilldistillery.hohohomies.entities.UserExchange;
 import com.skilldistillery.hohohomies.entities.UserExchangeId;
@@ -42,13 +48,16 @@ final class CreateEventData {
 public class EventController {
 
 	@Autowired
-	UserDAO userDao;
+	private UserDAO userDao;
 
 	@Autowired
-	EventDAO eventDao;
+	private EventDAO eventDao;
 
 	@Autowired
 	UserExchangeDAO exchangeDao;
+
+	@Autowired
+	private EventCommentDAO commDao;
 
 	@Autowired
 	EventTypeDAO eventTypeDao;
@@ -119,6 +128,15 @@ public class EventController {
 		}
 
 		return "redirect:/event/view?id=" + event.getId();
+	}
+	
+	@RequestMapping(path = "/event/comments")
+	public String eventComments(int id, Model model) {
+		List<EventComment> comments = commDao.findAllByEventId(id);
+		
+		model.addAttribute("comments", comments);
+		
+		return "event_comments";
 	}
 
 }
