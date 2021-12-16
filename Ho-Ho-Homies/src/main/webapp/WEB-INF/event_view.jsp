@@ -3,9 +3,25 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
+<c:set var="title" value="Create Event" scope="application" />
+<c:set var="style" value="stringLightBanner/stringLight.css"
+	scope="application" />
+<c:set var="script" value="event/create.js" scope="application" />
 <jsp:include page="header.jsp"></jsp:include>
 <body>
 	<div class="container-fluid">
+		<section class="row light-bulbs">
+			<div class="light-bulb theme-color-one"></div>
+			<div class="light-bulb theme-color-two"></div>
+			<div class="light-bulb theme-color-three"></div>
+			<div class="light-bulb theme-color-four"></div>
+			<div class="light-bulb theme-color-one"></div>
+			<div class="light-bulb theme-color-two"></div>
+			<div class="light-bulb theme-color-one"></div>
+			<div class="light-bulb theme-color-two"></div>
+			<div class="light-bulb theme-color-three"></div>
+			<div class="light-bulb theme-color-four"></div>
+		</section>
 		<div class="row">
 			<div class="col">
 				<!-- Group Members -->
@@ -65,7 +81,9 @@
 			<div class="col">
 				<div class="row">
 					<!-- Event Image -->
-					<img src="https://image.shutterstock.com/image-photo/decorated-christmas-tree-on-blurred-260nw-1201088539.jpg" width=100% height=100% />
+					<img
+						src="https://image.shutterstock.com/image-photo/decorated-christmas-tree-on-blurred-260nw-1201088539.jpg"
+						width=100% height=100% />
 				</div>
 				<div class="row">
 					<!-- Event Details -->
