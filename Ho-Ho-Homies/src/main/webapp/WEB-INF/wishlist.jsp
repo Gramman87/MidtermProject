@@ -25,7 +25,8 @@
 							<td>${w.cost}</td>
 							<td>
 								<div class="dropdown">
-									<button class="btn btn-secondary btn-sm dropdown-toggle btn-success"
+									<button
+										class="btn btn-secondary btn-sm dropdown-toggle btn-success"
 										type="button" id="dropdownMenuButton1"
 										data-bs-toggle="dropdown" aria-expanded="false">Action</button>
 									<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">

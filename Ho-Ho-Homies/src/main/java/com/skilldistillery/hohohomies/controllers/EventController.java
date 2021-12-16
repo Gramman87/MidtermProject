@@ -23,11 +23,8 @@ import com.skilldistillery.hohohomies.data.EventTypeDAO;
 import com.skilldistillery.hohohomies.data.UserDAO;
 import com.skilldistillery.hohohomies.data.UserExchangeDAO;
 import com.skilldistillery.hohohomies.entities.Event;
-<<<<<<< HEAD
 import com.skilldistillery.hohohomies.entities.EventInvite;
-=======
 import com.skilldistillery.hohohomies.entities.EventComment;
->>>>>>> d4c5915bf6ebb1fb0799ce70fdc3c8b737553ce3
 import com.skilldistillery.hohohomies.entities.User;
 import com.skilldistillery.hohohomies.entities.UserExchange;
 import com.skilldistillery.hohohomies.entities.UserExchangeId;
@@ -69,8 +66,7 @@ public class EventController {
 	EventInviteDAO inviteDao;
 
 	@RequestMapping(path = "/event/view", method = RequestMethod.GET)
-	private String getEventData(HttpSession session,
-			@RequestParam(name = "id") int eventId, Model model,
+	private String getEventData(HttpSession session, @RequestParam(name = "id") int eventId, Model model,
 			@SessionAttribute(name = "user_id") int userId) {
 		Event event = eventDao.findById(eventId);
 
@@ -78,8 +74,7 @@ public class EventController {
 			return "redirect:/dashboard";
 		}
 
-		UserExchange ue = exchangeDao.findById(
-				new UserExchangeId(eventId, userId));
+		UserExchange ue = exchangeDao.findById(new UserExchangeId(eventId, userId));
 
 		model.addAttribute("event", event);
 		model.addAttribute("exchange", ue);
@@ -93,9 +88,7 @@ public class EventController {
 	}
 
 	@PostMapping(path = "/event/create")
-	public String postEventcreate(
-			@SessionAttribute(name = "user_id") int ownerId, Event event,
-			CreateEventData data) {
+	public String postEventcreate(@SessionAttribute(name = "user_id") int ownerId, Event event, CreateEventData data) {
 		User owner = userDao.findById(ownerId);
 
 		event.setCreateDate(LocalDateTime.now());
@@ -129,13 +122,13 @@ public class EventController {
 
 		return "redirect:/event/view?id=" + event.getId();
 	}
-	
+
 	@RequestMapping(path = "/event/comments")
 	public String eventComments(int id, Model model) {
 		List<EventComment> comments = commDao.findAllByEventId(id);
-		
+
 		model.addAttribute("comments", comments);
-		
+
 		return "event_comments";
 	}
 
