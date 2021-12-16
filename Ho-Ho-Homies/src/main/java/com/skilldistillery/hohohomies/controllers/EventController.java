@@ -1,7 +1,7 @@
 package com.skilldistillery.hohohomies.controllers;
 
-import java.util.List;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.skilldistillery.hohohomies.data.AddressDAO;
 import com.skilldistillery.hohohomies.data.EventCommentDAO;
 import com.skilldistillery.hohohomies.data.EventDAO;
 import com.skilldistillery.hohohomies.data.EventTypeDAO;
@@ -54,7 +55,10 @@ public class EventController {
 	private EventCommentDAO commDao;
 
 	@Autowired
-	private EventTypeDAO eventTypeDAO;
+	EventTypeDAO eventTypeDao;
+
+	@Autowired
+	AddressDAO addressDao;
 
 	@RequestMapping(path = "/event/view", method = RequestMethod.GET)
 	private String getEventData(HttpSession session,
@@ -80,7 +84,16 @@ public class EventController {
 	}
 
 	@PostMapping(path = "/event/create")
-	public String postEventcreate(Event event, CreateEventData data) {
+	public String postEventcreate(
+			@SessionAttribute(name = "user_id") int ownerId, Event event,
+			CreateEventData data) {
+		User owner = userDao.findById(ownerId);
+
+		event.setCreateDate(LocalDateTime.now());
+		event.setOwner(owner);
+
+		eventTypeDao.store(event.getType());
+		addressDao.store(event.getAddress());
 		eventDao.store(event);
 
 		for (String email : data.getInvites()) {
@@ -93,13 +106,14 @@ public class EventController {
 
 			// create a user exchange for this event
 			UserExchange exchange = new UserExchange();
+			exchange.setId(new UserExchangeId(event.getId(), user.getId()));
 			exchange.setUser(user);
 			exchange.setEvent(event);
 			exchange.setDateInvited(LocalDateTime.now());
 			ueDao.store(exchange);
 		}
 
-		return "event_create";
+		return "redirect:/event/view?id=" + event.getId();
 	}
 	
 	@RequestMapping(path = "/event/comments")
