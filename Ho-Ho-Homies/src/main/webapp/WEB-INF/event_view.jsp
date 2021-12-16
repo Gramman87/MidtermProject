@@ -14,7 +14,7 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td><a href="logout.do">Logout</a></td>
+				<td><a href="/logout">Logout</a></td>
 			</tr>
 		</tbody>
 	</table>

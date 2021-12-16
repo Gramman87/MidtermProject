@@ -13,8 +13,8 @@
 		</div>
 		<div id="Group_p" class="">
 			<div id="Logout">
-				<span><a href="logout.do">Logout</a></span>
-				<span><a href="editProfile.do?uId=${user.id}">Profile</a></span>
+				<span><a href="logout">Logout</a></span> <span><a
+					href="/profile/edit?id=${user.id}">Profile</a></span>
 			</div>
 		</div>
 	</div>
@@ -22,8 +22,9 @@
 
 	<h2>Your WishList</h2>
 
+
 	<!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe -->
-	<iframe src="wishlist.do" title="Wishlist" width="512" height="512"></iframe>
+	<iframe src="/wishlist" title="Wishlist" width="512" height="512"></iframe>
 
 	<h2>Your Exchanges</h2>
 
@@ -42,7 +43,7 @@
 				<td>${e.event.type.name}</td>
 				<td># of members</td>
 				<td>${e.event.beginsOn}</td>
-				<td><a href="getEventData.do?eId=${e.event.id}">View</a></td>
+				<td><a href="/event/view?id=${e.event.id}">View</a></td>
 			</tr>
 		</c:forEach>
 	</table>

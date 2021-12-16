@@ -20,20 +20,23 @@ public class EventItemDAOImpl implements EventItemDAO {
 
 	@Override
 	public List<EventItem> findAllByEventId(int id) {
-		return em.createQuery("SELECT i FROM EventItem i WHERE i.exchange.event.id=:id", EventItem.class)
-				.setParameter("id", id).getResultList();
+		return em.createQuery(
+				"SELECT i FROM EventItem i WHERE i.exchange.event.id=:id",
+				EventItem.class).setParameter("id", id).getResultList();
 	}
 
 	@Override
 	public List<EventItem> findAllByExchangeId(UserExchangeId id) {
-		return em.createQuery("SELECT i FROM EventItem i WHERE i.exchange.id=:id", EventItem.class)
-				.setParameter("id", id).getResultList();
+		return em.createQuery(
+				"SELECT i FROM EventItem i WHERE i.exchange.id=:id",
+				EventItem.class).setParameter("id", id).getResultList();
 	}
 
 	@Override
 	public List<EventItem> findAllByUserId(int id) {
-		return em.createQuery("SELECT i FROM EventItem i WHERE i.exchange.event.id=:id", EventItem.class)
-				.setParameter("id", id).getResultList();
+		return em.createQuery(
+				"SELECT i FROM EventItem i WHERE i.exchange.event.id=:id",
+				EventItem.class).setParameter("id", id).getResultList();
 	}
 
 	@Override

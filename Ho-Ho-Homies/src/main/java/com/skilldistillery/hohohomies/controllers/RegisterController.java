@@ -12,51 +12,60 @@ import com.skilldistillery.hohohomies.data.AddressDAO;
 import com.skilldistillery.hohohomies.data.UserDAO;
 import com.skilldistillery.hohohomies.entities.User;
 
+final class RegisterData {
+	private String confirmPassword;
+	private String confirmEmail;
+
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
+	}
+
+	public String getConfirmEmail() {
+		return confirmEmail;
+	}
+
+	public void setConfirmEmail(String confirmEmail) {
+		this.confirmEmail = confirmEmail;
+	}
+}
+
 @Controller
 public class RegisterController {
-
 	@Autowired
 	private UserDAO userDAO;
 
 	@Autowired
 	private AddressDAO addressDAO;
 
-	@PostMapping(path = "register.do")
-	public String registerAccount(User user, HttpSession session, RedirectAttributes redir) {
-		boolean success = false;
-		String message = "Unspecified Error";
-		
-		if (userDAO.findByEmail(user.getEmail()) == null) {
-			userDAO.registerUser(user);
-			success = true;
-		} else {
-			message = "Username already exists.";
-		}
-		
-		if (success) {
-			session.setAttribute("user_id", user.getId());
-			return "redirect:dashboard.do";
-		}
-		
-		redir.addFlashAttribute("message", message);
-
-		return "redirect:register.do";
-	}
-	
-	@GetMapping(path = "register.do")
-	public String registerAccount() {
+	@GetMapping(path = "/register")
+	public String register() {
 		return "register";
 	}
 
-	// reference about checking emails
-//	public static boolean isValidEmailAddress(String email) {
-//		   boolean result = true;
-//		   try {
-//		      InternetAddress emailAddr = new InternetAddress(email);
-//		      emailAddr.validate();
-//		   } catch (AddressException ex) {
-//		      result = false;
-//		   }
-//		   return result;
-//		}
+	@PostMapping(path = "/register")
+	public String register(User user, RegisterData data, HttpSession session,
+			RedirectAttributes redir) {
+		if (!data.getConfirmEmail().equals(user.getEmail())) {
+			redir.addFlashAttribute("message", "Your emails did not match.");
+			return "redirect:/register";
+		}
+		if (!data.getConfirmPassword().equals(user.getPassword())) {
+			redir.addFlashAttribute("message", "Your passwords did not match.");
+			return "redirect:/register";
+		}
+		if (userDAO.findByEmail(user.getEmail()) != null) {
+			redir.addFlashAttribute("message", "Username already exists.");
+			return "redirect:/register";
+		}
+
+		addressDAO.store(user.getAddress());
+		userDAO.register(user);
+
+		session.setAttribute("user_id", user.getId());
+		return "redirect:/dashboard";
+	}
 }

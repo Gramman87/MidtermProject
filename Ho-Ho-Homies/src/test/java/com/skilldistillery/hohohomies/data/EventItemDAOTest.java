@@ -27,7 +27,8 @@ class EventItemDAOTest {
 
 	@Test
 	void test_find_all_by_exchange_id() throws Exception {
-		List<EventItem> items = dao.findAllByExchangeId(new UserExchangeId(1, 1));
+		List<EventItem> items = dao.findAllByExchangeId(
+				new UserExchangeId(1, 1));
 		assertNotNull(items);
 		assertTrue(items.size() > 0);
 	}

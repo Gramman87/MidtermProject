@@ -16,7 +16,7 @@
 				</c:if>
 
 				<h2>Register your new account</h2>
-				<form action="register.do" method="POST">
+				<form action="/register" method="POST">
 
 
 					<div class="col-md-6">
@@ -51,22 +51,22 @@
 					
 					<div class="col-12">
 						<label for="inputAddress" class="form-label">Address</label> 
-						<input type="text" class="form-control" name="street1">
+						<input type="text" class="form-control" name="address.street1">
 					</div>
 					
 					<div class="col-12">
 						<label for="inputAddress2" class="form-label">Address 2</label> 
-						<input type="text" class="form-control" name="street2">
+						<input type="text" class="form-control" name="address.street2">
 					</div>
 					
 					<div class="col-md-6">
 						<label for="inputCity" class="form-label">City</label> 
-						<input type="text" class="form-control" name="city">
+						<input type="text" class="form-control" name="address.city">
 					</div>
 					
 					<div class="col-md-4">
 						<label for="inputState" class="form-label">State</label> 
-						<select	id="inputState" class="form-select" name="state">
+						<select	id="inputState" class="form-select" name="address.state">
 							<option selected>Choose...</option>
 							<option value="AL">Alabama</option>
 							<option value="AK">Alaska</option>
@@ -124,7 +124,7 @@
 					
 					<div class="col-md-2">
 						<label for="inputZip" class="form-label">Zip</label> <input
-							type="text" class="form-control" name="zipcode">
+							type="text" class="form-control" name="address.zipcode">
 					</div>
 					<br>
 					<input type="submit" name="registerAccount" value="Submit"/> 
@@ -133,7 +133,7 @@
 
 				</form>
 				<br>
-				<form action="home.do" method="GET">
+				<form action="/" method="GET">
 					<input type="submit" name="home" value="Return Home" />
 				</form>
 			</div>
