@@ -21,7 +21,7 @@
 	<!-- String Light Testing -->
 	<div class="container">
 		<div class="row justify-content-center">
-			<div class="col-6">
+			<div class="col-8">
 				<a href="https://ibb.co/hmNGWXg"><img
 					src="https://i.ibb.co/P6y2hTr/hohohomies.png" alt="hohohomies" style="max-height:100%; max-width:100%;"/></a>
 				<h2>Welcome to your best event organizer</h2>

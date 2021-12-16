@@ -58,7 +58,7 @@
 				<div class="exchanges-header">
 					<h2>Your Exchanges</h2>
 				</div>
-				<table id="exchange-table" class="table table-danger table-striped">
+				<table id="exchange-table" class="table table-danger table-striped  table-hover">
 					<tr>
 						<th>Name</th>
 						<th>Type</th>
@@ -72,14 +72,14 @@
 							<td>${e.event.type.name}</td>
 							<td># of members</td>
 							<td>${e.event.beginsOn}</td>
-							<td><a href="/event/view?id=${e.event.id}"
-								class="btn btn-sm">View</a></td>
+							<td><span><a href="/event/view?id=${e.event.id}"
+								class="btn btn-success">View</a></span></td>
 						</tr>
 					</c:forEach>
 				</table>
-				<br> <a href="/event/create"
+				<p> <a href="/event/create"
 					class="btn btn-secondary btn-success btn-sm" id="create-exchange">Create
-					Event</a>
+					Event</a></p>
 			</div>
 		</div>
 	</div>
