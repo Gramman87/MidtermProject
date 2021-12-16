@@ -350,12 +350,12 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `secretsantadb`;
-INSERT INTO `wishlist_item` (`id`, `name`, `cost`, `user_id`, `shopping_url`, `description`) VALUES (1, 'Tech', 70, 1, 'https://m.media-amazon.com/images/I/61MPy3uLBNL._AC_UL1400_.jpg', 'Techy tech');
+INSERT INTO `wishlist_item` (`id`, `name`, `cost`, `user_id`, `shopping_url`, `description`) VALUES (1, 'Cookies', 22, 1, 'https://www.amazon.com/Famous-Amos-Chocolate-Chip-Cookies/dp/B01IFMHYO4/ref=sr_1_30?keywords=cookies+bulk&qid=1639693147&sr=8-30', 'Love me some cookies, yall got any cookies?');
 INSERT INTO `wishlist_item` (`id`, `name`, `cost`, `user_id`, `shopping_url`, `description`) VALUES (2, 'MagBoots', 1000, 2, 'https://m.media-amazon.com/images/I/61MPy3uLBNL._AC_UL1400_.jpg', 'Keeps my feet to the ground');
 INSERT INTO `wishlist_item` (`id`, `name`, `cost`, `user_id`, `shopping_url`, `description`) VALUES (3, 'Food', 2, 3, 'https://m.media-amazon.com/images/I/61MPy3uLBNL._AC_UL1400_.jpg', 'Food please');
-INSERT INTO `wishlist_item` (`id`, `name`, `cost`, `user_id`, `shopping_url`, `description`) VALUES (4, 'Socks', 20, 1, NULL, 'Warmness');
+INSERT INTO `wishlist_item` (`id`, `name`, `cost`, `user_id`, `shopping_url`, `description`) VALUES (4, 'Socks', 10, 1, 'https://www.amazon.com/Mens-Humping-Reideer-Socks-Christmas/dp/B07YVNBFGN/ref=sr_1_5?keywords=christmas+socks&qid=1639693291&sr=8-5', 'Keep my piggys warm');
 INSERT INTO `wishlist_item` (`id`, `name`, `cost`, `user_id`, `shopping_url`, `description`) VALUES (5, 'Baseball Glove', 40, 2, NULL, 'To catch baseballs');
-INSERT INTO `wishlist_item` (`id`, `name`, `cost`, `user_id`, `shopping_url`, `description`) VALUES (6, 'Sun Glasses', 100, 1, NULL, 'Sunnyday + northpole snow = my eyes hurt');
+INSERT INTO `wishlist_item` (`id`, `name`, `cost`, `user_id`, `shopping_url`, `description`) VALUES (6, 'Sun Glasses', 100, 1, 'https://www.ray-ban.com/usa/sunglasses/RB3025%20UNISEX%20aviator%20classic-gold/8056597259835', 'Sunny day + north pole snow = my eyes hurt');
 INSERT INTO `wishlist_item` (`id`, `name`, `cost`, `user_id`, `shopping_url`, `description`) VALUES (7, 'Pillow', 50, 4, NULL, 'Better pillow');
 INSERT INTO `wishlist_item` (`id`, `name`, `cost`, `user_id`, `shopping_url`, `description`) VALUES (8, 'Phone', 600, 5, NULL, 'Better new phone');
 INSERT INTO `wishlist_item` (`id`, `name`, `cost`, `user_id`, `shopping_url`, `description`) VALUES (9, 'TV', 1000, 6, NULL, '4K is beautiful');
@@ -434,6 +434,8 @@ USE `secretsantadb`;
 INSERT INTO `event_comment` (`id`, `content`, `posted_on`, `reply_to`, `event_id`, `user_id`) VALUES (1, 'This will be THE event of the year', '2021-12-11T01:01:01', 1, 1, 1);
 INSERT INTO `event_comment` (`id`, `content`, `posted_on`, `reply_to`, `event_id`, `user_id`) VALUES (2, 'Something about protomolecule', '2020-09-11T01:01:01', 2, 2, 2);
 INSERT INTO `event_comment` (`id`, `content`, `posted_on`, `reply_to`, `event_id`, `user_id`) VALUES (3, 'Idk, something clever', '2020-09-16T01:01:01', 3, 3, 3);
+INSERT INTO `event_comment` (`id`, `content`, `posted_on`, `reply_to`, `event_id`, `user_id`) VALUES (4, 'Make sure you don\'t drink as much eggnog as last time, Santa!', '2021-12-11T02:01:01', 1, 1, 2);
+INSERT INTO `event_comment` (`id`, `content`, `posted_on`, `reply_to`, `event_id`, `user_id`) VALUES (5, 'Can\'t wait to find out what I\'m getting!', '2021-12-11T03:01:01', 2, 1, 3);
 
 COMMIT;
 
