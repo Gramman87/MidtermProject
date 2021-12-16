@@ -8,6 +8,8 @@ public interface EventInviteDAO {
 	List<EventInvite> findAllByEventId(int id);
 
 	EventInvite findById(int id);
+
+	EventInvite findByEmail(String email);
 	
 	void store(EventInvite invite);
 

@@ -3,6 +3,7 @@ package com.skilldistillery.hohohomies.data;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
@@ -27,6 +28,19 @@ public class EventInviteDAOImpl implements EventInviteDAO {
 	@Override
 	public EventInvite findById(int id) {
 		return em.find(EventInvite.class, id);
+	}
+
+	@Override
+	public EventInvite findByEmail(String email) {
+		try {
+			return em	.createQuery(
+								"SELECT i FROM EventInvite i WHERE i.email = :email",
+								EventInvite.class)
+						.setParameter("email", email)
+						.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@Override
