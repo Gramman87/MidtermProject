@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <c:set var="title" value="Create Event" scope="application" />
-<c:set var="style" value="event/create.css" scope="application" />
+<c:set var="style" value="stringLightBanner/stringLight.css" scope="application" />
 <c:set var="script" value="event/create.js" scope="application" />
 <c:import url="header.jsp" />
 <body style="background-color: black;">
