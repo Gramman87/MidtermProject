@@ -36,8 +36,19 @@
 			<label>Begins on: <input name="beginsOn"
 				type="datetime-local" /></label>
 		</div>
+
 		<div>
 			<label>RSVP by: <input name="rsvpBy" type="date" /></label>
+		</div>
+
+		<div>
+			<label>Price Minimum: <input name="priceMin" type="number"
+				value="1" /></label>
+		</div>
+
+		<div>
+			<label>Price Maximum: <input name="priceMax" type="number"
+				value="10" /></label>
 		</div>
 
 		<div>
