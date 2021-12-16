@@ -10,98 +10,72 @@
 <body>
 	<div class="container">
 		<div class="row justify-content-center">
-			<div class="col-10">
+			<div class="col-8">
 				<a href="https://ibb.co/hmNGWXg"><img
 					src="https://i.ibb.co/P6y2hTr/hohohomies.png" alt="hohohomies"
 					style="max-height: 100%; max-width: 100%;" /></a>
-			</div>
-		</div>
+			
+		
 		<form id="create" method="POST">
-			<div class="col-10">
-				<label>Title: <input name="title" /></label>
+			<div class="col-md-8">
+				<label class="form-label">Title: </label>
+				<input name="title" class="form-control"/>
 			</div>
-
-			<div class="col-90">
-				<label>Type of Exchange <select name="type.name">
+			<div class="col-md-8">
+				<label class="form-label">Type of Exchange </label>
+				<select name="type.name" class="form-control">
 						<option>Secret Santa</option>
 						<option>White Elephant</option>
 						<option>Potluck</option>
 						<option>Custom</option>
-				</select></label>
+				</select>
 			</div>
-
-			<div class="col-10">
-				<label>Custom Rules: </label>
+			<div class="col-md-8">
+				<label class="form-label">Custom Rules: </label>
+				<textarea name="type.description" rows="4" class="form-control"></textarea>
 			</div>
-			<div class="col-90">
-				<textarea name="type.description" rows="4"></textarea>
+			<div class="col-md-8">
+				<label class="form-label">Image (URL): </label> 
+				<input name="imageURL" class="form-control"/>
 			</div>
-
-			<div class="col-10">
-				<label>Image (URL): </label>
+			<div class="col-md-8">
+				<label class="form-label">Begins on: </label> 
+				<input name="beginsOn" type="datetime-local" class="form-control"/>
 			</div>
-			<div class="col-90">
-				<input name="imageURL" />
+			<div class="col-md-8">
+				<label class="form-label">RSVP by: </label> 
+				<input name="rsvpBy" type="date" class="form-control" />
 			</div>
-			<div class="col-10">
-				<label>Begins on: </label>
+			<div class="col-md-8">
+				<label class="form-label">Price Minimum: </label> 
+				<input name="priceMin" type="number" value="1" class="form-control"/>
 			</div>
-			<div class="col-90">
-				<input name="beginsOn" type="datetime-local" />
+			<div class="col-md-8">
+				<label class="form-label">Price Maximum: </label> 
+				<input name="priceMax" type="number" value="10" class="form-control"/>
 			</div>
-
-			<div class="col-10">
-				<label>RSVP by: </label>
-			</div>
-			<div class="col-90">
-				<input name="rsvpBy" type="date" />
-			</div>
-
-			<div class="col-10">
-				<label>Price Minimum: </label>
-			</div>
-			<div class="col-90">
-				<input name="priceMin" type="number" value="1" />
-			</div>
-
-			<div class="col-10">
-				<label>Price Maximum: </label>
-			</div>
-			<div class='col-90'>
-				<input name="priceMax" type="number" value="10" />
-			</div>
-
-			<div class="col-10"><!-- where new column can start -->
+			<div class="col-md-8">
+				<!-- where new column can start -->
 				<p>Location</p>
-				<div class="col-10">
-					<label>Street: </label>
-				</div>	
-				<div class="col-90">	
-					<input name="address.street1" />
+				<div class="col-md-8">
+					<label class="form-label">Street: </label> 
+					<input name="address.street1" class="form-control"/>
 				</div>
-				<div class="col-10">
-					<label>Street 2: </label>
-				</div>	
-				<div class="col-90">	
-					<input name="address.street2" />
+				<div class="col-md-8">
+					<label class="form-label">Street 2: </label> 
+					<input name="address.street2" class="form-control"/>
 				</div>
-				<div class="col-10">
-					<label>State: </label>
+				<div class="col-md-8">
+					<label class="form-label">State: </label> 
+					<input name="address.state" class="form-control"/>
 				</div>
-				<div class="col-90">						
-					<input name="address.state" />
+				<div class="col-md-8">
+					<label class="form-label">City: </label> 
+					<input name="address.city" class="form-control"/>
 				</div>
-				<div class="col-10">
-					<label>City: </label>
-				</div>	
-				<div class="col-90">
-					<input name="address.city" />
-				</div>
-				<div class="col-10">
-					<label>Zipcode: </label>
-				</div>
-				<div class="col-90">
-					<input name="address.zipcode" />
+				<div class="col-md-8">
+					<label class="form-label">Zipcode: </label> 
+					<input name="address.zipcode" class="form-control"/>
 				</div>
 			</div>
 
@@ -116,8 +90,10 @@
 		</div>
 
 		<div>
-			<input type="submit" form="create" class="btn btn-success"/>
+			<input type="submit" form="create" class="btn btn-success" />
 		</div>
+	</div>
+	</div>
 	</div>
 
 

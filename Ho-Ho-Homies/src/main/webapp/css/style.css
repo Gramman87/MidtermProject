@@ -34,14 +34,3 @@ label{
     padding: 3px 3px 3px;
     display: inline-block;
 }
-.col-10{
-   
-    width:10%;
-    margin-top: 6px;
-}
-
-.col-90{
-    
-    width: 90%;
-    margin-top: 6px;
-}
