@@ -55,5 +55,7 @@ public class UserExchangeDAOImpl implements UserExchangeDAO {
 		managed.setDateInvited(exchange.getDateInvited());
 		return managed;
 	}
+	
+
 
 }

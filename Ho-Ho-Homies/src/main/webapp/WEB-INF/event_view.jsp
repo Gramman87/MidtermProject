@@ -91,6 +91,7 @@
 
 
 													</table>
+
 												</div>
 											</div>
 										</c:when>
@@ -103,6 +104,12 @@
 						</c:forEach>
 					</tbody>
 				</table>
+				<div>
+					<a href="/event/randomize?id=${event.id}"><button>
+							Randomizer</button></a>
+
+				</div>
+
 			</div>
 			<div class="col">
 				<div class="row">
