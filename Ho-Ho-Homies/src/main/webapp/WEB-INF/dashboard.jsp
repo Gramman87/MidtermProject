@@ -9,7 +9,7 @@
 <c:set var="script" value="event/create.js" scope="application" />
 <c:import url="header.jsp" />
 <body>
-	<div class="container">
+	<div class="container-fluid">
 		<div class="row">
 			<div class="col-3">
 				<a href="https://ibb.co/hmNGWXg"><img

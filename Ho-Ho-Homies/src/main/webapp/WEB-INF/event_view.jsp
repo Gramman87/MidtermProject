@@ -10,6 +10,12 @@
 <jsp:include page="header.jsp"></jsp:include>
 <body>
 	<div class="container-fluid">
+	<div class="row">
+	<div class="col-3">
+				<a href="https://ibb.co/hmNGWXg"><img
+					src="https://i.ibb.co/P6y2hTr/hohohomies.png" alt="hohohomies"
+					style="max-height: 100%; max-width: 100%;" /></a>
+			</div>
 		<section class="row light-bulbs">
 			<div class="light-bulb theme-color-one"></div>
 			<div class="light-bulb theme-color-two"></div>
@@ -22,10 +28,26 @@
 			<div class="light-bulb theme-color-three"></div>
 			<div class="light-bulb theme-color-four"></div>
 		</section>
+		
+				<div class="col">
+				<div class="selection-container">
+					<div id="Welcome_User">
+						<span>Welcome ${exchange.user.firstName}</span>
+					</div>
+
+					<div id="logout-edit" style="color: #45bf65; text-align: right;">
+						<div id="Logout">
+							<span><a href="logout" class="btn btn-success">Logout</a></span>
+							<span><a href="/dashboard"	class="btn btn-success">Go Back</a></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="row">
 			<div class="col">
 				<!-- Group Members -->
-				<table class="table table-striped">
+				<table class="table table-danger table-striped">
 					<thead>
 						<tr>
 							<th>Group Members</th>
@@ -87,7 +109,7 @@
 				</div>
 				<div class="row">
 					<!-- Event Details -->
-					<table class="table table-striped">
+					<table class="table table-danger table-striped">
 						<thead>
 							<tr>
 								<th>Event Details:</th>
@@ -121,8 +143,8 @@
 			<div class="col">
 				<div class="row">
 					<!-- User Links -->
-					<p>Hello, ${exchange.user.firstName}</p>
-					<a href="/dashboard">Go Back</a>
+				<%-- 	<p>Hello, ${exchange.user.firstName}</p>
+					<a href="/dashboard">Go Back</a> --%>
 				</div>
 				<div class="row">
 					<!-- Event Comments -->
