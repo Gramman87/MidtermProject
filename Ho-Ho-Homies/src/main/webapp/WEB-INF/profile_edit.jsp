@@ -26,7 +26,6 @@
 			<div class="col">
 				<h3>Edit Profile</h3>
 			</div>
-			<div class="col-2">${user.firstName},${user.lastName}</div>
 		</div>
 		<form id="edit-form" method="POST">
 			<div class="container">
