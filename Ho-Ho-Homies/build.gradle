@@ -23,8 +23,19 @@ dependencies {
 	runtimeOnly 'mysql:mysql-connector-java'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	
+	implementation ('org.springframework.boot:spring-boot-starter-tomcat')
+	
 }
 
 test {
 	useJUnitPlatform()
+}
+
+apply plugin: 'war'
+war {
+  enabled = true
+  // Gradle will replace the variable archivesBaseName
+  // with our app name, as defined in settings.gradle
+  archiveFileName = "ROOT.war"
+  destinationDirectory = file("../")     // Project workspace directory
 }

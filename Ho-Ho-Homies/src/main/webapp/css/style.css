@@ -20,17 +20,28 @@
 	
 	float: right;
 }
+#add-wishlist{
+	
+	float: right;
+}
 
 body{
 background-color: black;
 color:#45bf65; 
+padding: 40px, 40px 40px 40px;
 }
 textarea{
     width:45%;
     padding: 12px;
-    resize: vertical;
+    /* resize: vertical; */
 }
 label{
     padding: 3px 3px 3px;
     display: inline-block;
+}
+#giftee {	
+	color: green;	
+}
+#giftee:hover{
+	color: red;
 }

@@ -3,10 +3,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
+<c:set var="script" value="event/comment.js" scope="application"/>
 <jsp:include page="header.jsp"></jsp:include>
-<body>
+<body id="content">
 	<!-- https://getbootstrap.com/docs/5.1/content/tables/ -->
-	<table class="table table-striped table-hover">
+	<table class="table table-striped table-danger table-hover">
 		<thead>
 			<tr>
 				<th>Posted By</th>
@@ -34,6 +35,11 @@
 			</c:choose>
 		</tbody>
 	</table>
+	<form method="POST">
+	<input type="hidden" name="event_id" value="${event_id}">
+	<input type="text" name="content" placeholder="Enter comment">
+    <button name="content" id="post-btn">Post</button>
+    </form>
 </body>
 <jsp:include page="footer.jsp"></jsp:include>
 </html>
