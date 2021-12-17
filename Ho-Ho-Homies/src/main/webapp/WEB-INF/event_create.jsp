@@ -14,8 +14,6 @@
 				<a href="https://ibb.co/hmNGWXg"><img
 					src="https://i.ibb.co/P6y2hTr/hohohomies.png" alt="hohohomies"
 					style="max-height: 100%; max-width: 100%;" /></a>
-
-
 				<form id="create" method="POST">
 					<div class="col-md-8">
 						<label class="form-label">Title: </label> <input name="title"
@@ -92,13 +90,12 @@
 				</div>
 
 				<div>
-					<input type="submit" form="create" class="btn btn-success" />
+					<input type="submit" form="create" class="btn btn-success"
+						value="Create Event" />
 				</div>
 			</div>
 		</div>
 	</div>
-
-
 </body>
 <jsp:include page="footer.jsp"></jsp:include>
 </html>
