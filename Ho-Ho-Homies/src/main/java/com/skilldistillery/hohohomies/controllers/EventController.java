@@ -23,8 +23,8 @@ import com.skilldistillery.hohohomies.data.EventTypeDAO;
 import com.skilldistillery.hohohomies.data.UserDAO;
 import com.skilldistillery.hohohomies.data.UserExchangeDAO;
 import com.skilldistillery.hohohomies.entities.Event;
-import com.skilldistillery.hohohomies.entities.EventInvite;
 import com.skilldistillery.hohohomies.entities.EventComment;
+import com.skilldistillery.hohohomies.entities.EventInvite;
 import com.skilldistillery.hohohomies.entities.User;
 import com.skilldistillery.hohohomies.entities.UserExchange;
 import com.skilldistillery.hohohomies.entities.UserExchangeId;
@@ -66,7 +66,8 @@ public class EventController {
 	EventInviteDAO inviteDao;
 
 	@RequestMapping(path = "/event/view", method = RequestMethod.GET)
-	private String getEventData(HttpSession session, @RequestParam(name = "id") int eventId, Model model,
+	private String getEventData(HttpSession session,
+			@RequestParam(name = "id") int eventId, Model model,
 			@SessionAttribute(name = "user_id") int userId) {
 		Event event = eventDao.findById(eventId);
 
@@ -74,7 +75,8 @@ public class EventController {
 			return "redirect:/dashboard";
 		}
 
-		UserExchange ue = exchangeDao.findById(new UserExchangeId(eventId, userId));
+		UserExchange ue = exchangeDao.findById(
+				new UserExchangeId(eventId, userId));
 
 		model.addAttribute("event", event);
 		model.addAttribute("exchange", ue);
@@ -83,12 +85,21 @@ public class EventController {
 	}
 
 	@GetMapping(path = "/event/create")
-	public String viewEventCreate() {
+	public String viewEventCreate(
+			@SessionAttribute(name = "user_id") int ownerId, Model model) {
+		User owner = userDao.findById(ownerId);
+
+		// pass our email into the jsp so we can be lazy and include ourselves
+		// in the invites
+		model.addAttribute("owner_email", owner.getEmail());
+
 		return "event_create";
 	}
 
 	@PostMapping(path = "/event/create")
-	public String postEventcreate(@SessionAttribute(name = "user_id") int ownerId, Event event, CreateEventData data) {
+	public String postEventcreate(
+			@SessionAttribute(name = "user_id") int ownerId, Event event,
+			CreateEventData data) {
 		User owner = userDao.findById(ownerId);
 
 		event.setCreateDate(LocalDateTime.now());
