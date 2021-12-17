@@ -10,26 +10,21 @@
 <jsp:include page="header.jsp"></jsp:include>
 <body>
 	<div class="container-fluid">
-	<div class="row">
-	<div class="col-3">
-				<a href="https://ibb.co/hmNGWXg"><img
-					src="https://i.ibb.co/P6y2hTr/hohohomies.png" alt="hohohomies"
+		<div class="row">
+			<div class="col-3">
+				<a href="/"><img src="/img/logo.png"
 					style="max-height: 100%; max-width: 100%;" /></a>
 			</div>
-		<section class="row light-bulbs">
-			<div class="light-bulb theme-color-one"></div>
-			<div class="light-bulb theme-color-two"></div>
-			<div class="light-bulb theme-color-three"></div>
-			<div class="light-bulb theme-color-four"></div>
-			<div class="light-bulb theme-color-one"></div>
-			<div class="light-bulb theme-color-two"></div>
-			<div class="light-bulb theme-color-one"></div>
-			<div class="light-bulb theme-color-two"></div>
-			<div class="light-bulb theme-color-three"></div>
-			<div class="light-bulb theme-color-four"></div>
-		</section>
-		
-				<div class="col">
+			<section class="light-bulbs">
+				<div class="light-bulb theme-color-one"></div>
+				<div class="light-bulb theme-color-two"></div>
+				<div class="light-bulb theme-color-three"></div>
+				<div class="light-bulb theme-color-four"></div>
+				<div class="light-bulb theme-color-one"></div>
+				<div class="light-bulb theme-color-two"></div>
+			</section>
+
+			<div class="col">
 				<div class="selection-container">
 					<div id="Welcome_User">
 						<span>Welcome ${exchange.user.firstName}</span>
@@ -38,10 +33,18 @@
 					<div id="logout-edit" style="color: #45bf65; text-align: right;">
 						<div id="Logout">
 							<span><a href="logout" class="btn btn-success">Logout</a></span>
-							<span><a href="/dashboard"	class="btn btn-success">Go Back</a></span>
+							<span><a href="/dashboard" class="btn btn-success">Go
+									Back</a></span>
 						</div>
 					</div>
 				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row-2">
+				<!-- Event Image -->
+				<span><img src="/img/test.jpg" width=100% height=100% /></span>
+
 			</div>
 		</div>
 		<div class="row">
@@ -60,8 +63,9 @@
 
 										<c:when test="${exchange.giftee == e.user }">
 											<a data-bs-toggle="collapse" href="#collapseExample"
-												aria-expanded="false" aria-controls="collapseExample">
-												${e.user.firstName} ${e.user.lastName} (Recipient)</a>
+												aria-expanded="false" aria-controls="collapseExample"
+												id="giftee"> ${e.user.firstName} ${e.user.lastName}
+												(Recipient)</a>
 
 											<div class="collapse" id="collapseExample">
 												<div class="card card-body">
@@ -102,12 +106,6 @@
 			</div>
 			<div class="col">
 				<div class="row">
-					<!-- Event Image -->
-					<img
-						src="https://image.shutterstock.com/image-photo/decorated-christmas-tree-on-blurred-260nw-1201088539.jpg"
-						width=100% height=100% />
-				</div>
-				<div class="row">
 					<!-- Event Details -->
 					<table class="table table-danger table-striped">
 						<thead>
@@ -132,6 +130,9 @@
 								<td>Your Recipient: ${exchange.giftee.firstName}
 									${exchange.giftee.lastName}</td>
 							</tr>
+							<tr>
+								<td>Rules: ${event.customRules }</td>
+							</tr>
 						</tbody>
 					</table>
 				</div>
@@ -141,18 +142,14 @@
 					<p>${event.customRules }</p>
 				</div>
 			</div>
-			<div class="col">
-				<div class="row">
-					<!-- User Links -->
-				<%-- 	<p>Hello, ${exchange.user.firstName}</p>
-					<a href="/dashboard">Go Back</a> --%>
-				</div>
-				<div class="row">
-					<!-- Event Comments -->
-					<h1>Holiday Cheers</h1>
+			<div class="container">
+				<div class="col">
+					<div class="row">
+						<!-- Event Comments -->
 
-					<iframe src="/event/comments?id=${event.id}" title="comments"
-						style="height: 500px"></iframe>
+						<iframe src="/event/comments?id=${event.id}" title="comments"
+							style="height: 500px"></iframe>
+					</div>
 				</div>
 			</div>
 		</div>
