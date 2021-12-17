@@ -137,6 +137,7 @@
 				</div>
 				<div class="row">
 					<!-- Event Rules -->
+					<h3>Custom Exchange Rules:</h3>
 					<p>${event.customRules }</p>
 				</div>
 			</div>
