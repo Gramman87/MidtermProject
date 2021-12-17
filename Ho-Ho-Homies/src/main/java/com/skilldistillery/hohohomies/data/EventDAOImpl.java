@@ -1,6 +1,8 @@
 package com.skilldistillery.hohohomies.data;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -9,6 +11,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 import com.skilldistillery.hohohomies.entities.Event;
+import com.skilldistillery.hohohomies.entities.User;
 
 @Transactional
 @Repository
@@ -43,5 +46,14 @@ public class EventDAOImpl implements EventDAO {
 		managed.setType(event.getType());
 		return managed;
 	}
+	
+//	@Override
+//	public Event gifteesMatched(int eventId) {
+//		
+//		String jpql = "SELECT u FROM User u JOIN Event e WHERE e.id = :"
+//		em.find("", em)		
+//		
+//		return null;
+//	}
 
 }

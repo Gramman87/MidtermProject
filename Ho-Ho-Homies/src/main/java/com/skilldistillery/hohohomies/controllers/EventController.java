@@ -1,6 +1,9 @@
 package com.skilldistillery.hohohomies.controllers;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -8,10 +11,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.comparator.Comparators;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
@@ -154,5 +156,27 @@ public class EventController {
 		
 		return "redirect:/event/comments?id=" + eventId;
 	}
+	
+	@GetMapping(path="/event/randomize")
+	public String randomize(int id) {
+		Event event = eventDao.findById(id);
+		
+		List<UserExchange> giftees = new ArrayList<>(event.getExchanges());
+		
+		// pre-randomize
+		Collections.shuffle(giftees);
+		
+		// give every gifter a giftee
+		for (UserExchange gifter : event.getExchanges()) {
+			gifter.setGiftee(giftees.get(0).getUser());
+			
+			exchangeDao.update(gifter);
+			
+			giftees.remove(0);
+		}
 
+		
+		return "redirect:/event/view?id=" + id;
+		
+	}
 }
