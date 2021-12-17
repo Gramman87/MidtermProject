@@ -27,7 +27,7 @@
 			<div class="col">
 				<h3>Create Event</h3>
 			</div>
-			<div class="col-2">${user.firstName}</div>
+			<div class="col-2">${user.firstName}, ${user.lastName}</div>
 		</div>
 
 		<div class="row">
