@@ -65,14 +65,9 @@ public class EventController {
 	@Autowired
 	EventInviteDAO inviteDao;
 
-<<<<<<< HEAD
-	@GetMapping(path = "/event/view")
-	private String getEventData(HttpSession session, @RequestParam(name = "id") int eventId, Model model,
-=======
 	@RequestMapping(path = "/event/view", method = RequestMethod.GET)
 	private String getEventData(HttpSession session,
 			@RequestParam(name = "id") int eventId, Model model,
->>>>>>> 77c66e73d40e6c319aa477f2c46fbcb56f15f295
 			@SessionAttribute(name = "user_id") int userId) {
 		Event event = eventDao.findById(eventId);
 
@@ -139,26 +134,13 @@ public class EventController {
 		return "redirect:/event/view?id=" + event.getId();
 	}
 
-	@GetMapping(path = "/event/comments")
+	@RequestMapping(path = "/event/comments")
 	public String eventComments(int id, Model model) {
 		List<EventComment> comments = commDao.findAllByEventId(id);
 
-		model.addAttribute("event_id", id);
 		model.addAttribute("comments", comments);
 
 		return "event_comments";
-	}
-	@PostMapping(path = "/event/comments")
-	public String addEventComments(HttpSession session, EventComment data, @RequestParam(name="event_id") int eventId, @SessionAttribute(name = "user_id") int userId) {
-				
-		UserExchange exchange = exchangeDao.findById(new UserExchangeId(eventId, userId));
-		EventComment comment = new EventComment();
-		comment.setContent(data.getContent());
-		comment.setExchange(exchange);
-		comment.setPostedOn(LocalDateTime.now());
-		commDao.store(comment);
-		
-		return "redirect:/event/comments?id=" + eventId;
 	}
 
 }
