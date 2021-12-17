@@ -12,8 +12,8 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-3">
-				<a href="https://ibb.co/hmNGWXg"><img
-					src="https://i.ibb.co/P6y2hTr/hohohomies.png" alt="hohohomies"
+				<a href="/"><img
+					src="/img/logo.png"
 					style="max-height: 100%; max-width: 100%;" /></a>
 			</div>
 			<div class="col">

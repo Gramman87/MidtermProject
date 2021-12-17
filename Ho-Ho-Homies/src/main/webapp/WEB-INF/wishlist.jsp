@@ -53,7 +53,7 @@
 	<p>
 		<button class="btn btn-secondary btn-sm btn-success" type="button"
 			data-bs-toggle="collapse" data-bs-target="#wishlistAdd"
-			aria-expanded="false" aria-controls="wishlistAdd">Add</button>
+			aria-expanded="false" aria-controls="wishlistAdd" id="add-wishlist">Add</button>
 	</p>
 	<div class="collapse" id="wishlistAdd">
 		<div class="card card-body">
