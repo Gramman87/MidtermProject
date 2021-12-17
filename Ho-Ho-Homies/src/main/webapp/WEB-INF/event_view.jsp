@@ -42,9 +42,9 @@
 		</div>
 		<div class="container">
 			<div class="row-2">
-					<!-- Event Image -->
+				<!-- Event Image -->
 				<span><img src="/img/test.jpg" width=100% height=100% /></span>
-			
+
 			</div>
 		</div>
 		<div class="row">
@@ -135,6 +135,11 @@
 							</tr>
 						</tbody>
 					</table>
+				</div>
+				<div class="row">
+					<!-- Event Rules -->
+					<h3>Custom Exchange Rules:</h3>
+					<p>${event.customRules }</p>
 				</div>
 			</div>
 			<div class="container">
