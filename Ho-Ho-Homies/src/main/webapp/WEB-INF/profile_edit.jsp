@@ -133,7 +133,7 @@
 				</div>
 			</div>
 		</form>
-		<div class="row justify-content-right">
+		<div class="col-8">
 			<input type="submit" form="edit-form" class="btn btn-success"
 				value="Update Profile" />
 		</div>
