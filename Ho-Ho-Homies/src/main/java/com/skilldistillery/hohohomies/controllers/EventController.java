@@ -65,8 +65,14 @@ public class EventController {
 	@Autowired
 	EventInviteDAO inviteDao;
 
+<<<<<<< HEAD
 	@GetMapping(path = "/event/view")
 	private String getEventData(HttpSession session, @RequestParam(name = "id") int eventId, Model model,
+=======
+	@RequestMapping(path = "/event/view", method = RequestMethod.GET)
+	private String getEventData(HttpSession session,
+			@RequestParam(name = "id") int eventId, Model model,
+>>>>>>> 77c66e73d40e6c319aa477f2c46fbcb56f15f295
 			@SessionAttribute(name = "user_id") int userId) {
 		Event event = eventDao.findById(eventId);
 
@@ -74,7 +80,8 @@ public class EventController {
 			return "redirect:/dashboard";
 		}
 
-		UserExchange ue = exchangeDao.findById(new UserExchangeId(eventId, userId));
+		UserExchange ue = exchangeDao.findById(
+				new UserExchangeId(eventId, userId));
 
 		model.addAttribute("event", event);
 		model.addAttribute("exchange", ue);
@@ -83,12 +90,21 @@ public class EventController {
 	}
 
 	@GetMapping(path = "/event/create")
-	public String viewEventCreate() {
+	public String viewEventCreate(
+			@SessionAttribute(name = "user_id") int ownerId, Model model) {
+		User owner = userDao.findById(ownerId);
+
+		// pass our email into the jsp so we can be lazy and include ourselves
+		// in the invites
+		model.addAttribute("owner_email", owner.getEmail());
+
 		return "event_create";
 	}
 
 	@PostMapping(path = "/event/create")
-	public String postEventcreate(@SessionAttribute(name = "user_id") int ownerId, Event event, CreateEventData data) {
+	public String postEventcreate(
+			@SessionAttribute(name = "user_id") int ownerId, Event event,
+			CreateEventData data) {
 		User owner = userDao.findById(ownerId);
 
 		event.setCreateDate(LocalDateTime.now());
