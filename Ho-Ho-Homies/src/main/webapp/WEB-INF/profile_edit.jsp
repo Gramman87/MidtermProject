@@ -45,13 +45,6 @@
 									</div>
 								</div>
 								<div class="row mb-3">
-									<div class="col-3">Last Name:</div>
-									<div class="col">
-										<input name="lastName" form="edit-form"
-											class="form-control form-control-sm" value="${user.lastName}" />
-									</div>
-								</div>
-								<div class="row mb-3">
 									<div class="col-3">Current Password:</div>
 									<div class="col">
 										<input name="password" form="edit-form"
@@ -61,6 +54,13 @@
 							</div>
 							<!-- Right -->
 							<div class="col">
+								<div class="row mb-3">
+									<div class="col-3">Last Name:</div>
+									<div class="col">
+										<input name="lastName" form="edit-form"
+											class="form-control form-control-sm" value="${user.lastName}" />
+									</div>
+								</div>
 								<div class="row mb-3">
 									<div class="col-3">New Password:</div>
 									<div class="col">
@@ -72,8 +72,7 @@
 									<div class="col-3">Confirm New Password:</div>
 									<div class="col">
 										<input name="confirmNewPassword" form="edit-form"
-											class="form-control form-control-sm"
-											value="${user.address.city}" />
+											class="form-control form-control-sm" />
 									</div>
 								</div>
 							</div>
@@ -134,10 +133,10 @@
 				</div>
 			</div>
 		</form>
-	</div>
-	<div class="row justify-content-right">
-		<input type="submit" form="edit-form" class="btn btn-success"
-			value="Update Profile" />
+		<div class="row justify-content-right">
+			<input type="submit" form="edit-form" class="btn btn-success"
+				value="Update Profile" />
+		</div>
 	</div>
 </body>
 <jsp:include page="footer.jsp"></jsp:include>
