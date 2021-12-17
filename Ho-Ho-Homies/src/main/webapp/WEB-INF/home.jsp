@@ -36,8 +36,8 @@
 							type="password" class="form-control" id="password"
 							name="password">
 					</div>
-					<button type="submit" class="btn btn-primary">Login</button>
-					<a href="register" class="btn btn-secondary">Register</a>
+					<button type="submit" class="btn btn-primary btn-success">Login</button>
+					<a href="register" class="btn btn-secondary btn-danger">Register</a>
 				</form>
 
 				<c:if test="${not empty message}">
