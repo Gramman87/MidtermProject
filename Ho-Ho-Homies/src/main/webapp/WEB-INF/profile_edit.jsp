@@ -18,8 +18,17 @@
 			<div class="alert alert-danger" role="alert">${message}</div>
 		</c:if>
 
-		<h2>Edit Profile</h2>
-		<form method="POST">
+		<div class="row">
+			<div class="col-2">
+				<a href="/dashboard"><button class="btn btn-success">Go
+						Back</button></a>
+			</div>
+			<div class="col">
+				<h3>Edit Profile</h3>
+			</div>
+			<div class="col-2">${user.firstName},${user.lastName}</div>
+		</div>
+		<form id="edit-form" method="POST">
 			<div class="container">
 				<div class="col-8">
 					<div class="row mb-3">
@@ -126,11 +135,10 @@
 			</div>
 		</form>
 	</div>
-
-
-	<input type="submit" value="Submit" />
-	<br>
-	<a href="/dashboard"><button>Go Back</button></a>
+	<div class="row justify-content-right">
+		<input type="submit" form="edit-form" class="btn btn-success"
+			value="Update Profile" />
+	</div>
 </body>
 <jsp:include page="footer.jsp"></jsp:include>
 </html>
