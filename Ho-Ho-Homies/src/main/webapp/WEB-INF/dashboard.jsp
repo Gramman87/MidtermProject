@@ -8,7 +8,7 @@
 	scope="application" />
 <c:set var="script" value="event/create.js" scope="application" />
 <c:import url="header.jsp" />
-<body style="background-color: black;">
+<body>
 	<div class="container">
 		<div class="row">
 			<div class="col-3">
@@ -59,7 +59,9 @@
 				<div class="exchanges-header">
 					<h2>Your Exchanges</h2>
 				</div>
-				<table id="exchange-table" class="table table-danger table-striped">
+				<table id="exchange-table"
+					class="table table-danger table-striped  table-hover">
+					<thead>
 					<tr>
 						<th>Name</th>
 						<th>Type</th>
@@ -67,20 +69,25 @@
 						<th>Date</th>
 						<th>Actions</th>
 					</tr>
+					</thead>
+					<tbody>
 					<c:forEach var="e" items="${user.exchanges}">
 						<tr>
 							<td>${e.event.title}</td>
 							<td>${e.event.type.name}</td>
 							<td># of members</td>
 							<td>${e.event.beginsOn}</td>
-							<td><a href="/event/view?id=${e.event.id}"
-								class="btn btn-sm">View</a></td>
+							<td><span><a href="/event/view?id=${e.event.id}"
+									class="btn btn-success">View</a></span></td>
 						</tr>
 					</c:forEach>
+					</tbody>
 				</table>
-				<br> <a href="/event/create"
-					class="btn btn-secondary btn-success btn-sm" id="create-exchange">Create
-					Event</a>
+				<p>
+					<a href="/event/create"
+						class="btn btn-secondary btn-success btn-sm" id="create-exchange">Create
+						Event</a>
+				</p>
 			</div>
 		</div>
 	</div>

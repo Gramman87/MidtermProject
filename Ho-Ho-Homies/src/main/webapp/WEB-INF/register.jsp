@@ -9,7 +9,7 @@
 <body>
 	<div class="container">
 		<div class="row justify-content-center">
-			<div class="col-12">
+			<div class="col-10">
 
 				<c:if test="${not empty message}">
 					<div class="alert alert-danger" role="alert">${message}</div>

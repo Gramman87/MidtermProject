@@ -6,7 +6,7 @@
 <jsp:include page="header.jsp"></jsp:include>
 <body>
 	<!-- https://getbootstrap.com/docs/5.1/content/tables/ -->
-	<table class="table table-striped table-hover">
+	<table class="table table-striped table-danger table-hover">
 		<thead>
 			<tr>
 				<th>Name</th>
@@ -25,7 +25,8 @@
 							<td>${w.cost}</td>
 							<td>
 								<div class="dropdown">
-									<button class="btn btn-secondary btn-sm dropdown-toggle"
+									<button
+										class="btn btn-secondary btn-sm dropdown-toggle btn-success"
 										type="button" id="dropdownMenuButton1"
 										data-bs-toggle="dropdown" aria-expanded="false">Action</button>
 									<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -50,7 +51,7 @@
 
 	<!-- https://getbootstrap.com/docs/5.1/components/collapse/ -->
 	<p>
-		<button class="btn btn-secondary btn-sm" type="button"
+		<button class="btn btn-secondary btn-sm btn-success" type="button"
 			data-bs-toggle="collapse" data-bs-target="#wishlistAdd"
 			aria-expanded="false" aria-controls="wishlistAdd">Add</button>
 	</p>

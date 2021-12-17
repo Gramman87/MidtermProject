@@ -1,8 +1,8 @@
+	
 #Welcome_User {
 	
-	color:#45bf65; 
 	text-align: right; 
-	font-size: 30px
+	font-size: 20px
 }
 
 .wishlist-header {
@@ -19,4 +19,18 @@
 #create-exchange{
 	
 	float: right;
+}
+
+body{
+background-color: black;
+color:#45bf65; 
+}
+textarea{
+    width:45%;
+    padding: 12px;
+    resize: vertical;
+}
+label{
+    padding: 3px 3px 3px;
+    display: inline-block;
 }
