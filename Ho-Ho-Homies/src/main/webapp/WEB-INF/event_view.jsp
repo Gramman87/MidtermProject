@@ -126,10 +126,10 @@
 				</div>
 				<div class="row">
 					<!-- Event Comments -->
-					<h1>Holliday Cheers</h1>
+					<h1>Holiday Cheers</h1>
 
 					<iframe src="/event/comments?id=${event.id}" title="comments"
-						style=""></iframe>
+						style="height: 500px"></iframe>
 				</div>
 			</div>
 		</div>

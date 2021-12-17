@@ -28,7 +28,7 @@ public class EventCommentDAOImpl implements EventCommentDAO {
 
 	@Override
 	public List<EventComment> findAllByEventId(int id) {
-		return em.createQuery(QUERY_PREFIX + "c.exchange.event.id=:id",
+		return em.createQuery(QUERY_PREFIX + "c.exchange.event.id=:id ORDER BY c.postedOn ASC",
 				EventComment.class).setParameter("id", id).getResultList();
 	}
 

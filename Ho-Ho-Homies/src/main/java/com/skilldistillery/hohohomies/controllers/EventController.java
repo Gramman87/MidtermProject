@@ -23,8 +23,8 @@ import com.skilldistillery.hohohomies.data.EventTypeDAO;
 import com.skilldistillery.hohohomies.data.UserDAO;
 import com.skilldistillery.hohohomies.data.UserExchangeDAO;
 import com.skilldistillery.hohohomies.entities.Event;
-import com.skilldistillery.hohohomies.entities.EventInvite;
 import com.skilldistillery.hohohomies.entities.EventComment;
+import com.skilldistillery.hohohomies.entities.EventInvite;
 import com.skilldistillery.hohohomies.entities.User;
 import com.skilldistillery.hohohomies.entities.UserExchange;
 import com.skilldistillery.hohohomies.entities.UserExchangeId;
@@ -65,7 +65,7 @@ public class EventController {
 	@Autowired
 	EventInviteDAO inviteDao;
 
-	@RequestMapping(path = "/event/view", method = RequestMethod.GET)
+	@GetMapping(path = "/event/view")
 	private String getEventData(HttpSession session, @RequestParam(name = "id") int eventId, Model model,
 			@SessionAttribute(name = "user_id") int userId) {
 		Event event = eventDao.findById(eventId);
@@ -123,13 +123,26 @@ public class EventController {
 		return "redirect:/event/view?id=" + event.getId();
 	}
 
-	@RequestMapping(path = "/event/comments")
+	@GetMapping(path = "/event/comments")
 	public String eventComments(int id, Model model) {
 		List<EventComment> comments = commDao.findAllByEventId(id);
 
+		model.addAttribute("event_id", id);
 		model.addAttribute("comments", comments);
 
 		return "event_comments";
+	}
+	@PostMapping(path = "/event/comments")
+	public String addEventComments(HttpSession session, EventComment data, @RequestParam(name="event_id") int eventId, @SessionAttribute(name = "user_id") int userId) {
+				
+		UserExchange exchange = exchangeDao.findById(new UserExchangeId(eventId, userId));
+		EventComment comment = new EventComment();
+		comment.setContent(data.getContent());
+		comment.setExchange(exchange);
+		comment.setPostedOn(LocalDateTime.now());
+		commDao.store(comment);
+		
+		return "redirect:/event/comments?id=" + eventId;
 	}
 
 }
