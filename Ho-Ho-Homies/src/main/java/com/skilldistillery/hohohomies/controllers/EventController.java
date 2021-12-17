@@ -74,7 +74,8 @@ public class EventController {
 			return "redirect:/dashboard";
 		}
 
-		UserExchange ue = exchangeDao.findById(new UserExchangeId(eventId, userId));
+		UserExchange ue = exchangeDao.findById(
+				new UserExchangeId(eventId, userId));
 
 		model.addAttribute("event", event);
 		model.addAttribute("exchange", ue);
@@ -83,12 +84,21 @@ public class EventController {
 	}
 
 	@GetMapping(path = "/event/create")
-	public String viewEventCreate() {
+	public String viewEventCreate(
+			@SessionAttribute(name = "user_id") int ownerId, Model model) {
+		User owner = userDao.findById(ownerId);
+
+		// pass our email into the jsp so we can be lazy and include ourselves
+		// in the invites
+		model.addAttribute("owner_email", owner.getEmail());
+
 		return "event_create";
 	}
 
 	@PostMapping(path = "/event/create")
-	public String postEventcreate(@SessionAttribute(name = "user_id") int ownerId, Event event, CreateEventData data) {
+	public String postEventcreate(
+			@SessionAttribute(name = "user_id") int ownerId, Event event,
+			CreateEventData data) {
 		User owner = userDao.findById(ownerId);
 
 		event.setCreateDate(LocalDateTime.now());
