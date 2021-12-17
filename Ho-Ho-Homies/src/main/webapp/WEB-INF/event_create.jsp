@@ -14,12 +14,14 @@
 				<a href="https://ibb.co/hmNGWXg"><img
 					src="https://i.ibb.co/P6y2hTr/hohohomies.png" alt="hohohomies"
 					style="max-height: 100%; max-width: 100%;" /></a>
-			
+		<div style="color: #45bf65;">
+		<span><a href="/dashboard" class="btn btn-success">Return Home</a></span>
+		</div>	
 		
 		<form id="create" method="POST">
 			<div class="col-md-8">
 				<label class="form-label">Title: </label>
-				<input name="title" class="form-control"/>
+				<input name="title" class="form-control" required/>
 			</div>
 			<div class="col-md-8">
 				<label class="form-label">Type of Exchange </label>
@@ -90,7 +92,7 @@
 		</div>
 
 		<div>
-			<input type="submit" form="create" class="btn btn-success" />
+			<input type="submit" form="create" value="Create Event" class="btn btn-success" />
 		</div>
 	</div>
 	</div>
