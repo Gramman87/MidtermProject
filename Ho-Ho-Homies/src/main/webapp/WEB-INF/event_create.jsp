@@ -15,14 +15,16 @@
 	</form>
 	<div class="container">
 		<div class="row">
-			<img class="w-auto h-100"
-				src="https://i.ibb.co/P6y2hTr/hohohomies.png" alt="hohohomies" />
+<
+			<a href="/"><img class="w-auto h-90" src="/img/logo.png" /></a>
+
 		</div>
 
 		<div class="row">
 			<div class="col-2">
-				<a href="/dashboard"><button class="btn btn-success">Go
-						Back</button></a>
+
+				<a href="/dashboard"><button class="btn btn-success">Go Back</button></a>
+
 			</div>
 			<div class="col">
 				<h3>Create Event</h3>
@@ -105,7 +107,7 @@
 				</div>
 
 				<div class="row mb-3">
-					<div class="row mb-3">Address:</div>
+					<div class="row mb-3" style="font-weight: bold">Address:</div>
 					<div class="row mb-3">
 						<!-- Left -->
 						<div class="col">

@@ -38,7 +38,7 @@
 	<form method="POST">
 	<input type="hidden" name="event_id" value="${event_id}">
 	<input type="text" name="content" placeholder="Enter comment">
-    <button name="content" id="post-btn">Post</button>
+    <button name="content" class="btn btn-secondary btn-success btn-sm" id="post-btn ">Post</button>
     </form>
 </body>
 <jsp:include page="footer.jsp"></jsp:include>

@@ -55,9 +55,9 @@
 			data-bs-toggle="collapse" data-bs-target="#wishlistAdd"
 			aria-expanded="false" aria-controls="wishlistAdd" id="add-wishlist">Add</button>
 	</p>
-	<div class="collapse" id="wishlistAdd">
-		<div class="card card-body">
-			<form method="POST">
+	<div class="collapse" id="wishlistAdd" >
+		<div class="card card-body" style="background-color: black;">
+			<form method="POST" style="background-color: black;">
 				<div>
 					<label>Name:</label><input name="name"
 						class="form-control form-control-sm" maxlength="80" />
@@ -74,7 +74,7 @@
 					<label>Shopping URL:</label><input name="shoppingURL"
 						class="form-control form-control-sm" maxlength="200" />
 				</div>
-				<input class="btn btn-primary btn-sm" type="submit" value="Submit">
+				<input class="btn btn-primary btn-sm btn-success" id="submit-item" type="submit" value="Submit">
 			</form>
 		</div>
 	</div>
