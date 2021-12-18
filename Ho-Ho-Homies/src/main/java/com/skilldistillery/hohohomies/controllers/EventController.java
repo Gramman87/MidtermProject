@@ -174,8 +174,6 @@ public class EventController {
 			
 			giftees.remove(0);
 		}
-
-		
 		return "redirect:/event/view?id=" + id;
 		
 	}

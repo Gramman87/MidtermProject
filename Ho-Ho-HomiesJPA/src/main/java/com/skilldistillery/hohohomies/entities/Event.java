@@ -258,5 +258,12 @@ public class Event {
 		return "ExchangeEvent [id=" + id + ", complete=" + complete + ", type="
 				+ type + ", title=" + title + "]";
 	}
+	
+	public String eventDate() {
+		
+		return getBeginsOn().getDayOfWeek() + "\n " + getBeginsOn().getDayOfMonth() + "-" + getBeginsOn().getMonth()
+				+ "-" + getBeginsOn().getYear();	
+				
+	}
 
 }

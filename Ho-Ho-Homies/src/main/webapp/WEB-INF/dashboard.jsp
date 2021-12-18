@@ -38,7 +38,7 @@
 
 					<div id="logout-edit" style="color: #45bf65; text-align: right;">
 						<div id="Logout">
-							<span><a href="logout" class="btn btn-success">Logout</a></span>
+							<span><a href="/logout" class="btn btn-success">Logout</a></span>
 							<span><a href="/profile/edit?id=${user.id}"
 								class="btn btn-success">Profile</a></span>
 						</div>
@@ -76,7 +76,7 @@
 							<td>${e.event.title}</td>
 							<td>${e.event.type.name}</td>
 							<td>${e.event.exchanges.size()}</td>
-							<td>${e.event.beginsOn}</td>
+              <td>${e.event.eventDate()}</td>
 							<td><span><a href="/event/view?id=${e.event.id}"
 									class="btn btn-success">View</a></span></td>
 						</tr>
