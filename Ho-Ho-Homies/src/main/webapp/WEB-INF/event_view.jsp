@@ -32,7 +32,7 @@
 
 					<div id="logout-edit" style="color: #45bf65; text-align: right;">
 						<div id="Logout">
-							<span><a href="logout" class="btn btn-success">Logout</a></span>
+							<span><a href="/logout" class="btn btn-success">Logout</a></span>
 							<span><a href="/dashboard" class="btn btn-success">Go
 									Back</a></span>
 						</div>
@@ -103,6 +103,14 @@
 						</c:forEach>
 					</tbody>
 				</table>
+				<c:if test="${event.owner == exchange.user}">
+				<div class="event-owner">
+					<a href="/event/randomize?id=${event.id}">
+						<button class="btn btn-secondary btn-success btn-sm"
+							id="randomizer-btn">Randomizer</button>
+					</a>
+				</div>
+				</c:if>
 			</div>
 			<div class="col">
 				<div class="row">
@@ -115,16 +123,16 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td>Start Date: ${event.beginsOn }</td>
+								<td>Start Date: ${event.eventDate() }</td>
 							</tr>
 							<tr>
 								<td>Location: ${event.address }</td>
 							</tr>
 							<tr>
-								<td>Maximum Item Cost: ${event.priceMax }</td>
+								<td>Maximum Item Cost: $ ${event.priceMax }</td>
 							</tr>
 							<tr>
-								<td>Minimum Item Cost: ${event.priceMin }</td>
+								<td>Minimum Item Cost: $ ${event.priceMin }</td>
 							</tr>
 							<tr>
 								<td>Your Recipient: ${exchange.giftee.firstName}

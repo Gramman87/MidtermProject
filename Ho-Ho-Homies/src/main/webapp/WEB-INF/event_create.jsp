@@ -65,14 +65,14 @@
 					</div>
 				</div>
 
-				<div class="row mb-3">
+			<!-- 	<div class="row mb-3">
 					<div class="col-3">Image URL:</div>
 					<div class="col">
 						<input name="imageURL" form="create-form"
 							class="form-control form-control-sm"
 							placeholder="http://something.com/myimage.png" />
 					</div>
-				</div>
+				</div> -->
 
 				<div class="row mb-3">
 					<div class="col-3">Begins on:</div>
