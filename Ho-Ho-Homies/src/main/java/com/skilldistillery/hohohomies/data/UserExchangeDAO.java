@@ -10,7 +10,7 @@ public interface UserExchangeDAO {
 	List<UserExchange> findAllByUserId(int id);
 
 	List<UserExchange> findAllByEventId(int id);
-
+	
 	UserExchange findById(UserExchangeId id);
 
 	UserExchange store(UserExchange exchange);

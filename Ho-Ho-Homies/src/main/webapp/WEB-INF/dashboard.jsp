@@ -75,8 +75,8 @@
 						<tr>
 							<td>${e.event.title}</td>
 							<td>${e.event.type.name}</td>
-							<td># of members</td>
-							<td>${e.event.eventDate()}</td>
+							<td>${e.event.exchanges.size()}</td>
+              <td>${e.event.eventDate()}</td>
 							<td><span><a href="/event/view?id=${e.event.id}"
 									class="btn btn-success">View</a></span></td>
 						</tr>
