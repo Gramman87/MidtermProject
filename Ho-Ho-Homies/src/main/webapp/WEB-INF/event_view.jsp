@@ -140,7 +140,10 @@
 									${exchange.giftee.lastName}</td>
 							</tr>
 							<tr>
-								<td>Rules: ${event.customRules }</td>
+								<td>Rules: ${event.type.description }</td>
+							</tr>
+							<tr>
+								<td>Custom Rules: ${event.customRules }</td>
 							</tr>
 						</tbody>
 					</table>
