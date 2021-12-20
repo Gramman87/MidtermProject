@@ -7,8 +7,14 @@
 <html>
 <jsp:include page="header.jsp"></jsp:include>
 <body>
+
 	<div class="container">
 		<div class="row justify-content-center">
+		<div class="col-3">
+				<a href="/"><img
+					src="/img/logo.png"
+					style="max-height: 100%; max-width: 100%;" /></a>
+			</div>
 			<div class="col-10">
 
 				<c:if test="${not empty message}">
