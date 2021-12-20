@@ -47,7 +47,7 @@
 
 			</div>
 		</div>
-		<div class="row">
+		<div class="row" style="padding: 10px; -bs-gutter-x: 1rem; -bs-gutter-y: 5rem;">
 			<div class="col">
 				<!-- Group Members -->
 				<table class="table table-danger table-striped">
