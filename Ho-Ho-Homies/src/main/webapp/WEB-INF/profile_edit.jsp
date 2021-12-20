@@ -10,8 +10,8 @@
 <body>
 	<div class="container">
 		<div class="row">
-			<img class="w-auto h-100"
-				src="https://i.ibb.co/P6y2hTr/hohohomies.png" alt="hohohomies" />
+			<a href="/"><img class="w-auto h-100"
+				src="/img/logo.png"/></a>
 		</div>
 
 		<c:if test="${not empty message}">
