@@ -13,6 +13,11 @@ function addInvitee() {
 	if (value.length === 0) {
 		return;
 	}
+	
+	addInviteeValue(value)
+}
+
+function addInviteeValue(value) {
 	var formValue = $(document.createElement("input"));
 	formValue.attr("type", "hidden");
 	formValue.attr("name", "invites[]");
@@ -29,4 +34,16 @@ function addInvitee() {
 	});
 	$("#invites-preview").append(previewValue);
 	$("#invite-input").val("");
+}
+
+if (typeof prefetch !== 'undefined') {
+	prefetch.forEach((e) => { addInviteeValue(e); })
+}
+
+if (typeof beginsOn !== 'undefined') {
+	$("body > div > div:nth-child(3) > div.col-8 > div:nth-child(4) > div.col > input").val(beginsOn);
+}
+
+if (typeof rsvpBy !== 'undefined') {
+	$("body > div > div:nth-child(3) > div.col-8 > div:nth-child(5) > div.col > input").val(rsvpBy);
 }

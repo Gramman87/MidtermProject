@@ -1,19 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <c:set var="title" value="Create Event" scope="application" />
-<c:set var="style" value="stringLightBanner/stringLight.css"
-	scope="application" />
+<c:set var="style" value="stringLightBanner/stringLight.css" scope="application" />
 <c:set var="script" value="event/create.js" scope="application" />
 <jsp:include page="header.jsp"></jsp:include>
 <body>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-3">
-				<a href="/"><img src="/img/logo.png"
-					style="max-height: 100%; max-width: 100%;" /></a>
+				<a href="/"><img src="/img/logo.png" style="max-height: 100%; max-width: 100%;" /></a>
 			</div>
 			<section class="light-bulbs">
 				<div class="light-bulb theme-color-one"></div>
@@ -32,9 +29,8 @@
 
 					<div id="logout-edit" style="color: #45bf65; text-align: right;">
 						<div id="Logout">
-							<span><a href="/logout" class="btn btn-success">Logout</a></span>
-							<span><a href="/dashboard" class="btn btn-success">Go
-									Back</a></span>
+							<span><a href="/logout" class="btn btn-success">Logout</a></span> <span><a href="/dashboard"
+								class="btn btn-success">Go Back</a></span>
 						</div>
 					</div>
 				</div>
@@ -62,10 +58,8 @@
 								<td><c:choose>
 
 										<c:when test="${exchange.giftee == e.user }">
-											<a data-bs-toggle="collapse" href="#collapseExample"
-												aria-expanded="false" aria-controls="collapseExample"
-												id="giftee"> ${e.user.firstName} ${e.user.lastName}
-												(Recipient)</a>
+											<a data-bs-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"
+												id="giftee"> ${e.user.firstName} ${e.user.lastName} (Recipient)</a>
 
 											<div class="collapse" id="collapseExample">
 												<div class="card card-body">
@@ -105,12 +99,13 @@
 					</tbody>
 				</table>
 				<c:if test="${event.owner == exchange.user}">
-				<div class="event-owner">
-					<a href="/event/randomize?id=${event.id}">
-						<button class="btn btn-secondary btn-success btn-sm"
-							id="randomizer-btn">Randomizer</button>
-					</a>
-				</div>
+					<div class="event-owner">
+						<a href="/event/edit?id=${event.id}">
+							<button class="btn btn-secondary btn-success btn-sm">Edit</button>
+						</a> <a href="/event/randomize?id=${event.id}">
+							<button class="btn btn-secondary btn-success btn-sm" id="randomizer-btn">Randomizer</button>
+						</a>
+					</div>
 				</c:if>
 			</div>
 			<div class="col">
@@ -136,8 +131,7 @@
 								<td>Minimum Item Cost: $ ${event.priceMin }</td>
 							</tr>
 							<tr>
-								<td>Your Recipient: ${exchange.giftee.firstName}
-									${exchange.giftee.lastName}</td>
+								<td>Your Recipient: ${exchange.giftee.firstName} ${exchange.giftee.lastName}</td>
 							</tr>
 							<tr>
 								<td>Rules: ${event.type.description }</td>
@@ -154,8 +148,7 @@
 					<div class="row">
 						<!-- Event Comments -->
 
-						<iframe src="/event/comments?id=${event.id}" title="comments"
-							style="height: 500px"></iframe>
+						<iframe src="/event/comments?id=${event.id}" title="comments" style="height: 500px"></iframe>
 					</div>
 				</div>
 			</div>
