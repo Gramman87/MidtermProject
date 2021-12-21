@@ -250,7 +250,14 @@
 		</div>
 
 		<div class="row justify-content-right">
-			<input type="submit" form="create-form" class="btn btn-success" value="Create Event" />
+			<c:choose>
+				<c:when test="${event!=null}">
+					<input type="submit" form="create-form" class="btn btn-success" value="Update Event" />
+				</c:when>
+				<c:otherwise>
+					<input type="submit" form="create-form" class="btn btn-success" value="Create Event" />
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
 </body>
