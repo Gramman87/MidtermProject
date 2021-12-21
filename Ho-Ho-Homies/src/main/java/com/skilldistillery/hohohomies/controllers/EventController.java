@@ -167,6 +167,7 @@ public class EventController {
 
 		// If the event is owned by the posting user
 		if (managed.getOwner().getId() == userId) {
+			managed.setTitle(event.getTitle());
 			managed.setCustomRules(event.getCustomRules());
 			managed.setPriceMin(event.getPriceMin());
 			managed.setPriceMax(event.getPriceMax());
