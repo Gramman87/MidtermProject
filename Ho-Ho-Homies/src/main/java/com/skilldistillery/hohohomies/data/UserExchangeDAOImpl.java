@@ -55,7 +55,10 @@ public class UserExchangeDAOImpl implements UserExchangeDAO {
 		managed.setDateInvited(exchange.getDateInvited());
 		return managed;
 	}
-	
 
+	@Override
+	public void delete(UserExchange exchange) {
+		em.remove(exchange);
+	}
 
 }

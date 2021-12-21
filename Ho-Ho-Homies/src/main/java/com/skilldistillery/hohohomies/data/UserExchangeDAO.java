@@ -16,5 +16,7 @@ public interface UserExchangeDAO {
 	UserExchange store(UserExchange exchange);
 
 	UserExchange update(UserExchange exchange);
+	
+	void delete(UserExchange exchange);
 
 }
