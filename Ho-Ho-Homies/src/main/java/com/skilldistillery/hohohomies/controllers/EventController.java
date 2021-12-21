@@ -190,7 +190,10 @@ public class EventController {
 			managed.getAddress().setZipcode(event.getAddress().getZipcode());
 			addressDao.update(managed.getAddress());
 
-			List<String> invites = List.of(data.getInvites());
+			List<String> invites = new ArrayList<>();
+			for(String invite : data.getInvites()) {
+				invites.add(invite);
+			}
 
 			// Add all "new" invites
 			invites.stream().filter((email) -> {
